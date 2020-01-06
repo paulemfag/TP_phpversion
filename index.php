@@ -1,3 +1,4 @@
+<?php include 'form_validation.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -27,43 +28,46 @@
         <button id="connectbtn" class="btn btn-outline-success ml-1">Connexion</button>
     </div>
 </nav>
+<div id="presentationText">
 <p class="text-light">Crée en 2019 par Monsieur FAGOT FILL est un site d'écoute et de publication musicale développé
     d</p>
+</div>
 <div id="suscribeItems">
     <div class="container text-center bg-light mt-2 opacity">
         <h1 class="text-primary ml-auto mr-auto">Inscription :</h1>
     </div>
-    <?php
-    if (isset($_POST['type'])
-        && preg_match('/^[A-Z|a-zéèçàïîêëôöûü]+([A-Z|a-z_éèçàïîêëôöûü_ _-])*$/', $_POST['lastname'])
-        && preg_match('/^[A-Z|a-zéèçàïîêëôöûü]+([A-Z|a-z_éèçàïîêëôöûü_ _-])*$/', $_POST['firstname'])
-        && preg_match('/^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/', $_POST['mailbox'])) {
-        echo 'test';
-    }
-    ?>
+    <p class="text-light"><?php
+    var_dump($errors);
+/*        && preg_match('/^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/', $_POST['mailbox'])) {*/
+    ?></p>
     <!-- form Inscription -->
-    <form id="suscribers">
+    <form id="suscribers" method="post" action="#" novalidate>
         <div class="container">
             <div class="col-12 text-center">
                 <a class="text-light col-12 text-center">Je suis : </a>
-                <input id="compositor" type="radio" name="type" value="compositor">
-                <label class="text-light" for="compositor">un compositeur</label>
                 <input id="particular" type="radio" name="type" value="particular">
                 <label class="text-light" for="particular">un particulier</label>
+                <input id="compositor" type="radio" name="type" value="compositor">
+                <label class="text-light" for="compositor">un compositeur</label>
             </div>
             <label class="text-light" for="lastName">Nom :</label>
-            <input id="lastName" class="col-12 text-center mt-1" type="text" placeholder="Nom" required>
+            <span class="text-danger mr-auto"><?= ($errors['lastname']) ?? '' ?></span>
+            <input id="lastName" class="col-12 text-center mt-1" type="text" value="<?= $lastname ?>" required>
             <label class="text-light" for="firstName">Prénom :</label>
-            <input id="firstName" class="col-12 text-center mt-1" type="text" placeholder="Prénom" required>
+            <span class="text-danger"><?= ($errors['firstname']) ?? '' ?></span>
+            <input id="firstName" class="col-12 text-center mt-1" type="text" value="<?= $firstname ?>" required>
             <label class="text-light" for="suscribepseudo">Pseudo :</label>
-            <input id="suscribepseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" required
+            <span class="text-danger"><?= ($errors['pseudo']) ?? '' ?></span>
+            <input id="suscribepseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" value="<?= $pseudo ?>" required
                    maxlength="15">
             <label class="text-light" for="suscribemailbox">Adresse mail :</label>
-            <input id="suscribemailbox" class="col-12 text-center mt-1" type="email" placeholder="Adresse mail"
+            <span class="text-danger"><?= ($errors['mailbox']) ?? '' ?></span>
+            <input id="suscribemailbox" class="col-12 text-center mt-1" type="email" placeholder="Adresse mail" value="<?= $mailbox?>"
                    required>
             <label class="text-light col-2" for="suscribepassword">Mot de passe :</label>
             <input id="suscribepassword" class="col-4 text-center mt-1" type="password" placeholder="Mot de passe"
                    required>
+            <span class="text-danger"><?= ($errors['password']) ?? '' ?></span>
             <input id="suscribepasswordconfirmation" class="col-4 text-center mt-1 ml-2" type="password"
                    placeholder="Confirmation du mot de passe" required>
             <button id="suscribe" class="btn btn-outline-primary col-12 text-center mt-1" value="M'inscrire"
