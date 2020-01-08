@@ -29,49 +29,43 @@
     </div>
 </nav>
 <div id="presentationText">
-<p class="text-light">Crée en 2019 par Monsieur FAGOT FILL est un site d'écoute et de publication musicale développé
-    d</p>
+    <p class="text-light">Crée en 2019 par Monsieur FAGOT FILL est un site d'écoute et de publication musicale développé d</p>
 </div>
 <div id="suscribeItems">
     <div class="container text-center bg-light mt-2 opacity">
         <h1 class="text-primary ml-auto mr-auto">Inscription :</h1>
     </div>
-    <p class="text-light"><?php
-    var_dump($errors);
-/*        && preg_match('/^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/', $_POST['mailbox'])) {*/
-    ?></p>
     <!-- form Inscription -->
     <form id="suscribers" method="post" action="#" novalidate>
         <div class="container">
-            <div class="col-12 text-center">
-                <a class="text-light col-12 text-center">Je suis : </a>
-                <input id="particular" type="radio" name="type" value="particular">
+            <div class="form-group text-center">
+                <legend class="text-light col-12 text-center">Je suis : </legend>
+                <input id="particular" type="radio" name="accounttype" value="1" <?= ($accounttype == 1) ? 'checked' : '' ?>>
                 <label class="text-light" for="particular">un particulier</label>
-                <input id="compositor" type="radio" name="type" value="compositor">
+                <input id="compositor" type="radio" name="accounttype" value="2" <?= ($accounttype == 2) ? 'checked' : '' ?>>
                 <label class="text-light" for="compositor">un compositeur</label>
+                <span class="text-danger error_message"><?= ($errors['accounttype']) ?? '' ?></span>
             </div>
-            <label class="text-light" for="lastName">Nom :</label>
-            <span class="text-danger mr-auto"><?= ($errors['lastname']) ?? '' ?></span>
-            <input id="lastName" class="col-12 text-center mt-1" type="text" value="<?= $lastname ?>" required>
-            <label class="text-light" for="firstName">Prénom :</label>
-            <span class="text-danger"><?= ($errors['firstname']) ?? '' ?></span>
-            <input id="firstName" class="col-12 text-center mt-1" type="text" value="<?= $firstname ?>" required>
-            <label class="text-light" for="suscribepseudo">Pseudo :</label>
-            <span class="text-danger"><?= ($errors['pseudo']) ?? '' ?></span>
-            <input id="suscribepseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" value="<?= $pseudo ?>" required
-                   maxlength="15">
-            <label class="text-light" for="suscribemailbox">Adresse mail :</label>
-            <span class="text-danger"><?= ($errors['mailbox']) ?? '' ?></span>
-            <input id="suscribemailbox" class="col-12 text-center mt-1" type="email" placeholder="Adresse mail" value="<?= $mailbox?>"
-                   required>
-            <label class="text-light col-2" for="suscribepassword">Mot de passe :</label>
-            <input id="suscribepassword" class="col-4 text-center mt-1" type="password" placeholder="Mot de passe"
-                   required>
-            <span class="text-danger"><?= ($errors['password']) ?? '' ?></span>
-            <input id="suscribepasswordconfirmation" class="col-4 text-center mt-1 ml-2" type="password"
-                   placeholder="Confirmation du mot de passe" required>
-            <button id="suscribe" class="btn btn-outline-primary col-12 text-center mt-1" value="M'inscrire"
-                    type="submit"><b>M'inscrire</b></button>
+            <div class="form-group">
+                <label class="text-light" for="suscribepseudo">Pseudo :</label>
+                <span class="text-danger error_message"><?= ($errors['suscribepseudo']) ?? '' ?></span>
+                <input id="suscribepseudo" name="suscribepseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" value="<?= $suscribepseudo ?>" required>
+            </div>
+            <div class="form-group">
+                <label class="text-light" for="suscribemailbox">Adresse mail :</label>
+                <span class="text-danger error_message"><?= ($errors['suscribemailbox']) ?? '' ?></span>
+                <input id="suscribemailbox" name="suscribemailbox" class="col-12 text-center mt-1" type="email" placeholder="exemple@mail.com" value="<?= $suscribemailbox ?>" required>
+            </div>
+            <div class="form-group">
+                <label class="text-light" for="suscribepassword">Mot de passe :</label>
+                <span class="text-danger error_message"><?= ($errors['suscribepassword']) ?? '' ?></span>
+                <input id="suscribepassword" name="suscribepassword" class="col-12 text-center mt-1" type="password" placeholder="*****" value="<?= $suscribepassword ?>" required>
+            </div>
+            <div class="form-group">
+                <input id="suscribepasswordconfirmation" name="suscribepasswordconfirmation" class="col-12 text-center mt-1" type="password" placeholder="Confirmation du mot de passe" value="<?= $suscribepasswordconfirmation ?>" required>
+            </div>
+                <button id="suscribe" name="suscribe" class="btn btn-outline-primary col-12 text-center mt-1"
+                        type="submit" value="<?= $suscribe ?? '' ?>"><b>M'inscrire</b></button>
         </div>
     </form>
 </div>
@@ -81,22 +75,31 @@
     </div>
     <div id="connect">
         <!-- Form Connexion -->
-        <form>
+        <form method="post" novalidate>
             <div class="container">
+                <div class="form-group">
                 <label class="text-light" for="pseudo">Pseudo :</label>
-                <input id="pseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" required
+                <span class="text-danger error_message"><?= ($errors['pseudo']) ?? '' ?></span>
+                <input id="pseudo" name="pseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" required
                        maxlength="15">
+                </div>
+                <div class="form-group">
                 <label class="text-light" for="mailbox">Adresse mail :</label>
-                <input id="mailbox" class="col-12 text-center mt-1" type="email" placeholder="Adrese mail" required>
+                <span class="text-danger error_message"><?= ($errors['mailbox']) ?? '' ?></span>
+                <input id="mailbox" name="mailbox" class="col-12 text-center mt-1" type="email" placeholder="Adrese mail" required>
+                </div>
+                <div class="form-group">
                 <label class="text-light" for="password">Mot de passe :</label>
-                <input id="password" class="col-12 text-center mt-1" type="password" placeholder="Mot de passe"
+                <span class="text-danger error_message"><?= ($errors['password']) ?? '' ?></span>
+                <input id="password" name="password" class="col-12 text-center mt-1" type="password" placeholder="Mot de passe"
                        required>
+                </div>
                 <div class="row col-12 ml-auto mr-auto">
                     <a id="noAccount" href="#">je n'ai pas encore de compte</a>
                     <p class="text-primary"> | </p><a href="#">Mot de passe oublié</a>
                 </div>
-                <input id="login" value="Me connecter" class="btn btn-outline-primary col-12 text-center mt-1"
-                       type="submit">
+                <button id="login" name="login" class="btn btn-outline-primary col-12 text-center mt-1"
+                        type="submit" value="<?= $login ?? '' ?>">Me connecter</button>
             </div>
         </form>
     </div>

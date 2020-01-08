@@ -1,35 +1,49 @@
 $(document).ready(
-  // formulaires cachés et texte affiché quand on arrive sur la page
-  function FormsDefault() {
-  $('#suscribeItems').hide();
-  $('#connectItems').hide();
-});
-// quand on veux s'inscrire ( vérifie que le formulaire de connection et le texte sont cachés et affiche celui d'inscription)
-$('#suscribebtn').click(function() {
-  $('#connectItems').hide();
-  $('#suscribeItems').show();
-  $('#presentationText').hide();
-});
-// quand on veux se connecter ( vérifie que le formulaire d'inscription et le texte sont cachés et affiche celui de connexion)
+    // test si un formulaire a déjà été envoyé
+    function test() {
+        // si formulaire s'inscrire envoyé (formulaire login et texte cachés quand on arrive sur la page)
+        if ($('#suscribe').attr('value') == 'alreadySubmittedOnce') {
+            $('#suscribeItems').show();
+            $('#connectItems').hide();
+            $('#presentationText').hide();
+        } // si formulaire login envoyé (formulaire s'inscrire et texte cachés quand on arrive sur la page)
+        else if ($('#login').attr('value') == 'alreadySubmittedOnce') {
+            $('#suscribeItems').hide();
+            $('#connectItems').show();
+            $('#presentationText').hide();
+        }
+        // formulaires cachés et texte affiché quand on arrive sur la page
+        else {
+            $('#suscribeItems').hide();
+            $('#connectItems').hide();
+            $('#presentationText').show();
+        }
+    }
+);
+
+// quand on clique sur le bouton se connecter affiche le formulaire de connexion
 $('#connectbtn').click(function() {
-  $('#suscribeItems').hide();
-  $('#connectItems').show();
-  $('#presentationText').hide();
+    $('#suscribeItems').hide();
+    $('#connectItems').show();
+    $('#presentationText').hide();
+});
+
+// quand on clique sur le bouton s'inscrire affiche le formulaire d'inscription
+$('#suscribebtn').click(function() {
+    $('#suscribeItems').show();
+    $('#connectItems').hide();
+    $('#presentationText').hide();
 });
 
 // Choix du type de compte
-/*$('#suscribe').click (function() {
-var radioValue = $("input[name='type']:checked").val();
-// si c'est un compositeur
-  if (radioValue == 'compositor'){
-    $('#suscribers').attr('action', 'suscribecompositor.php');
-  }
-  // si c'est un particulier
-  else if (radioValue == 'particular') {
-    $('#suscribers').attr('action', 'suscribeparticular.php');
-  }
-  // sinon
-  else {
-    $('#suscribers').attr('action', '#');
-  }
-})*/
+$('#suscribe').click (function() {
+    var radioValue = $("input[name='accounttype']:checked").val();
+    // si c'est un particulier
+    if (radioValue == '1') {
+        $('#suscribers').attr('action', 'suscribeparticular.php');
+    }
+    // si c'est un compositeur
+    else if (radioValue == '2'){
+        $('#suscribers').attr('action', 'suscribecompositor.php');
+    }
+})

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Forum</title>
+  <title>FILL | Forum</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <!-- CDN Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -66,7 +66,7 @@
                       Menu
                   </a>
                   <div class="dropdown-menu" style="background-color: #727d87;" aria-labelledby="navbarDropdownMenu">
-                      <a class="dropdown-item" href="#">Paramètres</a>
+                      <a class="dropdown-item" href="parameters.php">Paramètres</a>
                       <a class="dropdown-item" href="#">CGU</a>
                       <a class="dropdown-item text-danger" href="index.php">Me déconnecter <i class="fas fa-sign-out-alt"></i></a>
                   </div>
