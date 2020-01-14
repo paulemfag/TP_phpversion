@@ -13,6 +13,12 @@ $(document).ready(
             $('#connectItems').show();
             $('#presentationText').hide();
             $('#forgottenPassword').hide();
+        } // si formulaire login envoyé (formulaire s'inscrire et texte cachés quand on arrive sur la page)
+        else if ($('#recuperation').attr('value') === 'alreadySubmittedOnce') {
+            $('#suscribeItems').hide();
+            $('#connectItems').hide();
+            $('#presentationText').hide();
+            $('#forgottenPassword').show();
         }
         // formulaires cachés et texte affiché quand on arrive sur la page
         else {

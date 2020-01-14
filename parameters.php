@@ -1,5 +1,6 @@
 <?php $title = 'Fill | Paramètres';
 include 'header.php'; 
+include 'form_validation.php';
 ?>
         <div class="container text-center bg-light mt-2 opacity">
             <h1 class="text-center ml-auto mr-auto">Paramètres :</h1>
@@ -7,20 +8,21 @@ include 'header.php';
         <form class="container" action="#" method="post" novalidate>
             <div class="form-group">
                 <label class="text-light" for="actualPassword">Mot de passe actuel :</label>
-                <span class="text-danger error_message"><?= ($errors['actualPassword']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['actualPassword']) ?? '' ?></span>
                 <input class="col-12" name="actualPassword" type="password" value="<?= $actualPassword ?>" required>
             </div>
             <div class="form-group">
                 <label class="text-light" for="newPassword">Nouveau mot de passe :</label>
-                <span class="text-danger error_message"><?= ($errors['newPassword']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['newPassword']) ?? '' ?></span>
                 <input class="col-12" name="newPassword" type="password" value="<?= $newPassword ?>" required>
             </div>
             <div class="form-group">
                 <label class="text-light" for="newPasswordConfirm">Confirmation du nouveau mot de passe :</label>
-                <span class="text-danger error_message"><?= ($errors['newPasswordConfirm']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['newPasswordConfirm']) ?? '' ?></span>
                 <input class="col-12" name="newPasswordConfirm" type="password" value="<?= $newPasswordConfirm ?>" required>
             </div>
-            <input name="changeMyPassword" type="submit" value="Changer mon mot de passe">
+            <button name="changeMyPassword" type="submit" value="<?php $recuperation ?>">Changer mon mot de passe</button>
+            <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
         </form>
   <?php  include 'footer.php'; ?>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

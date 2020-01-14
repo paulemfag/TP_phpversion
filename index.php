@@ -50,24 +50,25 @@
             </div>
             <div class="form-group">
                 <label class="text-light" for="suscribepseudo">Pseudo :</label>
-                <span class="text-danger error_message"><?= ($errors['suscribepseudo']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['suscribepseudo']) ?? '' ?></span>
                 <input id="suscribepseudo" name="suscribepseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" value="<?= $suscribepseudo ?>" required>
             </div>
             <div class="form-group">
                 <label class="text-light" for="suscribemailbox">Adresse mail :</label>
-                <span class="text-danger error_message"><?= ($errors['suscribemailbox']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['suscribemailbox']) ?? '' ?></span>
                 <input id="suscribemailbox" name="suscribemailbox" class="col-12 text-center mt-1" type="email" placeholder="exemple@mail.com" value="<?= $suscribemailbox ?>" required>
             </div>
             <div class="form-group">
                 <label class="text-light" for="suscribepassword">Mot de passe :</label>
-                <span class="text-danger error_message"><?= ($errors['suscribepassword']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['suscribepassword']) ?? '' ?></span>
                 <input id="suscribepassword" name="suscribepassword" class="col-12 text-center mt-1" type="password" placeholder="*****" value="<?= $suscribepassword ?>" required>
             </div>
             <div class="form-group">
                 <input id="suscribepasswordconfirmation" name="suscribepasswordconfirmation" class="col-12 text-center mt-1" type="password" placeholder="Confirmation du mot de passe" value="<?= $suscribepasswordconfirmation ?>" required>
             </div>
                 <button id="suscribe" name="suscribe" class="btn btn-outline-primary col-12 text-center mt-1"
-                        type="submit" value="<?= $suscribe ?? '' ?>"><b>M'inscrire</b></button>
+                        type="submit" value="<?= $suscribe ?? '' ?>">M'inscrire</button>
+            <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     </form>
 </div>
 <div id="connectItems">
@@ -78,17 +79,17 @@
         <form class="container" method="post" novalidate>
                 <div class="form-group">
                 <label class="text-light" for="pseudo">Pseudo :</label>
-                <span class="text-danger error_message"><?= ($errors['pseudo']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['pseudo']) ?? '' ?></span>
                 <input id="pseudo" name="pseudo" class="col-12 text-center mt-1" type="text" placeholder="Pseudo" value="<?= $pseudo ?>" required>
                 </div>
                 <div class="form-group">
                 <label class="text-light" for="mailbox">Adresse mail :</label>
-                <span class="text-danger error_message"><?= ($errors['mailbox']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['mailbox']) ?? '' ?></span>
                 <input id="mailbox" name="mailbox" class="col-12 text-center mt-1" type="email" placeholder="Adrese mail" value="<?= $mailbox ?>" required>
                 </div>
                 <div class="form-group">
                 <label class="text-light" for="password">Mot de passe :</label>
-                <span class="text-danger error_message"><?= ($errors['password']) ?? '' ?></span>
+                <span class="text-danger float-right"><?= ($errors['password']) ?? '' ?></span>
                 <input id="password" name="password" class="col-12 text-center mt-1" type="password" placeholder="Mot de passe" value="<?= $password ?>" required>
                 </div>
                 <div class="row col-12 ml-auto mr-auto">
@@ -99,18 +100,17 @@
                         type="submit" value="<?= $login ?? '' ?>">Me connecter</button>
         </form>
     </div>
-</div>
-<form class="container" id='forgottenPassword'>
+<form class="container" id='forgottenPassword' method="post" novalidate>
     <div class="container text-center bg-light mt-2 opacity">
         <h1 class="text-primary ml-auto mr-auto">Récupération du mot de passe :</h1>
     </div>
-    <div class="container">
         <div class="form-group form-group-inline">
             <label class="text-light" for="recuperationMailbox">Adresse mail :</label>
-            <span class="text-danger error_message">Tewt</span>
-            <input name="recuperationMailbox" type='text'></input>
+            <span class="text-danger float-right"><?= ($errors['recuperationMailbox']) ?? '' ?></span>
+            <input class="col-12" name="recuperationMailbox" type='text' value="<?= $recuperationMailbox ?>" required>
         </div>
-    </div>
+     <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
+        <button id="recuperation" name="recuperation" class="btn btn-outline-success col-12 text-center mt-1" type="submit" value="<?= $recuperation ?? ''?>">Récupérer mon mot de passe</button>
 </form>    
   <?php  include 'footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
