@@ -1,7 +1,7 @@
 <?php
 $isSubmitted = false;
 //variables msg d'alerte champs mal saisis
-$suscribepseudo = $suscribemailbox = $accounttype = $suscribepassword = $suscribepasswordconfirmation = $suscribe = $pseudo = $mailbox = $password = $login = '';
+$suscribepseudo = $suscribemailbox = $accounttype = $suscribepassword = $suscribepasswordconfirmation = $suscribe = $pseudo = $mailbox = $password = $login = $actualPassword = $newPassword = $newPasswordConfirm = '';
 //regex pour les contrôle du formulaire
 $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+((-| )[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+)?$/";
 //tableau d'erreurs
@@ -12,7 +12,7 @@ $errors = [];
         //ajoute une value au bouton m'inscrire
         $suscribe = 'alreadySubmittedOnce';
         //contôle des radios boutons sur le type
-        $accounttype =trim(filter_input(INPUT_POST,'accounttype',FILTER_SANITIZE_NUMBER_INT));
+        $accounttype = trim(filter_input(INPUT_POST,'accounttype',FILTER_SANITIZE_NUMBER_INT));
         //contrôle des radio ou des checkbox avec isset et non empty
         if(!isset($_POST['accounttype'])){
             $errors['accounttype'] = 'Veuillez renseigner votre type de compte';
@@ -53,9 +53,15 @@ $errors = [];
         }
         if (empty($mailbox)) {
             $errors['mailbox'] = 'Veuillez renseigner votre adresse mail';
+        }elseif (!filter_var($mailbox, FILTER_VALIDATE_EMAIL)) {
+            $errors['mailbox'] = 'Veuillez saisir une adresse mail valide';
         }
         if (empty($password)) {
             $errors['password'] = 'Veuillez renseigner votre mot de passe';
+        }
+    } elseif (isset ($_POST['changeMyPassword'])) {
+        if (empty($actualPassword)){
+            $errors['actualPassword'] = 'Test';
         }
     }
 
