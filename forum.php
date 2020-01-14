@@ -115,13 +115,14 @@ include 'header.php';
           </p>
         </div>
         <div class="modal-footer">
-          <div class="checkbox">
+<!--          <div class="checkbox">
             <label>
               <input class="check_list" name="check_list[]" type="checkbox" id="check">
               J'ai pris connaisance du réglement
             </label>
-          </div>
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times"></i> Fermer</button>
+          </div>-->
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times"></i> Je refuse</button>
+          <button type="button" class="btn btn-outline-success" data-dismiss="modal"><i class="fas fa-times"></i> J'accepte</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

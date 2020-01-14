@@ -35,7 +35,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Playlists
                         </a>
-                        <div class="dropdown-menu" style="background-color: #727d87;" aria-labelledby="navbarDropdownPlaylist">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownPlaylist">
                             <a class="dropdown-item" data-toggle="modal" data-target=".modal"><i class="fas fa-plus"></i>
                                 Nouvelle playlist</a>
                             <a class="dropdown-item" data-toggle="modal" data-target=".modal">Ma playlist</a>
@@ -47,7 +47,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Tags
                         </a>
-                        <div class="dropdown-menu" style="background-color: #727d87;" aria-labelledby="navbarDropdownTags">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownTags">
                             <a class="dropdown-item" href="#">Afro</a>
                             <a class="dropdown-item" href="#">Blues</a>
                             <a class="dropdown-item" href="#">Classique</a>

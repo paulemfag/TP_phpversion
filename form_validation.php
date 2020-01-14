@@ -9,7 +9,6 @@ $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõ�
 //tableau d'erreurs
 $errors = [];
 //FORM INSCRIPTION
-// Vérifications tableau inscription
     if (isset($_POST['suscribe'])) {
         $isSubmitted = true;
         //ajoute une value au bouton m'inscrire
@@ -92,9 +91,11 @@ $errors = [];
             $errors['actualPassword'] = 'Veuillez saisir votre mot de passe.';
         }if (empty ($newPassword)) {
             $errors['newPassword'] = 'Veuillez choisir un nouveau mot de passe.';
+        }elseif ($actualPassword == $newPassword) {
+            $errors['newPassword'] = 'Le nouveau mot de passe et l\'ancien ne peuvent être identiques';
         }if (empty ($newPasswordConfirm)) {
             $errors['newPasswordConfirm'] = 'Veuillez confirmer votre nouveau mot de passe.';
-        }elseif ($newPassword != $newPasswordConfirm) {
+        }if ($newPassword != $newPasswordConfirm) {
             $errors['newPassword'] = 'Les mots de passes ne correspondent pas.';
             $errors['newPasswordConfirm'] = 'Les mots de passes ne correspondent pas.';
         }else{

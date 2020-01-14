@@ -4,7 +4,21 @@ body{
   background-repeat: no-repeat;
 }
 
+.navbar-nav > li > .dropdown-menu {
+    background-color: #727d87; 
+}
+
+.modal-dialog{
+    background-color: #BD5C44;
+}
+
 h1{
+  font-family: 'Odibee Sans', cursive;
+  color: #113E7F;
+  font-weight: bold;
+}
+
+h2{
   font-family: 'Odibee Sans', cursive;
   color: #113E7F;
   font-weight: bold;
@@ -12,6 +26,14 @@ h1{
 
 .opacity{
   opacity: 0.5;
+}
+
+#parameters{
+  list-style: none;
+}
+
+#parameters li {
+  background: #727d87 ;
 }
 
 #big_text{

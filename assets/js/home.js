@@ -1,6 +1,6 @@
 $(document).ready(
     // test si un formulaire a déjà été envoyé
-    function test() {
+    function(){
         // si formulaire s'inscrire envoyé (formulaire login et texte cachés quand on arrive sur la page)
         if ($('#suscribe').attr('value') === 'alreadySubmittedOnce') {
             $('#suscribeItems').show();
@@ -29,6 +29,28 @@ $(document).ready(
         }
     }
 );
+
+$(function(){
+    //empêche de fermer la modal // click backdrop
+    $('#userAuthorizationModal').modal({backdrop: 'static', keyboard: false});
+  if (typeof(Storage) !== "undefined") {
+    if (! localStorage.getItem('storageAuthorization')){
+      $('#userAuthorizationModal').modal('show');
+    } else {
+      $('#userAuthorizationModal').modal('hide');
+    }
+  }
+  $('#storageDecline').click(function(){
+    location.href = "https://www.google.com/";
+  });
+  $('.storageAllow').click(function(){
+    if (typeof(Storage) !== "undefined") {
+      localStorage.setItem('storageAuthorization', 'true');
+    } else {
+      alert('Le stockage local n\'est pas disponible sur votre navigateur.');
+    }
+  });
+});
 
 // quand on clique sur le bouton se connecter affiche le formulaire de connexion
 $('#connectbtn').click(function() {
