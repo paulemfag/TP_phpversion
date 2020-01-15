@@ -12,7 +12,7 @@ include 'header.php';
   <!-- Modal nouveau topic -->
   <div class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content" style="background-color: #BD5C44;">
+      <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-light">Créer un nouveau topic :</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -70,12 +70,11 @@ include 'header.php';
     </div>
   </div>
   <!-- Modal réglement -->
-  <div class="modal fade connexion" id="rules" tabindex="-1" role="dialog">
+  <div class="modal fade" id="rules" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content" style="background-color: #BD5C44;">
         <div class="modal-header">
           <h4 class="modal-title"><i class="fas fa-book"></i> Réglement du Forum :</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
         <div class="modal-body">
           <p>
@@ -121,8 +120,8 @@ include 'header.php';
               J'ai pris connaisance du réglement
             </label>
           </div>-->
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times"></i> Je refuse</button>
-          <button type="button" class="btn btn-outline-success" data-dismiss="modal"><i class="fas fa-times"></i> J'accepte</button>
+<button id="rulesDecline" type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times"></i> Je refuse</button>
+<button id="rulesAllow" type="button" class="btn btn-outline-success" data-dismiss="modal"><i class="fas fa-times"></i> J'accepte</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

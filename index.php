@@ -32,15 +32,15 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Utilisation des cookies :</h5>
+                        <h5 class="modal-title"><i class="fas fa-cookie"></i> Utilisation des cookies :</h5>
                     </div>
                     <div class="modal-body">
                         <p>En poursuivant votre navigation sur FILL, vous acceptez l’utilisation de cookies et du stockage local de votre navigateur pour vous proposer le contrôle des informations générales associées à votre compte personnel.</p>
-                        <p>Vous pouvez refuser ces conditions en cliquant sur le bouton "Refuser". Pour vous assurer la meilleure utilisation de Solution³, le refus du stockage local de vos informations nous amènerons à limiter votre accès à notre site.</p>
+                        <p>Vous pouvez refuser ces conditions en cliquant sur le bouton "Refuser". Pour vous assurer la meilleure utilisation de FILL, le refus du stockage local de vos informations nous amènerons à limiter votre accès à notre site.</p>
                     </div>
                     <div class="modal-footer">
                         <button id="storageDecline" type="button" class="btn btn-block btn-danger my-0 mx-5" data-dismiss="modal">Refuser</button>
-                        <button type="button" class="storageAllow btn btn-block btn-success my-0 mx-5" data-dismiss="modal">Autoriser</button>
+                        <button id="storageAllow" type="button" class="btn btn-block btn-success my-0 mx-5" data-dismiss="modal">Autoriser</button>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <p class="text-light">Crée en 2019 par Monsieur FAGOT, FILL est un site d'écoute et de publication musicale 
                 développé dans l'optique d'offrir aux auteurs un endroit ou partager leur compositions " To fill " et au grand
                 public de découvrir de nouveaux horizons " To feel ".<br>
-                Les membres disposent également d'un espace Forum ou ils pourront débattre sur des sujets qui leurs tiennent à coeur.
+                Les membres disposent également d'un espace Forum ou ils peuvent débattre sur des sujets qui leurs tiennent à coeur.
             <p>
         </div>
         <div id="suscribeItems">

@@ -73,7 +73,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu
                         </a>
-                        <div class="dropdown-menu" style="background-color: #727d87;" aria-labelledby="navbarDropdownMenu">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
                             <a class="dropdown-item" href="parameters.php">Paramètres</a>
                             <a class="dropdown-item" href="#">CGU</a>
                             <a class="dropdown-item text-danger" href="index.php">Me déconnecter <i
