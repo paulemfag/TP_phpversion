@@ -1,5 +1,5 @@
 <?php $title = 'Fill | Accueil';
-include 'header.php'; 
+require_once 'header.php';
 ?>
   <!-- modal playlist -->
   <div class="modal fade" tabindex="-1" role="dialog" id="playlist">
@@ -22,7 +22,7 @@ include 'header.php';
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-  <?php  include 'footer.php'; ?>
+  <?php  require_once 'footer.php'; ?>
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="../assets/js/accueil.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

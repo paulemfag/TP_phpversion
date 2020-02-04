@@ -1,5 +1,5 @@
 <?php $title = 'Fill | Forum';
-include 'header.php'; 
+require_once 'header.php';
 ?>
   <!-- barre et bouton rechercher -->
   <div class="container mt-2 12-col">
@@ -10,7 +10,7 @@ include 'header.php';
     </div>
   </div>
   <!-- Modal nouveau topic -->
-  <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -71,8 +71,8 @@ include 'header.php';
   </div>
   <!-- Modal réglement -->
   <div class="modal fade" id="rules" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background-color: #BD5C44;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title"><i class="fas fa-book"></i> Réglement du Forum :</h4>
         </div>
@@ -134,7 +134,7 @@ include 'header.php';
   <li class="page-item"><a class="page-link" href="#">page suivante</a></li>
 </ul>
 </nav>
-  <?php  include 'footer.php'; ?>
+  <?php require_once 'footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/forum.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

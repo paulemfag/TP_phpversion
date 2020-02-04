@@ -130,7 +130,7 @@
             <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
             <button id="recuperation" name="recuperation" class="btn btn-outline-success col-12 text-center mt-1" type="submit" value="<?= $recuperation ?? '' ?>">Récupérer mon mot de passe</button>
         </form>    
-        <?php include 'footer.php'; ?>
+        <?php require_once 'footer.php'; ?>
         <script src="../assets/js/jquery-3.3.1.min.js"></script>
         <script src="../assets/js/home.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

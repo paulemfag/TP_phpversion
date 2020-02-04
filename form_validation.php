@@ -70,7 +70,6 @@ $errors = [];
         //ajoute une value au bouton
         $recuperation = 'alreadySubmittedOnce';
         //déclaration variable
-        //$recuperationMailbox = $_POST['recuperationMailbox'];
         $recuperationMailbox = trim(htmlspecialchars($_POST['recuperationMailbox']));
         if (empty($recuperationMailbox)){
             $errors['recuperationMailbox'] = 'Veuillez renseigner votre adresse mail.';
@@ -101,5 +100,9 @@ $errors = [];
         }else{
             $errors['isok'] = 'Votre mot de passe à bien été changé.';
         }
-    } 
+    } elseif (isset($_POST['removeMyAccount'])) {
+        $isSubmitted = true;
+        //ajoute une value au bouton me connecter
+        $removeMyAccount = 'alreadySubmittedOnce';
+    }
 

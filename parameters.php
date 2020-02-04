@@ -1,7 +1,7 @@
 <?php
 $title = 'Fill | Paramètres';
-include 'header.php';
-include 'form_validation.php';
+require_once 'header.php';
+require_once 'form_validation.php';
 ?>
 <div class="container text-center bg-light mt-2 opacity">
     <h1 class="text-center ml-auto mr-auto">Paramètres :</h1>
@@ -9,6 +9,7 @@ include 'form_validation.php';
 <div id="parametersMenu" class="container bg-light mt-2 opacity">
     <ul id="parameters">
         <li><a id="changePass" href="#"><i class="fas fa-arrow-circle-right"></i> Changer mon mot de passe</a></li>
+        <li><a id="removeAccount" href="#"><i class="fas fa-arrow-circle-right"></i> Supprimmer mon compte</a></li>
     </ul>
 </div>
 <div id="changePasswordItems">
@@ -29,11 +30,23 @@ include 'form_validation.php';
             <span class="text-danger float-right"><?= ($errors['newPasswordConfirm']) ?? '' ?></span>
             <input class="col-12" name="newPasswordConfirm" type="password" value="<?= $newPasswordConfirm ?>" required>
         </div>
-        <button class="btn btn-outline-success col-12"id="changeMyPassword" name="changeMyPassword" type="submit" value="<?= $changeMyPassword ?? '' ?>">Changer mon mot de passe</button>
+        <button class="btn btn-outline-success col-12" id="changeMyPassword" name="changeMyPassword" type="submit" value="<?= $changeMyPassword ?? '' ?>">Changer mon mot de passe</button>
         <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     </form>
 </div>
-<?php include 'footer.php'; ?>
+<div id="removeAccountItems">
+    <h2 class="container">Suppression du compte :</h2>
+    <form class="container" action="#" method="post" novalidate>
+        <div class="form-group">
+            <label class="text-light" for="actualPassword">Mot de passe actuel :</label>
+            <span class="text-danger float-right"><?= ($errors['actualPassword']) ?? '' ?></span>
+            <input class="col-12" name="actualPassword" type="password" value="<?= $actualPassword ?>" required>
+        </div>
+        <button class="btn btn-outline-danger col-12" id="removeMyAccount" name="removeMyAccount" type="submit" value="<?= $removeMyAccount ?? '' ?>"><i class="far fa-times-circle"></i> Supprimer mon compte</button>
+        <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
+    </form>
+</div>
+<?php require_once 'footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/parameters.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

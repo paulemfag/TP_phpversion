@@ -40,7 +40,7 @@ $(document).ready(
   $('#storageDecline').click(function(){
     location.href = "https://www.google.com/";
   });
-  $('#storageAllow').click(function(){ 
+  $('#storageAllow').click(function(){
       localStorage.setItem('storageAuthorization', 'true');
   });
 });
