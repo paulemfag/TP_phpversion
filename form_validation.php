@@ -34,14 +34,16 @@ $errors = [];
             $errors['suscribemailbox'] = 'Veuillez saisir une adresse mail valide.';
         }
         //déclaration variables mots de passe
-        $suscribepassword = ($_POST['suscribepassword']);
-        $suscribepasswordconfirmation = ($_POST['suscribepasswordconfirmation']);
+        $suscribepassword = $_POST['suscribepassword'];
+        $suscribepasswordconfirmation = $_POST['suscribepasswordconfirmation'];
         //contrôle mots de passe
-        if (empty($suscribepasswordconfirmation || $suscribepassword)) {
+        if (empty($suscribepassword)) {
             $errors['suscribepassword'] = 'Veuillez renseigner votre mot de passe.';
+        } elseif (isset($suscribepassword) && empty($suscribepasswordconfirmation)){
+            $errors['suscribepassword'] = 'Veuillez confirmer votre mot de passe';
         } elseif ($suscribepasswordconfirmation != $suscribepassword){
             $errors['suscribepassword'] = 'Les mots de passe ne correspondent pas.';
-        }else{
+        } else{
             $errors['isok'] = 'Votre compte a bien été crée.';
         }
         //FORM LOGIN
