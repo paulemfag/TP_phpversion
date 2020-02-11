@@ -1,4 +1,4 @@
-<?php include 'form_validation.php'; ?>
+<?php require_once 'form_validation.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>
@@ -53,6 +53,7 @@
             <p>
         </div>
         <div id="suscribeItems">
+            <!--récupération tableau d'erreurs dans le js-->
             <div class="container text-center bg-light mt-2 opacity">
                 <h1 class="text-primary ml-auto mr-auto">Inscription :</h1>
             </div>
@@ -94,7 +95,7 @@
                 <h1 class="text-primary text-center ml-auto mr-auto">Connexion :</h1>
             </div>
             <!-- Form Connexion -->
-            <form class="container" method="post" novalidate>
+            <form class="container" action="<?= $connectAction ?? '#' ?>" method="post" novalidate>
                 <div class="form-group">
                     <label class="text-light" for="pseudo">Pseudo :</label>
                     <span class="text-danger float-right"><?= ($errors['pseudo']) ?? '' ?></span>
@@ -110,9 +111,9 @@
                     <span class="text-danger float-right"><?= ($errors['password']) ?? '' ?></span>
                     <input id="password" name="password" class="col-12 text-center mt-1" type="password" placeholder="Mot de passe" value="<?= $password ?>" required>
                 </div>
-                <div class="row col-12 ml-auto mr-auto">
-                    <a id="noAccount" href="#">Je n'ai pas encore de compte</a>
-                    <p class="text-primary"> | </p><a id="lostPassword" href="#">Mot de passe oublié</a>
+                <div class="row col-12 float-right">
+                        <a title="Créer un compte" id="noAccount" href="#">Je n'ai pas encore de compte</a>
+                        <p class="text-primary"> | </p><a title="Récupérer mon mot de passe" id="lostPassword" href="#">Mot de passe oublié</a>
                 </div>
                 <button id="login" name="login" class="btn btn-outline-primary col-12 text-center mt-1"
                         type="submit" value="<?= $login ?? '' ?>">Me connecter</button>

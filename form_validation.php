@@ -1,3 +1,4 @@
+<script src="assets/js/jquery-3.3.1.min.js"></script>
 <?php
 $isSubmitted = false;
 //variables msg d'alerte champs mal saisis
@@ -43,10 +44,18 @@ $errors = [];
             $errors['suscribepassword'] = 'Veuillez confirmer votre mot de passe';
         } elseif ($suscribepasswordconfirmation != $suscribepassword){
             $errors['suscribepassword'] = 'Les mots de passe ne correspondent pas.';
-        } else{
+        } /*else{
             $errors['isok'] = 'Votre compte a bien été crée.';
-        }
-        //FORM LOGIN
+        }*/
+        // si le formulaire est correctement rempli
+        if (count ($errors) == 0){
+            if ($accounttype == 1){
+                $test = 'suscribeparticular.php';
+            }
+            elseif ($accounttype == 2){
+                $test = 'suscribecompositor.php';
+            }
+        } //FORM LOGIN
     } elseif (isset($_POST['login'])){
         $isSubmitted = true;
         //ajoute une value au bouton me connecter
@@ -66,6 +75,9 @@ $errors = [];
         if (empty($password)) {
             $errors['password'] = 'Veuillez renseigner votre mot de passe.';
         }
+/*        if ( !empty($pseudo) && !empty($mailbox) && !empty($password) && count ($errors) == 0){
+            $connectAction = 'accueil.php';
+        }*/
        //RECUPERATION MOT DE PASSE
     } elseif (isset ($_POST['recuperation'])) {
         $isSubmitted = true;

@@ -85,6 +85,29 @@ $('#FILL').click (function() {
     $('#forgottenPassword').hide();
 });
 
+var errors = $('#errorsArray').val();
+
+$("input[type=radio]").change(function() {
+    var radioValue = $("input[name='accounttype']:checked").val();
+    if (radioValue === '1') {
+        var action = 'suscribeparticular.php';
+    } else if (radioValue === '2') {
+        var action = 'suscribecompositor.php';
+    }
+    $('#suscribers').attr('action', action);
+});
+/*
+$("input[type=radio]").change(function(){
+    if(this.checked)
+    {
+        alert("checked");
+    }
+});
+
+setInterval(function(){
+    var radioValue = $("input[name='accounttype']:checked").val();
+}, 1000);s
+
 $('#suscribe').click (function() {
     var radioValue = $("input[name='accounttype']:checked").val();
     // si c'est un particulier
@@ -95,4 +118,7 @@ $('#suscribe').click (function() {
     else if (radioValue === '2'){
         $('#suscribers').attr('action', 'suscribecompositor.php');
     }
-});
+    else{
+        e.preventDefault()
+    }
+});*/
