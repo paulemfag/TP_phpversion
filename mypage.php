@@ -2,10 +2,7 @@
 $title = 'Fill | Ma page';
 require_once 'header.php';
 ?>
-<!-- <form class="form-inline my-2 my-lg-0">
-<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-</form> -->
+<a title="ajouter une composition" class="btn btn-block btn-success" href="addcomposition.php"></a>
 <!-- container -->
 <div class="container bg-light mt-2 opacity">
     <i class="far fa-id-badge"></i>
@@ -21,7 +18,7 @@ require_once 'header.php';
 </div>
 <div class="col-12">
     <h1 class="text-center bg-light col-10 opacity mt-2 ml-auto mr-auto">Informations personnelles :</h1>
-</div>!
+</div>
 <!-- container -->
 <div class="container bg-light opacity">
     <div class="row">

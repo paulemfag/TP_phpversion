@@ -30,6 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="mypage.php">Ma page</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="addcomposition.php">Ajouter une composition</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownPlaylist" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

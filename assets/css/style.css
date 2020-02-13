@@ -40,6 +40,10 @@ h2{
   position: fixed;
 }
 
+#returnArrow{
+  color: #113E7F;
+}
+
 footer{
   position: fixed;
   left: 0;

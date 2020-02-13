@@ -4,7 +4,7 @@ require_once 'header.php';
 require_once 'form_validation.php';
 ?>
 <div class="container text-center bg-light mt-2 opacity">
-    <h1 class="text-center ml-auto mr-auto">Paramètres :</h1>
+    <h1>Paramètres :</h1>
 </div>
 <div id="parametersMenu" class="container bg-light mt-2 opacity">
     <ul id="parameters">
@@ -18,17 +18,17 @@ require_once 'form_validation.php';
         <div class="form-group">
             <label class="text-light" for="actualPassword">Mot de passe actuel :</label>
             <span class="text-danger float-right"><?= ($errors['actualPassword']) ?? '' ?></span>
-            <input class="col-12" name="actualPassword" type="password" value="<?= $actualPassword ?>" required>
+            <input id="actualPassword" class="col-12" name="actualPassword" type="password" value="<?= $actualPassword ?>" required>
         </div>
         <div class="form-group">
             <label class="text-light" for="newPassword">Nouveau mot de passe :</label>
             <span class="text-danger float-right"><?= ($errors['newPassword']) ?? '' ?></span>
-            <input class="col-12" name="newPassword" type="password" value="<?= $newPassword ?>" required>
+            <input id="newPassword" class="col-12" name="newPassword" type="password" value="<?= $newPassword ?>" required>
         </div>
         <div class="form-group">
             <label class="text-light" for="newPasswordConfirm">Confirmation du nouveau mot de passe :</label>
             <span class="text-danger float-right"><?= ($errors['newPasswordConfirm']) ?? '' ?></span>
-            <input class="col-12" name="newPasswordConfirm" type="password" value="<?= $newPasswordConfirm ?>" required>
+            <input id="newPasswordConfirm" class="col-12" name="newPasswordConfirm" type="password" value="<?= $newPasswordConfirm ?>" required>
         </div>
         <button class="btn btn-outline-success col-12" id="changeMyPassword" name="changeMyPassword" type="submit" value="<?= $changeMyPassword ?? '' ?>">Changer mon mot de passe</button>
         <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
@@ -40,7 +40,7 @@ require_once 'form_validation.php';
         <div class="form-group">
             <label class="text-light" for="actualPassword">Mot de passe actuel :</label>
             <span class="text-danger float-right"><?= ($errors['actualPassword']) ?? '' ?></span>
-            <input class="col-12" name="actualPassword" type="password" value="<?= $actualPassword ?>" required>
+            <input id="actualPassword" class="col-12" name="actualPassword" type="password" value="<?= $actualPassword ?>" required>
         </div>
         <button class="btn btn-outline-danger col-12" id="removeMyAccount" name="removeMyAccount" type="submit" value="<?= $removeMyAccount ?? '' ?>"><i class="far fa-times-circle"></i> Supprimer mon compte</button>
         <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>

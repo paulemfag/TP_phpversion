@@ -22,7 +22,7 @@ $('#suscribe').click(function(){
   // else{
   // epreventDefault('#suscribe')
   // }
-})
+});
 
 //   $('form').on('submit', function(event){
 //     event.preventDefault();

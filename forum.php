@@ -6,11 +6,11 @@ require_once 'header.php';
     <div class="row" style="justify-content: center;">
       <input  class="col-md-5 col-sm-2" type="search" placeholder="Entrez un sujet">
       <button class="btn btn-outline-primary my-2 my-sm-0 ml-2 col-md-2 col-sm-2" type="submit"><i class="fas fa-search"></i> Rechercher</button>
-      <button class="btn btn-outline-success ml-1 col-md-2 col-sm-2" type="button" data-toggle="modal" data-target=".modal"><i class="fas fa-plus"></i> Nouveau</button>
+      <a title="Créer un nouveau sujet" href="newsubject.php" class="btn btn-outline-success ml-1 col-md-2 col-sm-2"><i class="fas fa-plus"></i> Nouveau</a>
     </div>
   </div>
   <!-- Modal nouveau topic -->
-  <div class="modal" role="dialog">
+<!--  <div class="modal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -39,7 +39,7 @@ require_once 'header.php';
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   <!-- tableau -->
   <div class="container col-12">
   <div class="row col-12" style="justify-content: center">
@@ -114,12 +114,6 @@ require_once 'header.php';
           </p>
         </div>
         <div class="modal-footer">
-<!--          <div class="checkbox">
-            <label>
-              <input class="check_list" name="check_list[]" type="checkbox" id="check">
-              J'ai pris connaisance du réglement
-            </label>
-          </div>-->
 <button id="rulesDecline" type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times"></i> Je refuse</button>
 <button id="rulesAllow" type="button" class="btn btn-outline-success" data-dismiss="modal"><i class="fas fa-times"></i> J'accepte</button>
         </div>

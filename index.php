@@ -53,20 +53,11 @@
             <p>
         </div>
         <div id="suscribeItems">
-            <!--récupération tableau d'erreurs dans le js-->
             <div class="container text-center bg-light mt-2 opacity">
                 <h1 class="text-primary ml-auto mr-auto">Inscription :</h1>
             </div>
             <!-- form Inscription -->
             <form class="container" id="suscribers" method="post" action="#" novalidate>
-                <p class="text-light col-12 text-center">Je suis : </p>
-                <div class="form-group text-center">
-                    <input id="particular" type="radio" name="accounttype" value="1" <?= ($accounttype == 1) ? 'checked' : '' ?>>
-                    <label class="text-light" for="particular">un particulier</label>
-                    <input id="compositor" type="radio" name="accounttype" value="2" <?= ($accounttype == 2) ? 'checked' : '' ?>>
-                    <label class="text-light" for="compositor">un compositeur</label>
-                    <span class="text-danger text-center col-10"><?= ($errors['accounttype']) ?? '' ?></span>
-                </div>
                 <div class="form-group">
                     <label class="text-light" for="suscribepseudo">Pseudo :</label>
                     <span class="text-danger float-right"><?= ($errors['suscribepseudo']) ?? '' ?></span>
@@ -95,7 +86,7 @@
                 <h1 class="text-primary text-center ml-auto mr-auto">Connexion :</h1>
             </div>
             <!-- Form Connexion -->
-            <form class="container" action="<?= $connectAction ?? '#' ?>" method="post" novalidate>
+            <form class="container" action="#" method="post" novalidate>
                 <div class="form-group">
                     <label class="text-light" for="pseudo">Pseudo :</label>
                     <span class="text-danger float-right"><?= ($errors['pseudo']) ?? '' ?></span>
@@ -123,10 +114,10 @@
             <div class="container text-center bg-light mt-2 opacity">
                 <h1 class="text-primary ml-auto mr-auto">Récupération du mot de passe :</h1>
             </div>
-            <div class="form-group form-group-inline">
+            <div class="form-group">
                 <label class="text-light" for="recuperationMailbox">Adresse mail :</label>
                 <span class="text-danger float-right"><?= ($errors['recuperationMailbox']) ?? '' ?></span>
-                <input class="col-12" name="recuperationMailbox" type='text' value="<?= $recuperationMailbox ?>" required>
+                <input id="recuperationMailbox" class="col-12" name="recuperationMailbox" type='text' value="<?= $recuperationMailbox ?>" required>
             </div>
             <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
             <button id="recuperation" name="recuperation" class="btn btn-outline-success col-12 text-center mt-1" type="submit" value="<?= $recuperation ?? '' ?>">Récupérer mon mot de passe</button>
