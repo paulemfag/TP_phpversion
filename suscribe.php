@@ -25,9 +25,9 @@
 <div class="text-center">
     <p class="text-light">Type de compte :</p>
     <input id="particular" type="radio" name="accounttype" value="1" <?= ($accounttype == 1) ? 'checked' : '' ?>>
-    <label class="text-light" for="particular">un particulier</label>
+    <label class="text-light" for="particular">Particulier</label>
     <input id="compositor" type="radio" name="accounttype" value="2" <?= ($accounttype == 2) ? 'checked' : '' ?>>
-    <label class="text-light" for="compositor">un compositeur</label>
+    <label class="text-light" for="compositor">Compositeur</label>
     <span class="text-danger text-center col-10"><?= ($errors['accounttype']) ?? '' ?></span>
 </div>
 <div id="compositorItems">

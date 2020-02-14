@@ -73,8 +73,7 @@ if (isset($_POST['suscribe'])) {
         exit();
     }
 } elseif (isset($_POST['newComposition'])) {
-    if ($_FILES['file']['size'] == 0)
-    {
+    if (!file_exists($_POST['file'])) {
         $errors['file'] = 'Veuillez ajouter un fichier.';
     }
     $compositionName = trim(filter_input(INPUT_POST, 'compositionName', FILTER_SANITIZE_STRING));

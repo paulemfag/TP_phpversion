@@ -1,10 +1,10 @@
     $(function(){
     //empêche de fermer la modal // click backdrop
     $('#rules').modal({backdrop: 'static', keyboard: false});
-    if (! localStorage.getItem('rulesAuthorization')){
-      $('#rules').modal('show');
-    } else {
+    if (localStorage.getItem('rulesAuthorization') === 'true'){
       $('#rules').modal('hide');
+    } else {
+      $('#rules').modal('show');
     }
   $('#rulesDecline').click(function(){
     location.href = "accueil.php";
