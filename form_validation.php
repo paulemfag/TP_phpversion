@@ -1,15 +1,16 @@
 <?php
 $isSubmitted = false;
-//variables msg d'alerte champs mal saisis
+//initialisations variables vides
 $suscribepseudo = $suscribemailbox = $accounttype = $suscribepassword
     = $suscribepasswordconfirmation = $suscribe = $pseudo = $mailbox = $password =
 $login = $actualPassword = $newPassword = $newPasswordConfirm = $recuperationMailbox = $recuperation = '';
 //regex pour les contrôle des formulaires
 $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+((-| )[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+)?$/";
 $regexCompositionName = '/^(([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})+((-|\s)?)+([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})((-|\s)+){0,5})$/';
-//tableau d'erreurs
+$regexFacebook = '//';
+//initialisation tableau d'erreurs vide
 $errors = [];
-//FORM INSCRIPTION
+//Vérifications formulaire d'inscription
 if (isset($_POST['suscribe'])) {
     $isSubmitted = true;
     //ajoute une value au bouton m'inscrire pour le réafficher en js
@@ -40,15 +41,16 @@ if (isset($_POST['suscribe'])) {
         $errors['suscribepassword'] = 'Les mots de passe ne correspondent pas.';
     }
     //Si le formulaire d'inscription a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page suscribe.php
-    if (isset($_POST['suscribe']) && count($errors) == 0){
+    if (isset($_POST['suscribe']) && count($errors) == 0) {
         header('location:suscribe.php');
         exit();
     }
-    if (isset($_POST['submitSuscribeCompositor']) || isset($_POST['submitSuscribeParticular'])){
+    if (isset($_POST['submitSuscribeCompositor']) || isset($_POST['submitSuscribeParticular'])) {
         $accounttype = $_POST['accounttype'];
     }
-     //FORM LOGIN
-} elseif (isset($_POST['login'])) {
+}
+//Vérifications formulaire de connexion
+if (isset($_POST['login'])) {
     $isSubmitted = true;
     //ajoute une value au bouton me connecter
     $login = 'alreadySubmittedOnce';
@@ -68,22 +70,42 @@ if (isset($_POST['suscribe'])) {
         $errors['password'] = 'Veuillez renseigner votre mot de passe.';
     }
     //Si le formulaire de connexion a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page accueil.php
-    if (isset($_POST['login']) && count($errors) == 0){
+    if (isset($_POST['login']) && count($errors) == 0) {
         header('location:accueil.php');
         exit();
     }
-} elseif (isset($_POST['newComposition'])) {
-    if (!file_exists($_POST['file'])) {
-        $errors['file'] = 'Veuillez ajouter un fichier.';
+}
+//option sélectionné page 'ajouter une composition'
+$styleOption = '<option value="-- Sélectionner --" selected disabled>-- Sélectionner --</option>';
+//Vérifications page 'ajouter une composition'
+if (isset($_POST['newComposition'])) {
+    if (isset($_POST['compositionStyle'])) {
+        $styleOption = '<option value="' . $_POST['compositionStyle'] . '" selected>' . $_POST['compositionStyle'] . '</option>';
+        if ($_POST['compositionStyle'] == 'Autre') {
+            if (empty($_POST['otherChoice'])) {
+                $errors['compositionStyle'] = 'Veuillez préciser le style musical de la composition.';
+            }
+        }
     }
+    /*    if (!file_exists($_POST['file'])) {
+            $errors['file'] = 'Veuillez ajouter un fichier.';
+        }*/
     $compositionName = trim(filter_input(INPUT_POST, 'compositionName', FILTER_SANITIZE_STRING));
     if (empty($_POST['compositionName'])) {
-        $errors['compositionName'] = 'Veuillez ajouter un titre.';
+        $errors['compositionName'] = 'Veuillez ajouter un titre à la composition.';
     }
     if (isset($_POST['compositionName']) && !preg_match($regexCompositionName, $compositionName)) {
-        $errors['compositionName'] = 'Votre titre contient des caratères non autorisés';
+        $errors['compositionName'] = 'Votre titre contient des caratères non autorisés.';
     }
-} elseif (isset($_POST['submitsubject'])) {
+    if (empty($_POST['compositionStyle'])) {
+        $errors['compositionStyle'] = 'Veuillez choisir le style musical de la composition.';
+    }
+    if (empty($errors)) {
+        $isOk = 'isOk';
+    }
+}
+//Vérifification nouveau sujet
+if (isset($_POST['submitsubject'])) {
     //vérification sujet
     $subject = trim(filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING));
     if (empty($subject)) {
@@ -97,8 +119,9 @@ if (isset($_POST['suscribe'])) {
     if (empty($message)) {
         $errors['message'] = 'Veuillez renseigner votre message.';
     }
-    //Vérifications RECUPERATION MOT DE PASSE
-} elseif (isset ($_POST['recuperation'])) {
+}
+//Vérifications RECUPERATION MOT DE PASSE
+if (isset ($_POST['recuperation'])) {
     $isSubmitted = true;
     //ajoute une value au bouton
     $recuperation = 'alreadySubmittedOnce';
@@ -111,8 +134,9 @@ if (isset($_POST['suscribe'])) {
     } else {
         $errors['isok'] = 'Un email de récupération vous a été envoyé.';
     }
-    //CHANGEMENT MOT DE PASSE
-} elseif (isset ($_POST['changeMyPassword'])) {
+}
+//Vérifications CHANGEMENT MOT DE PASSE
+if (isset ($_POST['changeMyPassword'])) {
     $isSubmitted = true;
     //ajoute une value au bouton me connecter
     $changeMyPassword = 'alreadySubmittedOnce';
@@ -136,7 +160,9 @@ if (isset($_POST['suscribe'])) {
     } else {
         $errors['isok'] = 'Votre mot de passe à bien été changé.';
     }
-} elseif (isset($_POST['removeMyAccount'])) {
+}
+//Vérifications suppression du compte
+if (isset($_POST['removeMyAccount'])) {
     $isSubmitted = true;
     //ajoute une value au bouton me connecter
     $removeMyAccount = 'alreadySubmittedOnce';

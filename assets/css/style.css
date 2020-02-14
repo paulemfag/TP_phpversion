@@ -1,7 +1,14 @@
+html,body{
+  height: 100vh;
+}
+
 body{
-  background: url('../img/universe-4609408_1280.jpg');
   background-size: cover;
-  background-repeat: repeat;
+  background: url('../img/universe-4609408_1280.jpg') repeat;
+}
+
+#scroll{
+  height: 100vh;
 }
 
 .navbar-nav > li > .dropdown-menu {
