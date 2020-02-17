@@ -43,12 +43,12 @@ if (isset($_POST['suscribe'])) {
     }
     //Si le formulaire d'inscription a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page suscribe.php
     if (isset($_POST['suscribe']) && count($errors) == 0) {
-        header('location:suscribe.php');
-        exit();
+        require_once 'sqlsuscribe.php';
     }
-    if (isset($_POST['submitSuscribeCompositor']) || isset($_POST['submitSuscribeParticular'])) {
-        $accounttype = $_POST['accounttype'];
-    }
+}
+// Si la personne viens de la pages 'activation.php' donne une valeur au bouton / affiche le formulaire de connexion
+if (isset($_GET['activation'])){
+    $login = 'alreadySubmittedOnce';
 }
 //Vérifications formulaire de connexion
 if (isset($_POST['login'])) {
@@ -72,8 +72,9 @@ if (isset($_POST['login'])) {
     }
     //Si le formulaire de connexion a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page accueil.php
     if (isset($_POST['login']) && count($errors) == 0) {
-        header('location:accueil.php');
-        exit();
+        require_once '../controllers/sqllogin.php';
+        /*header('location:accueil.php');
+        exit();*/
     }
 }
 // Vérifications page 'suscribe.php
@@ -82,7 +83,7 @@ if (isset($_POST['submitSuscribeCompositor'])) {
     if (isset($_POST['facebookId']) && !preg_match($regexFacebook, $_POST['facebookId'])) {
         $errors['facebookId'] = 'Veuillez saisir un url correct.';
     }
-    if (isset($_POST['twitterId']) && !preg_match($regexTwitter, $_POST['twitterId'])){
+    if (isset($_POST['twitterId']) && !preg_match($regexTwitter, $_POST['twitterId'])) {
         $errors['twitterId'] = 'Veuillez saisir un url correct.';
     }
 }
@@ -90,9 +91,12 @@ if (isset($_POST['submitSuscribeCompositor'])) {
 $styleOption = '<option value="-- Sélectionner --" selected disabled>-- Sélectionner --</option>';
 //Vérifications page 'ajouter une composition'
 if (isset($_POST['newComposition'])) {
+    // Si on choisi un style dans le select
     if (isset($_POST['compositionStyle'])) {
         $styleOption = '<option value="' . $_POST['compositionStyle'] . '" selected>' . $_POST['compositionStyle'] . '</option>';
+        // si l'option choisi est 'Autre'
         if ($_POST['compositionStyle'] == 'Autre') {
+            // si le champ autre est vide
             if (empty($_POST['otherChoice'])) {
                 $errors['otherChoice'] = 'Veuillez préciser le style musical de la composition.';
             }
