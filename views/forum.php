@@ -1,4 +1,5 @@
-<?php $title = 'Fill | Forum';
+<?php
+$title = 'Fill | Forum';
 require_once 'require/header.php';
 ?>
 <!-- barre et bouton rechercher -->

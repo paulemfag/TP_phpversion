@@ -1,4 +1,5 @@
 <?php
+require_once  '../controllers/sqlfile.php';
 require_once '../controllers/form_validation.php';
 $title = 'Fill | Ajout Composition';
 require_once 'require/header.php';
@@ -10,10 +11,11 @@ require_once 'require/header.php';
 <div id="successfullCreation" class="container alert alert-success" role="alert">
     <p>Votre composition a été ajoutée avec succès.</p>
 </div>
-<form class="container" method="post" action="#" novalidate>
+<form class="container" method="post" action="#" novalidate  enctype="multipart/form-data">
     <div class="form-group">
         <label class="text-light" for="file">Veuillez ajouter un fichier :</label>
         <span class="text-danger float-right"><?= $errors['file'] ?? '' ?></span>
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
         <input id="file" class="bg-secondary text-light col-12" type="file" name="file" accept="audio/*">
     </div>
     <div class="form-group">

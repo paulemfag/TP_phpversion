@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!$_SESSION['pseudo']) {
+    header('location:index.php');
+}
 require_once '../controllers/form_validation.php';
 $title = 'Fill | Nouveau Sujet';
 require_once 'require/header.php';

@@ -1,4 +1,5 @@
-<?php $title = 'Fill | Accueil';
+<?php
+$title = 'Fill | Accueil';
 require_once 'require/header.php';
 ?>
 <?php require_once 'require/footer.php'; ?>

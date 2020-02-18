@@ -1,5 +1,6 @@
 <?php
 require_once '../controllers/sqlparameters.php';
+require_once '../controllers/sqlactivation.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -20,9 +21,11 @@ require_once '../controllers/sqlparameters.php';
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary col-12">
     <img src="../assets/img/keyboards.png" alt="logo_clavier" height="40" width="60">
     <a id="FILL" class="navbar-brand text-light" style="font-weight: bold;">FILL</a>
-    <!-- boutons inscription et connexion -->
 </nav>
-<?php require_once '../controllers/sqlactivation.php'; ?>
-<?php require_once 'require/footer.php'?>
+<div class="container text-center bg-light mt-2 opacity">
+    <h1 class="text-primary ml-auto mr-auto"><?= $message ?></h1>
+</div>
+<a href="http://fill.info?activation=isOk" id="login" class="btn btn-outline-success col-12 ">Me connecter</a>
+<?php require_once 'require/footer.php' ?>
 </body>
 </html>

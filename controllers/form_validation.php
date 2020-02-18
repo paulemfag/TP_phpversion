@@ -46,10 +46,6 @@ if (isset($_POST['suscribe'])) {
         require_once 'sqlsuscribe.php';
     }
 }
-// Si la personne viens de la pages 'activation.php' donne une valeur au bouton / affiche le formulaire de connexion
-if (isset($_GET['activation'])){
-    $login = 'alreadySubmittedOnce';
-}
 //Vérifications formulaire de connexion
 if (isset($_POST['login'])) {
     $isSubmitted = true;
@@ -70,12 +66,18 @@ if (isset($_POST['login'])) {
     if (empty($password)) {
         $errors['password'] = 'Veuillez renseigner votre mot de passe.';
     }
-    //Si le formulaire de connexion a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page accueil.php
+    //Si le formulaire de connexion a été envoyé, que la personne viens de la page 'activation.php' et qu'il n'y a pas d'erreurs renvoi vers la page 'suscribe.php'
+    if (isset($_POST['login']) && count($errors) == 0 && isset($_GET['activation'])) {
+        require_once '../controllers/sqllogin.php';
+    }
+    //Si le formulaire de connexion a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page 'accueil.php'
     if (isset($_POST['login']) && count($errors) == 0) {
         require_once '../controllers/sqllogin.php';
-        /*header('location:accueil.php');
-        exit();*/
     }
+}
+// Si la personne viens de la page 'activation.php' donne une valeur au bouton / affiche le formulaire de connexion (js)
+if (isset($_GET['activation'])) {
+    $login = 'alreadySubmittedOnce';
 }
 // Vérifications page 'suscribe.php
 if (isset($_POST['submitSuscribeCompositor'])) {
@@ -91,6 +93,22 @@ if (isset($_POST['submitSuscribeCompositor'])) {
 $styleOption = '<option value="-- Sélectionner --" selected disabled>-- Sélectionner --</option>';
 //Vérifications page 'ajouter une composition'
 if (isset($_POST['newComposition'])) {
+    //Si un fichier est mis
+    if(isset($_FILES['file'])) {
+        $target_path = Settings::$uploadFolder;
+        $target_path = $target_path . time() . '_' . basename( $_FILES['file']['name']);
+        if(move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
+            $message = "The file ".  basename( $_FILES['file']['name']).
+                " has been uploaded";
+        } else{
+            $message = "There was an error uploading the file, please try again!";
+        }
+        echo $message = '<p class="text-light">' . $message . '</p>';
+    }
+    //Si le champ ajouter un fichier est vide
+    if (empty($_FILE['file'])){
+        $errors['file'] = 'Veuillez ajouter un fichier.';
+    }
     // Si on choisi un style dans le select
     if (isset($_POST['compositionStyle'])) {
         $styleOption = '<option value="' . $_POST['compositionStyle'] . '" selected>' . $_POST['compositionStyle'] . '</option>';

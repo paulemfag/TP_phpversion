@@ -96,7 +96,7 @@ require_once '../controllers/form_validation.php';
         </div>
         <div class="form-group">
             <input id="suscribepasswordconfirmation" name="suscribepasswordconfirmation"
-                   class="col-12 text-center mt-1 inputColor" inputColor type="password"
+                   class="col-12 text-center mt-1 inputColor" type="password"
                    placeholder="Confirmation du mot de passe" value="<?= $suscribepasswordconfirmation ?>" required>
         </div>
         <button id="suscribe" name="suscribe" class="btn btn-outline-primary col-12 text-center mt-1"

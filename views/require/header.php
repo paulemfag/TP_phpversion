@@ -1,3 +1,10 @@
+<?php
+session_start();
+// si l'utilisateur n'est pas connecté
+if (empty($_SESSION)) {
+    header('location:index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>
@@ -79,7 +86,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
                             <a class="dropdown-item" href="parameters.php">Paramètres</a>
                             <a class="dropdown-item" href="#">CGU</a>
-                            <a class="dropdown-item text-danger" href="index.php">Me déconnecter <i
+                            <a class="dropdown-item text-danger" href="logout.php">Me déconnecter <i
                                     class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </li>

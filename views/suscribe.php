@@ -1,4 +1,10 @@
-<?php require_once '../controllers/form_validation.php'; ?>
+<?php
+session_start();
+// si l'utilisateur n'est pas connecté
+if (empty($_SESSION)) {
+    header('location:index.php');
+}
+require_once '../controllers/form_validation.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -24,11 +30,18 @@
 </div>
 <div class="text-center">
     <p class="text-light">Type de compte :</p>
-    <input id="particular" type="radio" name="accounttype" value="1" <?= ($accounttype == 1) ? 'checked' : '' ?>>
+    <?php if ($_SESSION['accounttype'] == 'particular'){ ?>
+    <input id="particular" type="radio" name="accounttype" value="1" checked="checked">
     <label class="text-light" for="particular">Particulier</label>
-    <input id="compositor" type="radio" name="accounttype" value="2" <?= ($accounttype == 2) ? 'checked' : '' ?>>
+    <input id="compositor" type="radio" name="accounttype" value="2" disabled>
     <label class="text-light" for="compositor">Compositeur</label>
-    <span class="text-danger text-center col-10"><?= ($errors['accounttype']) ?? '' ?></span>
+    <?php }
+    elseif ($_SESSION['accounttype'] == 'compositor') {?>
+    <input id="particular" type="radio" name="accounttype" value="1" disabled>
+    <label class="text-light" for="particular">Particulier</label>
+    <input id="compositor" type="radio" name="accounttype" value="2" checked="checked">
+    <label class="text-light" for="compositor">Compositeur</label>
+    <?php } ?>
 </div>
 <div id="compositorItems">
     <form id="compositorForm" class="container" action="#" method="post" novalidate>
