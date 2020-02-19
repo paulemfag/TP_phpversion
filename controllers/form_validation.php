@@ -1,10 +1,26 @@
 <?php
-$isSubmitted = false;
 //initialisations variables vides
-$suscribepseudo = $suscribemailbox = $accounttype = $suscribepassword
-    = $suscribepasswordconfirmation = $suscribe = $pseudo = $mailbox = $password =
-$login = $actualPassword = $newPassword = $newPasswordConfirm = $recuperationMailbox = $recuperation = '';
-//regex pour les contrôle des formulaires
+//formulaire inscription
+$accounttype = $_POST['typeOfAccount'] ?? '';
+$suscribepseudo = $_POST['suscribepseudo'] ?? '';
+$suscribemailbox = $_POST['suscribemailbox'] ?? '';
+$suscribepassword = $_POST['suscribepassword'] ?? '';
+$suscribepasswordconfirmation = $_POST['suscribepasswordconfirmation'] ?? '';
+//formulaire informations personnelles
+$tagsCompositorOne = $_POST['tagsCompositorOne'] ?? '';
+$facebook = $_POST['facebookId']  ?? '';
+$twitter = $_POST['twitterId'] ?? '';
+//formulaire login
+$pseudo = $_POST['pseudo'] ?? '';
+$mailbox = $_POST['mailbox'] ?? '';
+$password = $_POST['password'] ?? '';
+//formulaire récupération mot de passe
+$recuperationMailbox = $_POST['recuperationMailbox'] ?? '';
+//formulaire changement de mot de passe
+$actualPassword = $_POST['actualPassword'] ?? '';
+$newPassword = $_POST['newPassword'] ?? '';
+$newPasswordConfirm = $_POST['newPasswordConfirm'] ?? '';
+//regex pour le contrôle des formulaires
 $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+((-| )[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+)?$/";
 $regexCompositionName = '/^(([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})+((-|\s)?)+([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})((-|\s)+){0,5})$/';
 $regexFacebook = '/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/';
@@ -14,7 +30,6 @@ $regexStyle = '/^(Autre|Blues|Classique|Disco|Electro|Funk|Gospel|Kompa|Metal|Po
 $errors = [];
 //Vérifications formulaire d'inscription
 if (isset($_POST['suscribe'])) {
-    $isSubmitted = true;
     //ajoute une value au bouton m'inscrire pour le réafficher en js
     $suscribe = 'alreadySubmittedOnce';
     //contrôle pseudo
@@ -31,9 +46,6 @@ if (isset($_POST['suscribe'])) {
     } elseif (!filter_var($suscribemailbox, FILTER_VALIDATE_EMAIL)) {
         $errors['suscribemailbox'] = 'Veuillez saisir une adresse mail valide.';
     }
-    //déclaration variables mots de passe
-    $suscribepassword = $_POST['suscribepassword'];
-    $suscribepasswordconfirmation = $_POST['suscribepasswordconfirmation'];
     //contrôle mots de passe
     if (empty($suscribepassword)) {
         $errors['suscribepassword'] = 'Veuillez renseigner votre mot de passe.';
@@ -42,20 +54,15 @@ if (isset($_POST['suscribe'])) {
     } elseif ($suscribepasswordconfirmation != $suscribepassword) {
         $errors['suscribepassword'] = 'Les mots de passe ne correspondent pas.';
     }
-    //Si le formulaire d'inscription a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page suscribe.php
-    if (isset($_POST['suscribe']) && count($errors) == 0) {
+    //Si il n'y a pas d'erreurs execute l'insertion dans la BDD
+    if (count($errors) == 0) {
         require_once 'sqlsuscribe.php';
     }
 }
 //Vérifications formulaire de connexion
 if (isset($_POST['login'])) {
-    $isSubmitted = true;
     //ajoute une value au bouton me connecter
     $login = 'alreadySubmittedOnce';
-    //déclaration variables
-    $pseudo = $_POST['pseudo'];
-    $mailbox = $_POST['mailbox'];
-    $password = $_POST['password'];
     if (empty($pseudo)) {
         $errors['pseudo'] = 'Veuillez renseigner votre pseudo.';
     }
@@ -67,8 +74,8 @@ if (isset($_POST['login'])) {
     if (empty($password)) {
         $errors['password'] = 'Veuillez renseigner votre mot de passe.';
     }
-    //Si le formulaire de connexion a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page 'accueil.php'
-    if (isset($_POST['login']) && count($errors) == 0) {
+    //Si il n'y a pas d'erreurs execute les vérification BDD et renvoi vers la page 'accueil.php'
+    if (count($errors) == 0) {
         require_once 'sqllogin.php';
     }
 }
@@ -76,10 +83,6 @@ if (isset($_POST['login'])) {
 if (isset($_GET['activation'])) {
     $login = 'alreadySubmittedOnce';
 }
-//déclaration des variables
-$tagsCompositorOne = $_POST['tagsCompositorOne'] ?? '';
-$facebook = $_POST['facebookId']  ?? '';
-$twitter = $_POST['twitterId'] ?? '';
 // Vérifications page 'suscribe.php
 if (isset($_POST['submitSuscribeCompositor'])) {
     //ajoute une value au bouton submit
@@ -174,9 +177,8 @@ if (isset($_POST['newComposition'])) {
     elseif (!preg_match($regexCompositionName, $compositionName)) {
         $errors['compositionName'] = 'Votre titre contient des caratères non autorisés.';
     }
-    //Si le formulaire est envoyé et qu'il n'y a pas d'erreurs
-    if (isset($_POST['newComposition']) && empty($errors)) {
-        //requiert le fichier 'sqladdcomposition.php' qui fait l'ajout en BDD
+    //Si il n'y a pas d'erreurs requiert le fichier 'sqladdcomposition.php' qui fait l'ajout en BDD
+    if (count($errors) == 0) {
         require_once 'sqladdcomposition.php';
     }
 }
@@ -198,11 +200,10 @@ if (isset($_POST['submitsubject'])) {
 }
 //Vérifications RECUPERATION MOT DE PASSE
 if (isset ($_POST['recuperation'])) {
-    $isSubmitted = true;
     //ajoute une value au bouton
     $recuperation = 'alreadySubmittedOnce';
     //déclaration variable
-    $recuperationMailbox = trim(htmlspecialchars($_POST['recuperationMailbox']));
+    $recuperationMailbox = trim(htmlspecialchars($recuperationMailbox));
     if (empty($recuperationMailbox)) {
         $errors['recuperationMailbox'] = 'Veuillez renseigner votre adresse mail.';
     } elseif (!filter_var($recuperationMailbox, FILTER_VALIDATE_EMAIL)) {
@@ -213,12 +214,8 @@ if (isset ($_POST['recuperation'])) {
 }
 //Vérifications CHANGEMENT MOT DE PASSE
 if (isset ($_POST['changeMyPassword'])) {
-    $isSubmitted = true;
     //ajoute une value au bouton me connecter
     $changeMyPassword = 'alreadySubmittedOnce';
-    $actualPassword = ($_POST['actualPassword']);
-    $newPassword = ($_POST['newPassword']);
-    $newPasswordConfirm = ($_POST['newPasswordConfirm']);
     if (empty($actualPassword)) {
         $errors['actualPassword'] = 'Veuillez saisir votre mot de passe.';
     }
@@ -240,7 +237,6 @@ if (isset ($_POST['changeMyPassword'])) {
 }
 //Vérifications suppression du compte
 if (isset($_POST['removeMyAccount'])) {
-    $isSubmitted = true;
     //ajoute une value au bouton me connecter
     $removeMyAccount = 'alreadySubmittedOnce';
     if (empty($_POST['Password'])) {
