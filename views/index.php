@@ -1,4 +1,8 @@
 <?php
+//Quand on arrive sur la page vérifie qu'une session n'est pas en cours
+session_start();
+//si c'est le cas détruit toutes les données enregistrées dans la session
+session_destroy();
 require_once '../controllers/form_validation.php';
 ?>
 <!DOCTYPE html>
@@ -55,6 +59,10 @@ require_once '../controllers/form_validation.php';
         </div>
     </div>
 </div>
+<?php
+//Message d'alerte informant que le compte a bien été crée
+echo $activeYourAccount ?? ''
+?>
 <div id="presentationText">
     <p class="text-light">Crée en 2019 par Monsieur FAGOT, FILL est un site d'écoute et de publication musicale
         développé dans l'optique d'offrir aux auteurs un endroit ou partager leur compositions " To fill " et au grand

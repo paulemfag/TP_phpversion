@@ -66,13 +66,9 @@ if (isset($_POST['login'])) {
     if (empty($password)) {
         $errors['password'] = 'Veuillez renseigner votre mot de passe.';
     }
-    //Si le formulaire de connexion a été envoyé, que la personne viens de la page 'activation.php' et qu'il n'y a pas d'erreurs renvoi vers la page 'suscribe.php'
-    if (isset($_POST['login']) && count($errors) == 0 && isset($_GET['activation'])) {
-        require_once '../controllers/sqllogin.php';
-    }
     //Si le formulaire de connexion a été envoyé et qu'il n'y a pas d'erreurs renvoi vers la page 'accueil.php'
     if (isset($_POST['login']) && count($errors) == 0) {
-        require_once '../controllers/sqllogin.php';
+        require_once 'sqllogin.php';
     }
 }
 // Si la personne viens de la page 'activation.php' donne une valeur au bouton / affiche le formulaire de connexion (js)
@@ -93,48 +89,80 @@ if (isset($_POST['submitSuscribeCompositor'])) {
 $styleOption = '<option value="-- Sélectionner --" selected disabled>-- Sélectionner --</option>';
 //Vérifications page 'ajouter une composition'
 if (isset($_POST['newComposition'])) {
-    //Si un fichier est mis
-    if(isset($_FILES['file'])) {
-        $target_path = Settings::$uploadFolder;
-        $target_path = $target_path . time() . '_' . basename( $_FILES['file']['name']);
-        if(move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
-            $message = "The file ".  basename( $_FILES['file']['name']).
-                " has been uploaded";
-        } else{
-            $message = "There was an error uploading the file, please try again!";
+    //Si le champ ajouter un fichier n'est pas vide
+    if (isset($_FILES['file'])) {
+        $file = $_FILES['file'];
+        //Nom du fichier
+        $fileName = $_FILES['file']['name'];
+        //lieu de stockage temporaire du fichier
+        $fileTmpName = $_FILES['file']['tmp_name'];
+        //taille du fichier
+        $fileSize = $_FILES['file']['size'];
+        //erreur, retourne un int (https://www.php.net/manual/fr/features.file-upload.errors.php)
+        $fileError = $_FILES['file']['error'];
+        //type de fichier
+        $fileType = $_FILES['file']['type'];
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
+        //extensions autorisées
+        $allowed = array('mp3');
+        //si l'extension est bonne
+        if (in_array($fileActualExt, $allowed)) {
+            //si il n'y a pas derreurs
+            if ($fileError === 0) {
+                //si la taille du fichier est inférieure à 20000000 octets / 20 méga
+                if ($fileSize < 20000000) {
+                    //option de desination définie dans 'sqlfile.php'
+                    $target_path = Settings::$uploadFolder;
+                    $target_path = $target_path . '_' . basename($_FILES['file']['name']);
+                    //si le fichié est correctement uploadé dans le dossier
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
+                        $message = 'Le fichier ' . basename($_FILES['file']['name']) .
+                            ' a été uploadé.';
+                    } else {
+                        $message = 'Une erreur est survenu durant l\'upload du fichier' . basename($_FILES['file']['name']) . 'merci de réessayer.';
+                    }
+                    echo $message = '<p class="text-light">' . $message . '</p>';
+                } else {
+                    $errors['file'] = 'La taille de votre fichier est trop grande.';
+                }
+            } else {
+                $errors['file'] = 'Une erreur c\'est produite durant l\'upload de votre fichier merci de réessayer.';
+            }
+        } else {
+            $errors['file'] = 'Le format de votre fichier n\'est pas valide.';
         }
-        echo $message = '<p class="text-light">' . $message . '</p>';
     }
-    //Si le champ ajouter un fichier est vide
-    if (empty($_FILE['file'])){
+    //Si le message de validation du fichier n'est pas défini
+    if (!isset($message)) {
         $errors['file'] = 'Veuillez ajouter un fichier.';
     }
+    $compositionStyle = $_POST['compositionStyle'] ?? '';
+    if (empty($compositionStyle)) {
+        $errors['compositionStyle'] = 'Veuillez choisir le style musical de la composition.';
+    }
     // Si on choisi un style dans le select
-    if (isset($_POST['compositionStyle'])) {
+    if (isset($compositionStyle)) {
         $styleOption = '<option value="' . $_POST['compositionStyle'] . '" selected>' . $_POST['compositionStyle'] . '</option>';
         // si l'option choisi est 'Autre'
-        if ($_POST['compositionStyle'] == 'Autre') {
+        if ($compositionStyle == 'Autre') {
             // si le champ autre est vide
             if (empty($_POST['otherChoice'])) {
                 $errors['otherChoice'] = 'Veuillez préciser le style musical de la composition.';
             }
         }
     }
-    /*    if (!file_exists($_POST['file'])) {
-            $errors['file'] = 'Veuillez ajouter un fichier.';
-        }*/
     $compositionName = trim(filter_input(INPUT_POST, 'compositionName', FILTER_SANITIZE_STRING));
-    if (empty($_POST['compositionName'])) {
+    if (empty($compositionName)) {
         $errors['compositionName'] = 'Veuillez ajouter un titre à la composition.';
     }
-    if (isset($_POST['compositionName']) && !preg_match($regexCompositionName, $compositionName)) {
+    elseif (!preg_match($regexCompositionName, $compositionName)) {
         $errors['compositionName'] = 'Votre titre contient des caratères non autorisés.';
     }
-    if (empty($_POST['compositionStyle'])) {
-        $errors['compositionStyle'] = 'Veuillez choisir le style musical de la composition.';
-    }
-    if (empty($errors)) {
-        $isOk = 'isOk';
+    //Si le formulaire est envoyé et qu'il n'y a pas d'erreurs
+    if (isset($_POST['newComposition']) && empty($errors)) {
+        //requiert le fichier 'sqladdcomposition.php' qui fait l'ajout en BDD
+        require_once 'sqladdcomposition.php';
     }
 }
 //Vérifification nouveau sujet

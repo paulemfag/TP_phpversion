@@ -16,10 +16,25 @@ VALUES (:pseudo, :mailbox, :password, :accountType)');
     $sth->execute();
     //Fichier vérifiant le type d'adresse mail
     require_once 'mailboxhost.php';
-    echo '
-<div class="alert alert-success" role="alert">
-    <p>Votre compte a bien été créer, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de <a href="' .$mailhref. '" class="alert-link">l\'email</a> d\'activation qui viens de vous être envoyé.</p>
+    // si l'extension mai match avec une des regex le text mail est un href redirigeant vers la boite mail correspondante
+    if (isset($mailhref)) {
+        $activeYourAccount = '
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <p>Votre compte a bien été créer, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de <a href="' . $mailhref . '" class="alert-link">l\'email</a> d\'activation qui viens de vous être envoyé.</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>';
+    } //sinon
+    else {
+        $activeYourAccount = '
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>Votre compte a bien été créer, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de l\'email d\'activation qui viens de vous être envoyé.</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>';
+    }
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
@@ -27,29 +42,30 @@ VALUES (:pseudo, :mailbox, :password, :accountType)');
 // Génération aléatoire d'une clé
 $key = md5(microtime(TRUE) * 100000);
 
-// Insertion de la clé dans la base de données (à adapter en INSERT si besoin)
+// Insertion de la clé dans la base de données
 try {
     $stmt = $db->prepare('UPDATE `users` SET activationkey = :cle WHERE pseudo = :pseudo');
     $stmt->bindParam(':cle', $key);
     $stmt->bindParam(':pseudo', $pseudo);
     $stmt->execute();
+/*
+    //récupération du fichier requis
+    require_once '../swiftmailer/lib/swift_required.php';
+    // Mail Transport
+    $transport = new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl');
+    $transport->setUsername('boiteprofagot@gmail.com')->setPassword('anticonstitutionnellement');
+    // Mailer
+    $mailer = new Swift_Mailer($transport);
 
-/*    require_once '../swiftmailer/lib/swift_required.php';
-// Mail Transport
-    $transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
-        ->setUsername('boiteprofagot@gmail.com') // Your Gmail Username
-        ->setPassword('anticonstitutionnellement'); // Your Gmail Password
+    // Create a message
+    $message = new Swift_Message('Weekly Hours');
+    $message->setFrom('no-reply@fill.info');
+    $message->setTo('boiteprofagot@gmail.com');
+    $message->setSubject('Weekly Hours');
+    $message->setBody('Test Message', 'text/html');
+    $result = $mailer->send($message);
 
-// Mailer
-    $mailer = Swift_Mailer::newInstance($transport);
-
-// Create a message
-    $message = Swift_Message::newInstance('Wonderful Subject Here')
-        ->setFrom(array('fill@suscribe.com' => 'Fill')) // can be $_POST['email'] etc...
-        ->setTo(array($mailbox => 'Receiver Name')) // your email / multiple supported.
-        ->setBody('Here is the <strong>message</strong> itself. It can be text or <h1>HTML</h1>.', 'text/html');
-
-// Send the message
+    // Send the message
     if ($mailer->send($message)) {
         echo '<h1 class="text-light">Mail sent successfully.</h1>';
     } else {
@@ -60,8 +76,7 @@ try {
     echo "Erreur : " . $e->getMessage();
 }
 
-
-
+/*require_once '../PHPMailer/PHPMailerAutoload.php';
 // Préparation du mail contenant le lien d'activation
 $destinataire = $mailbox;
 $sujet = "Fill activer votre compte";
@@ -80,3 +95,4 @@ http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
 mail($destinataire, $sujet, $message, $entete); // Envoi du mail
+var_dump(mail);*/

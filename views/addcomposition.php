@@ -1,21 +1,27 @@
 <?php
+session_start();
+//si l'utilisateur n'est pas un compositeur il n'as pas accès à cette page
+if ($_SESSION['accounttype'] != 'compositor'){
+    header('location:accueil.php');
+    exit();
+}
 require_once  '../controllers/sqlfile.php';
 require_once '../controllers/form_validation.php';
 $title = 'Fill | Ajout Composition';
 require_once 'require/header.php';
 ?>
-<div id="scroll">
 <div class="container bg-light mt-2 opacity">
     <h1 class="text-center ml-auto mr-auto">Ajouter une composition :</h1>
 </div>
 <div id="successfullCreation" class="container alert alert-success" role="alert">
     <p>Votre composition a été ajoutée avec succès.</p>
 </div>
-<form class="container" method="post" action="#" novalidate  enctype="multipart/form-data">
+<form class="container" method="post" action="#" novalidate enctype="multipart/form-data">
     <div class="form-group">
         <label class="text-light" for="file">Veuillez ajouter un fichier :</label>
         <span class="text-danger float-right"><?= $errors['file'] ?? '' ?></span>
-        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+        <input type="hidden" name="MAX_FILE_SIZE" value="20000000">
+        <input type="hidden" name="user" value="<?= $_SESSION['pseudo'] ?>">
         <input id="file" class="bg-secondary text-light col-12" type="file" name="file" accept="audio/*">
     </div>
     <div class="form-group">
@@ -65,7 +71,6 @@ require_once 'require/header.php';
     </div>
     <button id="newComposition" name="newComposition" value="<?= $isOk ?? '' ?>" class="btn btn-success col-12" type="submit">Ajouter la composition</button>
 </form>
-</div>
 <?php require_once 'require/footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/addcomposition.js"></script>

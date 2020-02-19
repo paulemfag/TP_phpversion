@@ -5,7 +5,7 @@ require_once 'require/header.php';
 <!-- container -->
 <div class="container bg-light mt-2 opacity">
     <i class="far fa-id-badge"></i>
-    <p class="text-right text-info"><?= $_SESSION['pseudo'] ?></p>
+    <p class="text-right text-info"><?= $_SESSION['pseudo']. $_SESSION['id'] ?></p>
 </div>
 <!-- container -->
 <div class="container bg-light opacity">
