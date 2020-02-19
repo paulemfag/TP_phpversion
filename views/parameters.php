@@ -1,8 +1,4 @@
 <?php
-session_start();
-if (!$_SESSION['pseudo']) {
-    header('location:index.php');
-}
 $title = 'Fill | Paramètres';
 require_once 'require/header.php';
 require_once '../controllers/form_validation.php';

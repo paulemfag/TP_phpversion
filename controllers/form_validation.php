@@ -9,6 +9,7 @@ $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõ�
 $regexCompositionName = '/^(([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})+((-|\s)?)+([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})((-|\s)+){0,5})$/';
 $regexFacebook = '/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/';
 $regexTwitter = '/^(?:http(s?):\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)$/';
+$regexStyle = '/^(Autre|Blues|Classique|Disco|Electro|Funk|Gospel|Kompa|Metal|Pop|Punk|Raï|Rap|Reggae|R\'n\'B|Rock|)$/';
 //initialisation tableau d'erreurs vide
 $errors = [];
 //Vérifications formulaire d'inscription
@@ -75,13 +76,27 @@ if (isset($_POST['login'])) {
 if (isset($_GET['activation'])) {
     $login = 'alreadySubmittedOnce';
 }
+//déclaration des variables
+$tagsCompositorOne = $_POST['tagsCompositorOne'] ?? '';
+$facebook = $_POST['facebookId']  ?? '';
+$twitter = $_POST['twitterId'] ?? '';
 // Vérifications page 'suscribe.php
 if (isset($_POST['submitSuscribeCompositor'])) {
+    //ajoute une value au bouton submit
     $submitSuscribeCompositor = 'alreadySubmittedOnce';
-    if (isset($_POST['facebookId']) && !preg_match($regexFacebook, $_POST['facebookId'])) {
+    if (empty($tagsCompositorOne)){
+        $errors['tagsCompositor'] = 'Veuillez choisir un style correct.';
+    }
+    //Vérifie que la valeur du select soit bonne si elle est définie
+    if (!preg_match($regexStyle, $tagsCompositorOne)){
+        $errors['tagsCompositor'] = 'Veuillez choisir un style correct.';
+    }
+    //si le champ facebook est rempli et que l'url fourni n'est pas bon
+    if (!empty($facebook) && !preg_match($regexFacebook, $facebook)) {
         $errors['facebookId'] = 'Veuillez saisir un url correct.';
     }
-    if (isset($_POST['twitterId']) && !preg_match($regexTwitter, $_POST['twitterId'])) {
+    //si le champ twitter est rempli et que l'url fourni n'est pas bon
+    if (!empty($twitter) && !preg_match($regexTwitter, $twitter)) {
         $errors['twitterId'] = 'Veuillez saisir un url correct.';
     }
 }
