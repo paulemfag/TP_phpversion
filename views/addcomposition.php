@@ -1,10 +1,4 @@
 <?php
-session_start();
-//si l'utilisateur n'est pas un compositeur il n'as pas accès à cette page
-if ($_SESSION['accounttype'] != 'compositor'){
-    header('location:accueil.php');
-    exit();
-}
 require_once  '../controllers/sqlfile.php';
 require_once '../controllers/form_validation.php';
 $title = 'Fill | Ajout Composition';

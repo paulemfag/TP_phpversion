@@ -1,8 +1,4 @@
 <?php
-session_start();
-if (!$_SESSION['pseudo']) {
-    header('location:index.php');
-}
 require_once '../controllers/form_validation.php';
 $title = 'Fill | Nouveau Sujet';
 require_once 'require/header.php';
@@ -16,13 +12,12 @@ require_once 'require/header.php';
     <div class="form-group">
         <label class="text-light" for="subject">Sujet :</label>
         <span class="text-danger float-right"><?= $errors['subject'] ?? '' ?></span>
-        <input id="subject" name="subject" type="text" class="col-12" value="<?= $_POST['subject'] ?? '' ?>"
-               type="text">
+        <input id="subject" name="subject" type="text" class="col-12" value="<?= $_POST['subject'] ?? '' ?>">
     </div>
     <div class="form-group">
         <label class="text-light" for="author">Auteur :</label>
         <span class="text-danger float-right"><?= $errors['author'] ?? '' ?></span>
-        <input id="author" name="author" type="text" class="col-12" type="text" value="<?= $_POST['author'] ?? '' ?>">
+        <input id="author" name="author" type="text" class="col-12" value="<?= $_POST['author'] ?? '' ?>">
     </div>
     <div class="form-group">
         <label class="text-light" for="message">Message :</label>

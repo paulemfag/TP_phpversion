@@ -9,6 +9,7 @@ require_once '../controllers/form_validation.php';
 <div id="parametersMenu" class="container bg-light mt-2 opacity">
     <ul id="parameters">
         <li><a id="changePass" href="#"><i class="fas fa-arrow-circle-right"></i> Changer mon mot de passe</a></li>
+        <li><a id="changeAccount" href="#"><i class="fas fa-arrow-circle-right"></i> Changer mon type de compte</a></li>
         <li><a id="removeAccount" href="#"><i class="fas fa-arrow-circle-right"></i> Supprimmer mon compte</a></li>
     </ul>
 </div>
@@ -33,6 +34,28 @@ require_once '../controllers/form_validation.php';
         <button class="btn btn-outline-success col-12" id="changeMyPassword" name="changeMyPassword" type="submit" value="<?= $changeMyPassword ?? '' ?>">Changer mon mot de passe</button>
         <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     </form>
+</div>
+<div id="changeTypeOfAccount">
+    <div id="scroll">
+    <h2 class="container">Changement du type de compte :</h2>
+    <form class="container" action="#" method="post" novalidate>
+        <div class="form-group">
+            <label class="text-light" for="actualType">Type de compte actuel :</label>
+            <input class="col-12 inputColor" id="actualType" name="actualType" type="text" disabled value="<?php if($_SESSION['accounttype'] == 'compositor'){ echo 'compositeur'; } else{ echo 'particulier'; } ?>">
+        </div>
+        <div class="form-group">
+            <label class="text-light" for="newType">Type de compte après changement :</label>
+            <input class="col-12 inputColor" id="newType" name="newType" type="text" disabled value="<?php if($_SESSION['accounttype'] == 'compositor'){ echo 'particulier'; } else{ echo 'compositeur'; } ?>">
+        </div>
+        <div class="form-group">
+            <label class="text-light" for="changeAccountPassword">Mot de passe :</label>
+            <span class="text-danger float-right"><?= $errors['changeAccountPassword'] ?? '' ?></span>
+            <input class="col-12 inputColor" id="changeAccountPassword" name="changeAccountPassword" type="password" value="<?= $_POST['changeAccountPassword'] ?? '' ?>">
+        </div>
+        <h2 class="text-danger">Attention après ces changements [...], vous serez déconnecté et devrez donc vous reconnecter.</h2>
+        <button class="btn btn-outline-success col-12" id="changeAccountType" name="changeAccountType" type="submit" value="<?= $changeAccount ?? '' ?>">Changer mon type de compte</button>
+    </form>
+    </div>
 </div>
 <div id="removeAccountItems">
     <h2 class="container">Suppression du compte :</h2>

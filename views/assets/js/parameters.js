@@ -1,40 +1,62 @@
 $(function () {
     // si le formulaire changement de mot de passe a déjà été envoyé le réaffiche
     if ($('#changeMyPassword').attr('value') === 'alreadySubmittedOnce') {
-        $('#changePasswordItems').show();
         $('#parametersMenu').show();
+        $('#changeTypeOfAccount').hide();
+        $('#changePasswordItems').show();
         $('#removeAccountItems').hide();
         // si le formulaire suppression du compte a déjà été envoyé le réaffiche
     } else if ($('#removeMyAccount').attr('value') === 'alreadySubmittedOnce') {
-        $('#changePasswordItems').hide();
         $('#parametersMenu').show();
+        $('#changeTypeOfAccount').hide();
+        $('#changePasswordItems').hide();
         $('#removeAccountItems').show();
+        // si le formulaire changement du type de compte a déjà été envoyé le réaffiche
+    } else if ($('#changeAccountType').attr('value') === 'alreadySubmittedOnce') {
+        $('#parametersMenu').show();
+        $('#changeTypeOfAccount').show();
+        $('#changePasswordItems').hide();
+        $('#removeAccountItems').hide();
+        // si le update c'est bien passé redirige vers la page index.php
+    } else if ($('#changeAccountType').attr('value') === 'isOk') {
+        redir();
     } else {
         // quand on arrive sur la page n'affiche que le menu
-        $('#changePasswordItems').hide();
         $('#parametersMenu').show();
+        $('#changeTypeOfAccount').hide();
+        $('#changePasswordItems').hide();
         $('#removeAccountItems').hide();
     }
-});
-
-// quand on clique sur le lien "Changer mon mot de passe"
-$('#changePass').click(function () {
-    $('#changePasswordItems').show();
-    $('#parametersMenu').show();
-    $('#removeAccountItems').hide();
-});
-
-// quand on clique sur le lien "Supprimer mon compte"
-$('#removeAccount').click(function () {
-    $('#changePasswordItems').hide();
-    $('#parametersMenu').show();
-    $('#removeAccountItems').show();
 });
 
 // fonction qui redirige vers la page "index.php"
 function redir() {
     self.location.href = 'index.php'
 }
+
+//quand on clique sur le lien "Changer mon type de compte"
+$('#changeAccount').click(function () {
+    $('#parametersMenu').show();
+    $('#changeTypeOfAccount').show();
+    $('#changePasswordItems').hide();
+    $('#removeAccountItems').hide();
+});
+
+// quand on clique sur le lien "Changer mon mot de passe"
+$('#changePass').click(function () {
+    $('#changePasswordItems').show();
+    $('#changeTypeOfAccount').hide();
+    $('#parametersMenu').show();
+    $('#removeAccountItems').hide();
+});
+
+// quand on clique sur le lien "Supprimer mon compte"
+$('#removeAccount').click(function () {
+    $('#parametersMenu').show();
+    $('#changeTypeOfAccount').hide();
+    $('#changePasswordItems').hide();
+    $('#removeAccountItems').show();
+});
 
 //récupération de la valeur du bouton "supprimer mon compte"
 var buttonValue = $('#removeMyAccount').val();

@@ -16,6 +16,8 @@ $mailbox = $_POST['mailbox'] ?? '';
 $password = $_POST['password'] ?? '';
 //formulaire récupération mot de passe
 $recuperationMailbox = $_POST['recuperationMailbox'] ?? '';
+//formulaire changement du type de compte
+$changeAccountPassword = $_POST['changeAccountPassword'] ?? '';
 //formulaire changement de mot de passe
 $actualPassword = $_POST['actualPassword'] ?? '';
 $newPassword = $_POST['newPassword'] ?? '';
@@ -212,6 +214,20 @@ if (isset ($_POST['recuperation'])) {
         $errors['isok'] = 'Un email de récupération vous a été envoyé.';
     }
 }
+//Vérification changement du type de compte
+if (isset($_POST['changeAccountType'])){
+    //ajoute une valeur au bouton pour réafficher le formulaire grâce au JS
+    $changeAccount = 'alreadySubmittedOnce';
+    //vérification champ mot de passe
+    if (empty($changeAccountPassword)){
+        $errors['changeAccountPassword'] = 'Veuillez renseigner votre mot de passe.';
+    }
+    //Si il n'y a pas d'erreurs requier le fichier "parameterspage.php" qui compare le mot de passe de la BDD
+    if (count($errors) == 0) {
+        require_once 'parameterspage.php';
+        accountType();
+    }
+}
 //Vérifications CHANGEMENT MOT DE PASSE
 if (isset ($_POST['changeMyPassword'])) {
     //ajoute une value au bouton me connecter
@@ -230,6 +246,10 @@ if (isset ($_POST['changeMyPassword'])) {
     if ($newPassword != $newPasswordConfirm) {
         $errors['newPassword'] = 'Les mots de passes ne correspondent pas.';
         $errors['newPasswordConfirm'] = 'Les mots de passes ne correspondent pas.';
+    }
+    if (count($errors) == 0) {
+        require_once 'parameterspage.php';
+        passwordChange();
     }
     if (isset($_POST['changeMyPassword']) && empty($errors)) {
         $errors['isok'] = 'Votre mot de passe à bien été changé.';

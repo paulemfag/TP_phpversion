@@ -3,6 +3,7 @@ $regexGmail = '/^(.)+(@)+(gmail\.com)$/';
 $regexYahoo = '/^(.)+(@)+(yahoo\.com)$/';
 $regexYahooFr = '/^(.)+(@)+(yahoo\.fr)$/';
 $regexOutlook = '/^(.)+(@)+(outlook\.com)$/';
+$regexOutlookFr = '/^(.)+(@)+(outlook\.fr)$/';
 $regexLive = '/^(.)+(@)+(live\.fr)$/';
 $regexHotmail = '/^(.)+(@)+(hotmail\.fr)$/';
 
@@ -15,7 +16,7 @@ if (preg_match($regexGmail, $mailbox)) {
 elseif (preg_match($regexYahoo, $mailbox) || preg_match($regexYahooFr, $mailbox)) {
     $mailhref = 'https://mail.yahoo.com';
 } //si c'est une adresse outlook ou live
-elseif (preg_match($regexOutlook, $mailbox) || preg_match($regexLive, $mailbox)) {
+elseif (preg_match($regexOutlook, $mailbox) || preg_match($regexLive, $mailbox) || preg_match($regexOutlookFr, $mailbox)) {
     $mailhref = 'https://office.live.com/start/Outlook.aspx?ui=fr%2DFR&rs=FR';
 } //si c'est une adresse hotmail
 elseif (preg_match($regexHotmail, $mailbox) || preg_match($regexLive, $mailbox)) {

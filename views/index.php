@@ -155,7 +155,7 @@ echo $activeYourAccount ?? ''
     <div class="form-group">
         <label class="text-light" for="recuperationMailbox">Adresse mail :</label>
         <span class="text-danger float-right"><?= ($errors['recuperationMailbox']) ?? '' ?></span>
-        <input id="recuperationMailbox" class="col-12 inputColor" name="recuperationMailbox" type='text'
+        <input id="recuperationMailbox" class="col-12 inputColor" name="recuperationMailbox" type="text"
                value="<?= $recuperationMailbox ?>" required>
     </div>
     <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
