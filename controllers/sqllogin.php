@@ -5,7 +5,7 @@ require_once 'sqlparameters.php';
 $stmt = $db->prepare("SELECT id, pseudo, password, active, accounttype FROM `users` WHERE pseudo LIKE :pseudo ");
 if ($stmt->execute(array(':pseudo' => $pseudo)) && $row = $stmt->fetch()) {
     $id = $row['id'];
-    $active = $row['active']; // $actif contiendra alors 0 ou 1
+    $active = $row['active']; // $actif contient alors 0 ou 1
     $pseudo = $row['pseudo'];
     $password = $row['password'];
     $accounttype = $row['accounttype'];

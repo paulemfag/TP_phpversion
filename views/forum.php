@@ -26,12 +26,7 @@ require_once 'require/header.php';
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Aide pour compo</td>
-                <td>Paulemfag</td>
-                <td>20/11/2019</td>
-                <td>20/11/2019</td>
-            </tr>
+            <?php require_once '../controllers/forum.php'; ?>
             </tbody>
         </table>
     </div>
