@@ -1,4 +1,9 @@
 <?php
+//liste des formats autorisés
+$allowed = array('mp3', 'm4a', 'm4b', 'aac', 'aax', 'mpc');
+foreach ($allowed as $value) {
+    $list = $value . ', ';
+        }
 require_once  '../controllers/sqlfile.php';
 require_once '../controllers/form_validation.php';
 $title = 'Fill | Ajout Composition';
@@ -12,11 +17,11 @@ require_once 'require/header.php';
 </div>
 <form class="container" method="post" action="#" novalidate enctype="multipart/form-data">
     <div class="form-group">
-        <label class="text-light" for="file">Veuillez ajouter un fichier :</label>
+        <label class="text-light float-left" for="file">Veuillez ajouter un fichier (mp3, m4a, m4b, aac, aax, mpc) :</label>
         <span class="text-danger float-right"><?= $errors['file'] ?? '' ?></span>
         <input type="hidden" name="MAX_FILE_SIZE" value="20000000">
-        <input type="hidden" name="user" value="<?= $_SESSION['pseudo'] ?>">
-        <input id="file" class="bg-secondary text-light col-12" type="file" name="file" accept="audio/*">
+<!--        <input type="hidden" name="user" value="<?/*= $_SESSION['pseudo'] */?>">
+-->        <input id="file" class="bg-light col-12" id="fileInput" type="file" name="file" accept="audio/*">
     </div>
     <div class="form-group">
         <label class="text-light" for="compositionName">Nom de la composition :</label>

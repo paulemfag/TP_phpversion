@@ -9,9 +9,14 @@ body{
 }
 
 .inputColor{
-  color : #113E7F;
+  color : #114E7F;
   background-color: #fff;;
   opacity: 0.8;
+}
+
+#fileInput{
+  opacity: 0.8;
+  color: #114E7F;
 }
 
 #scroll{

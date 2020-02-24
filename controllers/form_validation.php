@@ -119,7 +119,7 @@ if (isset($_POST['newComposition'])) {
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
         //extensions autorisées
-        $allowed = array('mp3');
+        $allowed = array('mp3', 'm4a', 'm4b', 'aac', 'aax', 'mpc');
         //si l'extension est bonne
         if (in_array($fileActualExt, $allowed)) {
             //si il n'y a pas derreurs
