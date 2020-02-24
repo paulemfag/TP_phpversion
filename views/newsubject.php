@@ -10,7 +10,6 @@ echo $subjectAdded ?? ''; ?>
 </div>
 <div id="scroll">
 <form class="container" action="?id=<?= $id ?? '' ?>" method="post" novalidate>
-    <input type="hidden" name="dateOfCreation" value="" id="dateOfCreation" disabled>
     <div class="form-group">
         <label class="text-light" for="subject">Sujet :</label>
         <span class="text-danger float-right"><?= $errors['subject'] ?? '' ?></span>
