@@ -3,14 +3,13 @@ require_once '../controllers/form_validation.php';
 $title = 'Fill | Nouveau Sujet';
 require_once 'require/header.php';
 $id = $_SESSION['id'];
-var_dump($_POST['dateOfCreation']);
-filter_input(INPUT_POST, 'dateOfCreation', FILTER_SANITIZE_STRING)
-?>
+echo $subjectAdded ?? ''; ?>
 <div class="container bg-light mt-2 opacity">
     <a id="returnArrow" title="Fill | Forum" href="forum.php"><i class="fas fa-arrow-left" style="font-size: 50px;"></i></a>
     <h1 class="text-center ml-auto mr-auto">Nouveau Sujet :</h1>
 </div>
-<form class="container" action="#?id=<?= $id ?? '' ?>" method="post" novalidate>
+<div id="scroll">
+<form class="container" action="?id=<?= $id ?? '' ?>" method="post" novalidate>
     <input type="hidden" name="dateOfCreation" value="" id="dateOfCreation" disabled>
     <div class="form-group">
         <label class="text-light" for="subject">Sujet :</label>
@@ -30,6 +29,7 @@ filter_input(INPUT_POST, 'dateOfCreation', FILTER_SANITIZE_STRING)
     <input name="submitsubject" class="btn btn-outline-success col-12 text-center mt-1" value="Créer le Sujet"
            type="submit">
 </form>
+</div>
 <?php require_once 'require/footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/newsubject.js"></script>

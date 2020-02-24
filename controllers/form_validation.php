@@ -199,6 +199,9 @@ if (isset($_POST['submitsubject'])) {
     if (empty($message)) {
         $errors['message'] = 'Veuillez renseigner votre message.';
     }
+    if (count ($errors) == 0){
+        require_once 'sqlnewsubject.php';
+    }
 }
 //Vérifications RECUPERATION MOT DE PASSE
 if (isset ($_POST['recuperation'])) {

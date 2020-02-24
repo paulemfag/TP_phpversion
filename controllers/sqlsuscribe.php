@@ -16,7 +16,7 @@ VALUES (:pseudo, :mailbox, :password, :accountType)');
     $sth->execute();
     //Fichier vérifiant le type d'adresse mail
     require_once 'mailboxhost.php';
-    // si l'extension mai match avec une des regex le text mail est un href redirigeant vers la boite mail correspondante
+    // si l'extension mail match avec une des regex le text mail est un href redirigeant vers la boite mail correspondante
     if (isset($mailhref)) {
         $activeYourAccount = '
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -76,7 +76,21 @@ try {
     echo "Erreur : " . $e->getMessage();
 }
 
-/*require_once '../PHPMailer/PHPMailerAutoload.php';
+/*Méthode qui vérifie si une adresse mail est libre.
+     * 0 : L'adresse mail n'existe pas
+* 1 : Elle existe*/
+/*return type
+    function checkFreeMail() {
+        $query = 'SELECT COUNT() AS nbMail FROM dex_user WHERE mail = :mail';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $result->execute();
+        $checkFreeMail = $result->fetch(PDO::FETCH_OBJ);
+        return $checkFreeMail->nbMail;
+    }*/
+
+
+//require_once '../PHPMailer/PHPMailerAutoload.php';
 // Préparation du mail contenant le lien d'activation
 $destinataire = $mailbox;
 $sujet = "Fill activer votre compte";
@@ -93,6 +107,22 @@ http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode
  
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
+function mail ($destinataire, $sujet, $message, $entete){
+//require_once '../PHPMailer/PHPMailerAutoload.php';
+// Préparation du mail contenant le lien d'activation
+    $destinataire = $mailbox;
+    $sujet = "Fill activer votre compte";
+    $entete = "From: Fill | Inscription";
 
-mail($destinataire, $sujet, $message, $entete); // Envoi du mail
-var_dump(mail);*/
+// Le lien d'activation est composé du pseudo(log) et de la clé(cle)
+    $message = 'Bienvenue sur Fill ' .$pseudo. ',
+ 
+Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
+ou le copier/coller dans votre navigateur Internet.
+ 
+http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode($key) . '
+ 
+ 
+---------------
+Ceci est un mail automatique, Merci de ne pas y répondre.';
+}
