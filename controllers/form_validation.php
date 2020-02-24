@@ -12,7 +12,6 @@ $facebook = $_POST['facebookId']  ?? '';
 $twitter = $_POST['twitterId'] ?? '';
 //formulaire login
 $pseudo = $_POST['pseudo'] ?? '';
-$mailbox = $_POST['mailbox'] ?? '';
 $password = $_POST['password'] ?? '';
 //formulaire récupération mot de passe
 $recuperationMailbox = $_POST['recuperationMailbox'] ?? '';
@@ -68,21 +67,16 @@ if (isset($_POST['login'])) {
     if (empty($pseudo)) {
         $errors['pseudo'] = 'Veuillez renseigner votre pseudo.';
     }
-    if (empty($mailbox)) {
-        $errors['mailbox'] = 'Veuillez renseigner votre adresse mail.';
-    } elseif (!filter_var($mailbox, FILTER_VALIDATE_EMAIL)) {
-        $errors['mailbox'] = 'Veuillez saisir une adresse mail valide.';
-    }
     if (empty($password)) {
         $errors['password'] = 'Veuillez renseigner votre mot de passe.';
     }
-    //Si il n'y a pas d'erreurs execute les vérification BDD et renvoi vers la page 'accueil.php'
+    //Si il n'y a pas d'erreurs execute les vérifications en BDD et renvoi vers la page 'accueil.php'
     if (count($errors) == 0) {
         require_once 'sqllogin.php';
     }
 }
 // Si la personne viens de la page 'activation.php' donne une valeur au bouton / affiche le formulaire de connexion (js)
-if (isset($_GET['activation'])) {
+if (isset($_GET['connectMe'])) {
     $login = 'alreadySubmittedOnce';
 }
 // Vérifications page 'suscribe.php
@@ -191,14 +185,6 @@ if (isset($_POST['submitsubject'])) {
     if (empty($subject)) {
         $errors['subject'] = 'Veuillez renseigner le sujet.';
     }
-    $author = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
-    if (empty($author)) {
-        $errors['author'] = 'Veuillez renseigner votre pseudonyme.';
-    }
-    $message = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING));
-    if (empty($message)) {
-        $errors['message'] = 'Veuillez renseigner votre message.';
-    }
     if (count ($errors) == 0){
         require_once 'sqlnewsubject.php';
     }
@@ -222,13 +208,12 @@ if (isset($_POST['changeAccountType'])){
     //ajoute une valeur au bouton pour réafficher le formulaire grâce au JS
     $changeAccount = 'alreadySubmittedOnce';
     //vérification champ mot de passe
-    if (empty($changeAccountPassword)){
+    if (!isset($changeAccountPassword)){
         $errors['changeAccountPassword'] = 'Veuillez renseigner votre mot de passe.';
     }
-    //Si il n'y a pas d'erreurs requier le fichier "parameterspage.php" qui compare le mot de passe de la BDD
+    //Si il n'y a pas d'erreurs requiert le fichier "parameterspage.php" qui compare le mot de passe de la BDD
     if (count($errors) == 0) {
         require_once 'parameterspage.php';
-        accountType();
     }
 }
 //Vérifications CHANGEMENT MOT DE PASSE

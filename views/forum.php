@@ -15,7 +15,7 @@ require_once 'require/header.php';
 </div>
 <!-- tableau -->
 <div class="container col-12">
-    <div class="row col-12" style="justify-content: center">
+    <div class="row" style="justify-content: center">
         <table class="table table-border table-striped table-sm bg-info mt-2 col-10">
             <thead class="text-light">
             <tr>
@@ -40,7 +40,7 @@ require_once 'require/header.php';
     </div>
 </div>
 <!-- Modal réglement -->
-<div class="modal fade" id="rules" role="dialog">
+<div class="modal" id="rules" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,9 +122,6 @@ require_once 'require/header.php';
 <?php require_once 'require/footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/forum.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

@@ -126,16 +126,10 @@ echo $activeYourAccount ?? ''
                    value="<?= $pseudo ?>" required>
         </div>
         <div class="form-group">
-            <label class="text-light" for="mailbox">Adresse mail :</label>
-            <span class="text-danger float-right"><?= ($errors['mailbox']) ?? '' ?></span>
-            <input id="mailbox" name="mailbox" class="col-12 text-center mt-1 inputColor" type="email"
-                   placeholder="Adrese mail" value="<?= $mailbox ?>" required>
-        </div>
-        <div class="form-group">
             <label class="text-light" for="password">Mot de passe :</label>
             <span class="text-danger float-right"><?= ($errors['password']) ?? '' ?></span>
             <input id="password" name="password" class="col-12 text-center mt-1 inputColor" type="password"
-                   placeholder="Mot de passe" value="<?= $password ?>" required>
+                   placeholder="Mot de passe" value="<?= $_POST['password'] ?? '' ?>" required>
         </div>
         <div class="row col-12 float-right">
             <a title="Créer un compte" id="noAccount" href="#">Je n'ai pas encore de compte</a>

@@ -31,7 +31,7 @@ $(function () {
 
 // fonction qui redirige vers la page "index.php"
 function redir() {
-    self.location.href = 'index.php'
+    self.location.href = 'index.php?connectMe=isOk'
 }
 
 //quand on clique sur le lien "Changer mon type de compte"
@@ -57,12 +57,3 @@ $('#removeAccount').click(function () {
     $('#changePasswordItems').hide();
     $('#removeAccountItems').show();
 });
-
-//récupération de la valeur du bouton "supprimer mon compte"
-var buttonValue = $('#removeMyAccount').val();
-// si la valeur du bouton est égale à 'isOk' appelle la fonction de redirection
-if (buttonValue === 'isOk') {
-    redir();
-}
-
-

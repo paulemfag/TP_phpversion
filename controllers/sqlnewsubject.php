@@ -7,7 +7,6 @@ if (empty($_GET['id'])){
 $id = $_GET['id'];
 try {
     // insertion dans la base de donnée
-    //INSERT INTO `topics` (`id`, `title`, `created_at`, `id_users`) VALUES (NULL, 'test', CURRENT_TIMESTAMP, '12');
     $sth = $db->prepare('INSERT INTO `topics` ( `title`, `created_at`, `id_users`) VALUES ( :subject, CURRENT_TIMESTAMP, :id_user)');
     $sth->bindValue(':subject', $subject, PDO::PARAM_STR);
     $sth->bindValue(':id_user', $id, PDO::PARAM_INT);

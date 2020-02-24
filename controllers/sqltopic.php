@@ -1,14 +1,33 @@
 <?php
+/*if (empty($_GET['id'])){
+    header('location:forum.php');
+    exit();
+}*/
 require_once 'sqlparameters.php';
 //récupère les informations du topic grace à l'id
-$id = $_GET['id'];
-var_dump($_GET);
+$topicId = $_GET['id'];
 try {
-    $query = 'SELECT `id`, DATE_FORMAT(`published_at`, \'le %d/%m/%Y\ à %HH%i\') `published_at`, `id_users` FROM `publications` WHERE `id_users = `' .$id;
-    $publicationsQueryStat = $db->query($query);
-    $publicationsList = $publicationsQueryStat->fetchAll(PDO::FETCH_ASSOC);
+    $sth = $db->prepare('SELECT `title` FROM `topics` WHERE `id` = :id');
+    $sth->bindValue(':id', $topicId, PDO::PARAM_INT);
+    $sth->execute();
+    $topics = $sth->fetch();
 } catch (Exception $ex) {
-    die('Connexion échoué');
+    die('Connexion échoué !');
+}
+?>
+    <div class="container bg-light mt-2 opacity">
+        <a id="returnArrow" title="Fill | Forum" href="forum.php"><i class="fas fa-arrow-left"
+                                                                     style="font-size: 50px;"></i></a>
+        <h1 class="text-center ml-auto mr-auto"><?= $topics['title'] ?></h1>
+    </div>
+<?php
+try {
+    $sth = $db->prepare('SELECT `id`, `message`, DATE_FORMAT(`published_at`, \'le %d/%m/%Y\ à %HH%i\') `published_at`, `id_users` FROM `publications` WHERE `id_topics` = :id');
+    $sth->bindValue(':id', $topicId, PDO::PARAM_INT);
+    $sth->execute();
+    $publicationsList = $sth->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $ex) {
+    die('Connexion échoué !');
 }
 
 foreach ($publicationsList AS $publication): ?>

@@ -16,16 +16,6 @@ echo $subjectAdded ?? ''; ?>
         <span class="text-danger float-right"><?= $errors['subject'] ?? '' ?></span>
         <input id="subject" name="subject" type="text" class="col-12" value="<?= $_POST['subject'] ?? '' ?>">
     </div>
-    <div class="form-group">
-        <label class="text-light" for="author">Auteur :</label>
-        <span class="text-danger float-right"><?= $errors['author'] ?? '' ?></span>
-        <input id="author" name="author" type="text" class="col-12" value="<?= $_POST['author'] ?? '' ?>">
-    </div>
-    <div class="form-group">
-        <label class="text-light" for="message">Message :</label>
-        <span class="text-danger float-right"><?= $errors['message'] ?? '' ?></span>
-        <input id="message" name="message" class="col-12" type="text" value="<?= $_POST['message'] ?? '' ?>">
-    </div>
     <input name="submitsubject" class="btn btn-outline-success col-12 text-center mt-1" value="Créer le Sujet"
            type="submit">
 </form>

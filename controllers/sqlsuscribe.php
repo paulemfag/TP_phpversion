@@ -4,7 +4,7 @@ require_once 'sqlparameters.php';
 try {
     $pseudo = $_POST['suscribepseudo'];
     $mailbox = $_POST['suscribemailbox'];
-    $password = $_POST['suscribepassword'];
+    $password =  password_hash($_POST['suscribepassword'], PASSWORD_DEFAULT);
     $accountType = $_POST['typeOfAccount'];
     // insertion dans la base de donnée
     $sth = $db->prepare('INSERT INTO `users` (pseudo, mailbox, password, accounttype)
@@ -92,7 +92,7 @@ try {
 
 //require_once '../PHPMailer/PHPMailerAutoload.php';
 // Préparation du mail contenant le lien d'activation
-$destinataire = $mailbox;
+/*$destinataire = $mailbox;
 $sujet = "Fill activer votre compte";
 $entete = "From: Fill | Inscription";
 
@@ -125,4 +125,4 @@ http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode
  
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
-}
+}*/

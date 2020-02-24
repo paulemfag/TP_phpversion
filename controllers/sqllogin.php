@@ -23,7 +23,7 @@ if ($stmt->execute(array(':pseudo' => $pseudo)) && $row = $stmt->fetch()) {
     }
 
 // Si la valeur de la colonne active est égale à 1, on autorise la connexion
-    if ($active == '1' && $pseudo == $_POST['pseudo'] && $password == $_POST['password']) {
+    if ($active == '1' && $pseudo == $_POST['pseudo'] && password_verify($_POST['password'], $password)) {
         session_set_cookie_params(10,"/");
         session_start();
         $_SESSION['pseudo'] = $pseudo;
