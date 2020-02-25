@@ -4,7 +4,7 @@ require_once 'sqlparameters.php';
 try {
     $pseudo = $_POST['suscribepseudo'];
     $mailbox = $_POST['suscribemailbox'];
-    $password =  password_hash($_POST['suscribepassword'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['suscribepassword'], PASSWORD_DEFAULT);
     $accountType = $_POST['typeOfAccount'];
     // insertion dans la base de donnée
     $sth = $db->prepare('INSERT INTO `users` (pseudo, mailbox, password, accounttype)
@@ -48,56 +48,14 @@ try {
     $stmt->bindParam(':cle', $key);
     $stmt->bindParam(':pseudo', $pseudo);
     $stmt->execute();
-/*
+
     //récupération du fichier requis
-    require_once '../swiftmailer/lib/swift_required.php';
-    // Mail Transport
-    $transport = new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl');
-    $transport->setUsername('boiteprofagot@gmail.com')->setPassword('anticonstitutionnellement');
-    // Mailer
-    $mailer = new Swift_Mailer($transport);
-
-    // Create a message
-    $message = new Swift_Message('Weekly Hours');
-    $message->setFrom('no-reply@fill.info');
-    $message->setTo('boiteprofagot@gmail.com');
-    $message->setSubject('Weekly Hours');
-    $message->setBody('Test Message', 'text/html');
-    $result = $mailer->send($message);
-
-    // Send the message
-    if ($mailer->send($message)) {
-        echo '<h1 class="text-light">Mail sent successfully.</h1>';
-    } else {
-        echo '<h1 class="text-light">I am sure, your configuration are not correct. :(</h1>';
-    }*/
-
+    require_once '../vendor/autoload.php';
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
 
-/*Méthode qui vérifie si une adresse mail est libre.
-     * 0 : L'adresse mail n'existe pas
-* 1 : Elle existe*/
-/*return type
-    function checkFreeMail() {
-        $query = 'SELECT COUNT() AS nbMail FROM dex_user WHERE mail = :mail';
-        $result = $this->db->prepare($query);
-        $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $result->execute();
-        $checkFreeMail = $result->fetch(PDO::FETCH_OBJ);
-        return $checkFreeMail->nbMail;
-    }*/
-
-
-//require_once '../PHPMailer/PHPMailerAutoload.php';
-// Préparation du mail contenant le lien d'activation
-/*$destinataire = $mailbox;
-$sujet = "Fill activer votre compte";
-$entete = "From: Fill | Inscription";
-
-// Le lien d'activation est composé du pseudo(log) et de la clé(cle)
-$message = 'Bienvenue sur Fill ' .$pseudo. ',
+$messageToSend = 'Bienvenue sur Fill ' . $pseudo . ',
  
 Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
 ou le copier/coller dans votre navigateur Internet.
@@ -107,22 +65,20 @@ http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode
  
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
-function mail ($destinataire, $sujet, $message, $entete){
-//require_once '../PHPMailer/PHPMailerAutoload.php';
-// Préparation du mail contenant le lien d'activation
-    $destinataire = $mailbox;
-    $sujet = "Fill activer votre compte";
-    $entete = "From: Fill | Inscription";
 
-// Le lien d'activation est composé du pseudo(log) et de la clé(cle)
-    $message = 'Bienvenue sur Fill ' .$pseudo. ',
- 
-Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
-ou le copier/coller dans votre navigateur Internet.
- 
-http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode($key) . '
- 
- 
----------------
-Ceci est un mail automatique, Merci de ne pas y répondre.';
-}*/
+//Requiert le fichier "smtpParameters.php" contenant les informations de connexion (constantes)
+require_once 'smtpParameters.php';
+// Informations du transport
+$transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+    ->setUsername(SMTPUSER)
+    ->setPassword(SMTPPASSWORD);
+
+// Création du mailer en utilisant le transport
+$mailer = new Swift_Mailer($transport);
+
+// Création du message
+$message = (new Swift_Message('Activation de votre compte Fill'))
+    ->setContentType("text/html")
+    ->setFrom(['suscribe@fill.info' => 'Fill | Service inscription'])
+    ->setTo([$mailbox => $pseudo])
+    ->setBody($messageToSend);

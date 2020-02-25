@@ -57,8 +57,26 @@ require_once '../controllers/form_validation.php'; ?>
                        value="<?= $_POST['instruments'] ?? '' ?>">
             </div>
             <div class="form-group">
-                <label class="text-light" for="softwares"><i class="fas fa-compact-disc"></i> Logiciel(s) :</label>
+                <label class="text-light" for="software"><i class="fas fa-compact-disc"></i> Logiciel(s) :</label>
                 <span class="text-danger float-right"></span>
+                <select class="col-12 inputColor" name="software" id="software">
+                    <?php if (isset($_POST['software'])) { ?>
+                        <option value="<?= $_POST['software'] ?>" selected><?= $_POST['software'] ?></option>
+                    <?php } else { ?>
+                        <option value="" selected disabled>Sélectionner</option>
+                    <?php } ?>
+                    <option value="Ableton Live">Ableton Live</option>
+                    <option value="FL Studio">FL Studio</option>
+                    <option value="Logic Pro X">Logic Pro X</option>
+                    <option value="Garageband">Garageband</option>
+                    <option value="Avid Pro Tools">Avid Pro Tools</option>
+                    <option value="Steinberg Cubase">Steinberg Cubase</option>
+                    <option value="Cockos Reaper">Cockos Reaper</option>
+                    <option value="PreSonus Studio">PreSonus Studio</option>
+                    <option value="Acid Pro">Acid Pro</option>
+                    <option value="Propellerhead Reason">Propellerhead Reason</option>
+                    <option value="Autre">Autre</option>
+                </select>
                 <input id="softwares" class="col-12 inputColor" name="softwares" type="text"
                        value="<?= $_POST['softwares'] ?? '' ?>">
             </div>

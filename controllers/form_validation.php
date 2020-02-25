@@ -7,6 +7,7 @@ $suscribemailbox = $_POST['suscribemailbox'] ?? '';
 $suscribepassword = $_POST['suscribepassword'] ?? '';
 $suscribepasswordconfirmation = $_POST['suscribepasswordconfirmation'] ?? '';
 //formulaire informations personnelles
+$software = $_POST['software'] ?? '';
 $tagsCompositorOne = $_POST['tagsCompositorOne'] ?? '';
 $facebook = $_POST['facebookId']  ?? '';
 $twitter = $_POST['twitterId'] ?? '';
@@ -24,6 +25,7 @@ $newPasswordConfirm = $_POST['newPasswordConfirm'] ?? '';
 //regex pour le contrôle des formulaires
 $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+((-| )[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+)?$/";
 $regexCompositionName = '/^(([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})+((-|\s)?)+([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})((-|\s)+){0,5})$/';
+$regexSoftware = '/^(Ableton Live|FL Studio|Logic Pro X|Avid Pro Tools|Propellerhead Reason|Garageband|Steinberg Cubase|Cockos Reaper|PreSonus Studio|Acid Pro)$/';
 $regexFacebook = '/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/';
 $regexTwitter = '/^(?:http(s?):\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)$/';
 $regexStyle = '/^(Autre|Blues|Classique|Disco|Electro|Funk|Gospel|Kompa|Metal|Pop|Punk|Raï|Rap|Reggae|R\'n\'B|Rock|)$/';
@@ -79,10 +81,15 @@ if (isset($_POST['login'])) {
 if (isset($_GET['connectMe'])) {
     $login = 'alreadySubmittedOnce';
 }
-// Vérifications page 'suscribe.php
+// Vérifications formulaire informations personnelles, page 'suscribe.php
 if (isset($_POST['submitSuscribeCompositor'])) {
     //ajoute une value au bouton submit
     $submitSuscribeCompositor = 'alreadySubmittedOnce';
+    //Vérifie que le logiciel employé est bien dans la liste ( que le select n'as pas été modifié ).
+    if (!empty($software) && !preg_match($regexSoftware, $software)){
+        $errors['software'] = 'Une erreur c\'est produite merci de réessayer ultérieurement.';
+    }
+    //Vérifie le style préféré
     if (empty($tagsCompositorOne)){
         $errors['tagsCompositor'] = 'Veuillez choisir un style correct.';
     }
