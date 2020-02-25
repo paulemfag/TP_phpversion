@@ -14,6 +14,8 @@ $twitter = $_POST['twitterId'] ?? '';
 //formulaire login
 $pseudo = $_POST['pseudo'] ?? '';
 $password = $_POST['password'] ?? '';
+//création de playlist
+$playlistName = $_POST['playlistName'] ?? '';
 //formulaire récupération mot de passe
 $recuperationMailbox = $_POST['recuperationMailbox'] ?? '';
 //formulaire changement du type de compte
@@ -104,6 +106,14 @@ if (isset($_POST['submitSuscribeCompositor'])) {
     //si le champ twitter est rempli et que l'url fourni n'est pas bon
     if (!empty($twitter) && !preg_match($regexTwitter, $twitter)) {
         $errors['twitterId'] = 'Veuillez saisir un url correct.';
+    }
+}
+if (isset($_POST['submitPlaylist'])){
+    if(!filter_input(INPUT_POST, 'playlistName', FILTER_SANITIZE_STRING)){
+        $errors['playlistName'] = 'Veuillez saisir un titre valide.';
+    }
+    if (count($errors) == 0){
+        require_once 'sqlNewPlaylist.php';
     }
 }
 //option sélectionné page 'ajouter une composition'

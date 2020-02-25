@@ -46,9 +46,9 @@ if (empty($_SESSION)) {
                             Playlists
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownPlaylist">
-                            <a href="newplaylist.php" class="dropdown-item"><i class="fas fa-plus"></i>
+                            <a href="newplaylist.php" id="newplaylist" class="dropdown-item text-light" style="hover: none"><i class="fas fa-plus"></i>
                                 Nouvelle playlist</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target=".modal">Ma playlist</a>
+                            <?php require_once '../controllers/playlistList.php'?>
                         </div>
                     </li>
                     <!-- Menu Tags -->

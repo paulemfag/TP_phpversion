@@ -17,7 +17,15 @@ try {
 foreach ($topicList AS $topic): ?>
     <tr class="shadow">
     <td class="text-light"><a title="<?= $topic['title'] ?>" href="topic.php?id=<?= $topic['id'] ?>"><?= $topic['title'] ?></a></td>
-    <?php try {
+    <?php
+/*    try {
+        $query = 'SELECT * FROM `publication` WHERE id_topics =' .$topic['id']. 'ORDER BY `id` ASC';
+        $publishQueryStat = $db->query($query);
+        $userList = $publishQueryStat->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $ex) {
+        die('Connexion échoué');
+    }*/
+    try {
         $query = 'SELECT `pseudo` FROM `users` WHERE id =' . $topic['id_users'];
         $userQueryStat = $db->query($query);
         $userList = $userQueryStat->fetchAll(PDO::FETCH_ASSOC);

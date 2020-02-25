@@ -15,6 +15,7 @@ require_once 'require/header.php';
 <div id="successfullCreation" class="container alert alert-success" role="alert">
     <p>Votre composition a été ajoutée avec succès.</p>
 </div>
+<div id="scroll">
 <form class="container" method="post" action="#" novalidate enctype="multipart/form-data">
     <div class="form-group">
         <label class="text-light float-left" for="file">Veuillez ajouter un fichier ( format mp3, m4a, m4b, aac, aax, mpc) :</label>
@@ -70,6 +71,7 @@ require_once 'require/header.php';
     </div>
     <button id="newComposition" name="newComposition" value="<?= $isOk ?? '' ?>" class="btn btn-success col-12" type="submit">Ajouter la composition</button>
 </form>
+</div>
 <?php require_once 'require/footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/addcomposition.js"></script>

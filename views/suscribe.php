@@ -57,8 +57,8 @@ require_once '../controllers/form_validation.php'; ?>
                        value="<?= $_POST['instruments'] ?? '' ?>">
             </div>
             <div class="form-group">
-                <label class="text-light" for="software"><i class="fas fa-compact-disc"></i> Logiciel(s) :</label>
-                <span class="text-danger float-right"></span>
+                <label class="text-light" for="software"><i class="fas fa-compact-disc"></i> Logiciel :</label>
+                <span class="text-danger float-right"><?= $errors['software'] ?? '' ?></span>
                 <select class="col-12 inputColor" name="software" id="software">
                     <?php if (isset($_POST['software'])) { ?>
                         <option value="<?= $_POST['software'] ?>" selected><?= $_POST['software'] ?></option>
@@ -77,8 +77,8 @@ require_once '../controllers/form_validation.php'; ?>
                     <option value="Propellerhead Reason">Propellerhead Reason</option>
                     <option value="Autre">Autre</option>
                 </select>
-                <input id="softwares" class="col-12 inputColor" name="softwares" type="text"
-                       value="<?= $_POST['softwares'] ?? '' ?>">
+                <input id="otherSoftware" class="col-12 inputColor" name="softwares" type="text"
+                       value="<?= $_POST['softwares'] ?? '' ?>" placeholder="Veuillez préciser">
             </div>
             <div class="form-group">
                 <label class="text-light" for="tagsCompositor"><i class="fas fa-music"></i> Styles préférés :</label>
@@ -168,7 +168,7 @@ require_once '../controllers/form_validation.php'; ?>
     </div>
 </div>
 <?php require_once 'require/footer.php'; ?>
-<script src="../assets/js/jquery-3.3.1.min.js"></script>
-<script src="../assets/js/suscribe.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/suscribe.js"></script>
 </body>
 </html>

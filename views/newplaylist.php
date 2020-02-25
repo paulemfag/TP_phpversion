@@ -1,6 +1,7 @@
 <?php
 $title = 'Fill | Nouvelle playlist';
-require_once 'require/header.php'
+require_once 'require/header.php';
+require_once '../controllers/form_validation.php';
 ?>
 <div class="container text-center bg-light mt-2 opacity">
     <h1>Nouvelle Playlist :</h1>
@@ -8,9 +9,10 @@ require_once 'require/header.php'
 <form class="container" action="#" method="post">
     <div class="form-group">
         <label class="text-light" for="playlistName">Nom de la playlist :</label>
-        <input class="col-12 inputColor" id="playlistName" name="playlistName" type="text">
+        <span class="text-danger float-right"><?= $errors['playlistName'] ?? '' ?></span>
+        <input class="col-12 inputColor" id="playlistName" name="playlistName" type="text" value="<?= $playlistName ?>">
     </div>
-    <input value="Créer la playlist" class="btn btn-outline-success col-12" type="submit">
+    <input name="submitPlaylist" value="Créer la playlist" class="btn btn-outline-success col-12" type="submit">
 </form>
 <?php
 require_once 'require/footer.php'; ?>

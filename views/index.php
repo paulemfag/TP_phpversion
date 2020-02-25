@@ -73,7 +73,7 @@ echo $activeYourAccount ?? ''
 </div>
 <div id="suscribeItems">
     <div class="container text-center bg-light mt-2 opacity">
-        <h1 class="text-primary ml-auto mr-auto">Inscription :</h1>
+        <h1 class="text-primary ml-auto mr-auto">Fill | Inscription :</h1>
     </div>
     <!-- form Inscription -->
     <form class="container" id="suscribers" method="post" action="#" novalidate>
@@ -115,7 +115,7 @@ echo $activeYourAccount ?? ''
 </div>
 <div id="connectItems">
     <div class="container text-center bg-light mt-2 opacity">
-        <h1 class="text-primary text-center ml-auto mr-auto">Connexion :</h1>
+        <h1 class="text-primary text-center ml-auto mr-auto">Fill | Connexion :</h1>
     </div>
     <!-- Form Connexion -->
     <form class="container" action="#" method="post" novalidate>
@@ -131,10 +131,9 @@ echo $activeYourAccount ?? ''
             <input id="password" name="password" class="col-12 text-center mt-1 inputColor" type="password"
                    placeholder="Mot de passe" value="<?= $_POST['password'] ?? '' ?>" required>
         </div>
-        <div class="row col-12 float-right">
-            <a title="Créer un compte" id="noAccount" href="#">Je n'ai pas encore de compte</a>
-            <p class="text-primary"> | </p><a title="Récupérer mon mot de passe" id="lostPassword" href="#">Mot de passe
-                oublié</a>
+        <div class="row col-12">
+            <a class="col-12 text-center" title="Créer un compte" id="noAccount" href="#">Je n'ai pas encore de compte</a>
+            <a class="col-12 text-center" title="Récupérer mon mot de passe" id="lostPassword" href="#">Mot de passe oublié</a>
         </div>
         <span class="text-danger float-right"><?= $errors['login'] ?? '' ?></span>
         <button id="login" name="login" class="btn btn-outline-primary col-12 text-center mt-1"

@@ -8,6 +8,12 @@ body{
   background: url('../img/universe-4609408_1280.jpg') repeat;
 }
 
+#newplaylist{
+  background-color: transparent;
+  border: transparent;
+  border: none;
+}
+
 .inputColor{
   color : #114E7F;
   background-color: #fff;;
@@ -61,6 +67,10 @@ h2{
 
 #returnArrow{
   color: #113E7F;
+}
+
+#cardForum{
+  opacity: 0.5;
 }
 
 footer{
