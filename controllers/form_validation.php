@@ -236,8 +236,7 @@ if (isset ($_POST['changeMyPassword'])) {
         $errors['newPasswordConfirm'] = 'Les mots de passes ne correspondent pas.';
     }
     if (count($errors) == 0) {
-        require_once 'parameterspage.php';
-        passwordChange();
+        require_once 'updatePassword.php';
     }
     if (isset($_POST['changeMyPassword']) && empty($errors)) {
         $errors['isok'] = 'Votre mot de passe à bien été changé.';

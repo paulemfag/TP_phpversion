@@ -17,7 +17,7 @@ require_once 'require/header.php';
 </div>
 <form class="container" method="post" action="#" novalidate enctype="multipart/form-data">
     <div class="form-group">
-        <label class="text-light float-left" for="file">Veuillez ajouter un fichier (mp3, m4a, m4b, aac, aax, mpc) :</label>
+        <label class="text-light float-left" for="file">Veuillez ajouter un fichier ( format mp3, m4a, m4b, aac, aax, mpc) :</label>
         <span class="text-danger float-right"><?= $errors['file'] ?? '' ?></span>
         <input type="hidden" name="MAX_FILE_SIZE" value="20000000">
 <!--        <input type="hidden" name="user" value="<?/*= $_SESSION['pseudo'] */?>">
