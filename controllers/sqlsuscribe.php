@@ -63,7 +63,7 @@ ou le copier/coller dans votre navigateur Internet.
 http://fill.info/activation.php?log=' . urlencode($pseudo) . '&cle=' . urlencode($key) . '
  
  
----------------
+------------------------------------------------------------------------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
 //Requiert le fichier "smtpParameters.php" contenant les informations de connexion (constantes)
@@ -82,7 +82,7 @@ $message = (new Swift_Message('Activation de votre compte Fill'))
     ->setFrom(['suscribe@fill.info' => 'Fill | Service inscription'])
     ->setTo([$mailbox => $pseudo])
     ->setBody($messageToSend);
-/*$Name = 'Fill | Suscribe Service';
+$Name = 'Fill | Suscribe Service';
 $email = 'fill@service.info';
 $header = 'De: '. $Name . ' <' . $email . '>\r\n';
-$mail = mail($mailbox,'Fill | Activation de votre compte', $messageToSend, $header);*/
+$mail = mail('' .$mailbox,'Fill | Activation de votre compte', $messageToSend, $header);
