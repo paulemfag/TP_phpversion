@@ -13,6 +13,8 @@ require_once '../controllers/form_validation.php';
         <li><a id="removeAccount" href="#"><i class="fas fa-arrow-circle-right"></i> Supprimmer mon compte</a></li>
     </ul>
 </div>
+<div id="scroll">
+    <?= $message ?>
 <div id="changePasswordItems">
     <h2 class="container">Changement du mot de passe :</h2>
     <form class="container" action="#" method="post" novalidate>
@@ -32,11 +34,9 @@ require_once '../controllers/form_validation.php';
             <input id="newPasswordConfirm" class="col-12 inputColor" name="newPasswordConfirm" type="password" value="<?= $newPasswordConfirm ?>" required>
         </div>
         <button class="btn btn-outline-success col-12" id="changeMyPassword" name="changeMyPassword" type="submit" value="<?= $changeMyPassword ?? '' ?>">Changer mon mot de passe</button>
-        <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     </form>
 </div>
 <div id="changeTypeOfAccount">
-    <div id="scroll">
     <h2 class="container">Changement du type de compte :</h2>
     <form class="container" action="#" method="post" novalidate>
         <div class="form-group">
@@ -55,7 +55,6 @@ require_once '../controllers/form_validation.php';
         <h2 class="text-danger">Attention après ces changements [...], vous serez déconnecté et devrez donc vous reconnecter.</h2>
         <button class="btn btn-outline-success col-12" id="changeAccountType" name="changeAccountType" type="submit" value="<?= $changeAccount ?? '' ?>">Changer mon type de compte</button>
     </form>
-    </div>
 </div>
 <div id="removeAccountItems">
     <h2 class="container">Suppression du compte :</h2>
@@ -68,6 +67,7 @@ require_once '../controllers/form_validation.php';
         <button class="btn btn-outline-danger col-12" id="removeMyAccount" name="removeMyAccount" type="submit" value="<?= $removeMyAccount ?? '' ?>"><i class="far fa-times-circle"></i> Supprimer mon compte</button>
         <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     </form>
+</div>
 </div>
 <?php require_once 'require/footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>

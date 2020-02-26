@@ -108,6 +108,7 @@ if (isset($_POST['submitSuscribeCompositor'])) {
         $errors['twitterId'] = 'Veuillez saisir un url correct.';
     }
 }
+//vérifications nouvelle playlist
 if (isset($_POST['submitPlaylist'])){
     if(!filter_input(INPUT_POST, 'playlistName', FILTER_SANITIZE_STRING)){
         $errors['playlistName'] = 'Veuillez saisir un titre valide.';

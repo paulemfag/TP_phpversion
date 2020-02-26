@@ -16,6 +16,13 @@ $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                     $sth->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
                     $sth->bindValue(':password', $newPassword, PDO::PARAM_STR);
                     $sth->execute();
+                    $message = '
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>Votre mot de passe a bien été modifié.</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>';
                 } catch (PDOException $e) {
                     echo "Erreur : " . $e->getMessage();
                 }
