@@ -40,3 +40,19 @@ foreach ($topicList AS $topic): ?>
     <td class="text-light"><?= 'à définir' ?></td>
     <td class="text-light"><?= $topic['created_at'] ?></td>
 <?php endforeach;
+/*$page = 1;
+if (!empty($_GET['page']) && filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT)) {
+    $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+}
+$totaltopic = $topic->totalPatients();
+$perPage = 3;
+$numberOfPages = ceil($totaltopic / $perPage);
+$begin = $perPage * ($page - 1);
+$topicList = $topic->patientsPerPage($perPage, $begin);
+if (isset($_POST['search-submit'])) {
+    $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
+    if (!empty($search)) {
+        $hidePaginate = true;
+        $topicList = $topic->findPatient($search);
+    }
+}*/

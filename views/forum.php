@@ -2,6 +2,7 @@
 $title = 'Fill | Forum';
 require_once 'require/header.php';
 ?>
+<div id="scroll">
 <!-- barre et bouton rechercher -->
 <div class="container mt-2 12-col">
     <div class="row" style="justify-content: center;">
@@ -119,6 +120,7 @@ require_once 'require/header.php';
         <li class="page-item"><a class="page-link" href="#">page suivante</a></li>
     </ul>
 </nav>
+</div>
 <?php require_once 'require/footer.php'; ?>
 <script src="../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../assets/js/forum.js"></script>

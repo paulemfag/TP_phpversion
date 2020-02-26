@@ -5,7 +5,7 @@ require_once 'require/header.php';
 $id = $_SESSION['id'];
 echo $subjectAdded ?? ''; ?>
 <div class="container bg-light mt-2 opacity">
-    <a id="returnArrow" title="Fill | Forum" href="forum.php"><i class="fas fa-arrow-left" style="font-size: 50px;"></i></a>
+    <a title="Fill | Forum" href="forum.php"><i class="mt-2 fas fa-home"></i></a>
     <h1 class="text-center ml-auto mr-auto">Nouveau Sujet :</h1>
 </div>
 <div id="scroll">

@@ -19,6 +19,8 @@ if (empty($_SESSION)) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
         <!-- CDN google fonts -->
         <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
+        <!--CDN logos Forum-->
+        <link rel="stylesheet" href="https://illiweb.com/rs3/61/frm/SCEditor/src/themes/fa.default.min.css" type="text/css" media="all">
     </head>
     <body>
         <!-- Navbar -->
