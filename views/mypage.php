@@ -36,8 +36,8 @@ require_once 'require/header.php';
     <div class="row">
         <div class="col-12">
             <a><i class="fas fa-network-wired"></i><b> Réseaux :</b></a>
-            <a href="#"><img src="../assets/img/facebook-logo.png" width="80" height="60" alt="logo_fb"></a>
-            <a href="#"><img src="../assets/img/logo_twitter.png" width="80" height="60" alt="logo_fb"></a>
+            <a href="#"><img src="assets/img/facebook-logo.png" width="80" height="60" alt="logo_fb"></a>
+            <a href="#"><img src="assets/img/logo_twitter.png" width="80" height="60" alt="logo_fb"></a>
         </div>
     </div>
 </div>

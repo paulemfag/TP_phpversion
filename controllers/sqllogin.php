@@ -32,7 +32,6 @@ if ($stmt->execute(array(':pseudo' => $pseudo)) && $row = $stmt->fetch()) {
         header('location:accueil.php');
         exit();
     }
-
     // Sinon la connexion est refusé...
     else {
         $errors['login'] = 'Votre identifiant ou mot de passe est incorrect merci de réessayer.';

@@ -82,3 +82,7 @@ $message = (new Swift_Message('Activation de votre compte Fill'))
     ->setFrom(['suscribe@fill.info' => 'Fill | Service inscription'])
     ->setTo([$mailbox => $pseudo])
     ->setBody($messageToSend);
+/*$Name = 'Fill | Suscribe Service';
+$email = 'fill@service.info';
+$header = 'De: '. $Name . ' <' . $email . '>\r\n';
+$mail = mail($mailbox,'Fill | Activation de votre compte', $messageToSend, $header);*/
