@@ -14,7 +14,7 @@ require_once '../controllers/form_validation.php';
     </ul>
 </div>
 <div id="scroll">
-    <?= $message ?>
+    <?= $message ?? '' ?>
 <div id="changePasswordItems">
     <h2 class="container">Changement du mot de passe :</h2>
     <form class="container" action="#" method="post" novalidate>

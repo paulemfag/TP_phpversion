@@ -156,8 +156,7 @@ echo $activeYourAccount ?? ''
             value="<?= $recuperation ?? '' ?>">Récupérer mon mot de passe
     </button>
 </form>
-<?php
-require_once 'require/footer.php'; ?>
+<?php require_once 'require/footer.php'; ?>
 <script src="assets/js/jquery-3.3.1.min.js"></script>
 <script src="assets/js/home.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
