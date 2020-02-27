@@ -151,12 +151,14 @@ echo $activeYourAccount ?? ''
         <input id="recuperationMailbox" class="col-12 inputColor" name="recuperationMailbox" type="text"
                value="<?= $recuperationMailbox ?>" required>
     </div>
+    <div class="g-recaptcha" data-sitekey="6Ldy4NwUAAAAAEEfMeWAutW2nppggGOIItgGo_-k"></div>
     <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     <button id="recuperation" name="recuperation" class="btn btn-outline-success col-12 text-center mt-1" type="submit"
             value="<?= $recuperation ?? '' ?>">Récupérer mon mot de passe
     </button>
 </form>
 <?php require_once 'require/footer.php'; ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="assets/js/jquery-3.3.1.min.js"></script>
 <script src="assets/js/home.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

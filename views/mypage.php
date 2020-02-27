@@ -41,9 +41,6 @@ require_once 'require/header.php';
         </div>
     </div>
 </div>
-<div class="container">
-    <a title="ajouter une composition" class="btn btn-block btn-success" href="addcomposition.php"></a>
-</div>
 <?php require_once 'require/footer.php'; ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
