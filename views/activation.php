@@ -25,7 +25,9 @@ require_once '../controllers/sqlactivation.php';
 <div class="container text-center bg-light mt-2 opacity">
     <h1 class="text-primary ml-auto mr-auto"><?= $message ?></h1>
 </div>
-<a href="http://fill.info?connectMe=isOk" id="login" class="btn btn-outline-success col-12 ">Me connecter</a>
+<div class="container">
+    <a href="http://fill.info?connectMe=isOk" id="login" class="btn btn-outline-success col-12 ">Me connecter</a>
+</div>
 <?php require_once 'require/footer.php' ?>
 </body>
 </html>
