@@ -10,5 +10,5 @@ try {
     die('Connexion échoué');
 }
 foreach ($playlists as $playlist){
-    $playlistsList = '<a class="dropdown-item" href="playlist.php?id='. $playlist['id'] .'">'. $playlist['title'] .'</a>';
+    echo '<a class="dropdown-item" href="playlist.php?id='. $playlist['id'] .'">'. $playlist['title'] .'</a>';
 }

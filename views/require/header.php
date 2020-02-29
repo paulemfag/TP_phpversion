@@ -4,8 +4,6 @@ session_start();
 if (empty($_SESSION)) {
     header('location:index.php');
 }
-//affichage liste des playlists dans le dropdown menu de la navbar
-require_once '../controllers/playlistList.php'
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -52,7 +50,7 @@ require_once '../controllers/playlistList.php'
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownPlaylist">
                             <a href="newplaylist.php" id="newplaylist" class="dropdown-item text-light"><i class="fas fa-plus"></i>
                                 Nouvelle playlist</a>
-                            <?= $playlistsList ?>
+                            <?php require_once '../controllers/playlistList.php'?>
                         </div>
                     </li>
                     <!-- Menu Tags -->

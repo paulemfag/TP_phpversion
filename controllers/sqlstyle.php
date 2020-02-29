@@ -28,10 +28,6 @@ try {
                 //ajout du pseudo du compositeur au cases du tableaus
                 $composition = $composition . '<td>' . $row['pseudo'] . '</td>';
             }
-            //déclaration d'une variable récupérant l'affichage pour chaque playlist
-            foreach ($playlists as $playlist) {
-                $playlistsList = '<a class="dropdown-item" href="stylePage.php?style=' . $style . '&idPlaylist=' . $playlist['id'] . '&idComposition=' . $rowInfo['id'] . '">' . $playlist['title'] . '</a>';
-            }
             $composition = $composition .
                 '<td> 
             <audio controls controlsList="nodownload">
@@ -40,11 +36,12 @@ try {
             </audio>
             </td>
             <td><a href="#" class="dropdown-toggle btn btn-outline-success" id="playlistList" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Ajouter a la playlist <i class="fas fa-plus"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="playlistList">
-                            <a href="newplaylist.php" id="newplaylist" class="dropdown-item text-light"><i class="fas fa-plus"></i>
-                                Nouvelle playlist</a>'
-                . $playlistsList .
-                '</div>
+                        <div class="dropdown-menu" aria-labelledby="playlistList">';
+            //déclaration d'une variable récupérant l'affichage pour chaque playlist
+            foreach ($playlists as $playlist) {
+                $composition = $composition .'<a class="dropdown-item" href="stylePage.php?style=' . $style . '&idPlaylist=' . $playlist['id'] . '&idComposition=' . $rowInfo['id'] . '">' . $playlist['title'] . '</a>';
+            }
+                $composition = $composition .'</div>
                         </td>
             </tr>';
             echo $composition;
