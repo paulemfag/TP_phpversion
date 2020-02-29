@@ -1,11 +1,5 @@
 <?php
 require_once 'sqlparameters.php';
-$dsn = 'mysql:dbname=' . DB . '; host=' . HOST . ';';
-try {
-    $db = new PDO($dsn, USER, PASSWORD);
-} catch (Exception $ex) {
-    die('Connexion échoué');
-}
 //récupère les informations de la table topic
 try {
     $query = 'SELECT `id`, `title`, DATE_FORMAT(`created_at`, \'le %d/%m/%Y\ à %HH%i\') `created_at`, `id_users` FROM `topics`';

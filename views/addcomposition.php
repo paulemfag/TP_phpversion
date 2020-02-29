@@ -1,13 +1,8 @@
 <?php
-//liste des formats autorisés
-$allowed = array('mp3', 'm4a', 'm4b', 'aac', 'aax', 'mpc');
-foreach ($allowed as $value) {
-    $list = $value . ', ';
-        }
-require_once  '../controllers/sqlfile.php';
-require_once '../controllers/form_validation.php';
 $title = 'Fill | Ajout Composition';
 require_once 'require/header.php';
+require_once  '../controllers/sqlfile.php';
+require_once '../controllers/form_validation.php';
 ?>
 <div class="container bg-light mt-2 opacity">
     <h1 class="text-center ml-auto mr-auto">Ajouter une composition :</h1>

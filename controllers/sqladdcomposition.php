@@ -1,11 +1,15 @@
 <?php
 require_once 'sqlparameters.php';
-$id = $_SESSION['id'];
-//Insertion dans la table categories
+
+//Déclaration variables
+$fileName = $_FILES['file']['name'];
+$compositionStyle = $_POST['compositionStyle'] ?? '';
+
+//Insertion en BDD : table `categories`
 try {
-    $sth = $db->prepare('INSERT INTO `categories` (:categorie) VALUES (:title)');
-    $sth->bindValue(':categorie', $compositionStyle, PDO::PARAM_STR);
-    $sth->bindValue(':title', $compositionName, PDO::PARAM_STR);
+    $sth = $db->prepare('INSERT INTO `categories` (`title`, `style`) VALUES (:title, :style)');
+    $sth->bindValue(':title', $fileName, PDO::PARAM_STR);
+    $sth->bindValue(':style', $compositionStyle, PDO::PARAM_STR);
     $sth->execute();
     echo '
 <script>
@@ -14,21 +18,25 @@ alert("Entrée ajoutée dans la table categories.")
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
-//récupération de l'id dans la table categories
-$query = $db->prepare('SELECT id FROM `categories` WHERE ' .$compositionStyle. ' = ' .$compositionName. '');
-//$sth->bindValue(':categorie', $compositionStyle, PDO::PARAM_STR);
-//$sth->bindValue(':title', $compositionName, PDO::PARAM_STR);
-//$sth->execute();
-$patientsQueryStat = $db->query($query);
-$patientsList = $patientsQueryStat->fetchAll(PDO::FETCH_ASSOC);
-var_dump($patientsList);
-//Insertion dans la table compositions
-/*try {
-    $sth = $db->prepare('INSERT INTO `compositions` (title, file, id_users, id_categories) VALUE (:title, :file, :iduser, :idcategorie)');
-    //$sth->bindValue(':title', $compositionName, PDO::PARAM_STR);
-    $sth->bindValue(':file', $firstName, PDO::PARAM_STR);
-    //$sth->bindValue(':iduser', $id, PDO::PARAM_INT);
-    $sth->bindValue(':idcategorie', $compositionStyle, PDO::PARAM_STR);
+
+//Récupération en BDD : id de la compo dans la table `categories`
+try {
+    $stmt = $db->prepare('SELECT `id` FROM `categories`  WHERE `title` LIKE :title');
+    if ($stmt->execute(array(':title' => $fileName)) && $row = $stmt->fetch()) {
+        $idComposition = $row['id'];
+    }
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+
+//Insertion en BDD : table `compositions`
+try {
+    $sth = $db->prepare('INSERT INTO `compositions` (`title`, `file`, `id_users`, `id_categories`, `style`) VALUES (:title, :file, :idUser, :idCategory, :style)');
+    $sth->bindValue(':title', $fileName, PDO::PARAM_STR);
+    $sth->bindValue(':file', '../uploads/_'. $fileName, PDO::PARAM_STR);
+    $sth->bindValue(':idUser', $id, PDO::PARAM_INT);
+    $sth->bindValue(':idCategory', $idComposition, PDO::PARAM_INT);
+    $sth->bindValue(':style', $compositionStyle, PDO::PARAM_STR);
     $sth->execute();
     echo '
 <script>
@@ -36,4 +44,4 @@ alert("Entrée ajoutée dans la table compositions.")
 </script>';
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
-}*/
+}

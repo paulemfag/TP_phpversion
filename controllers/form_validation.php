@@ -16,6 +16,8 @@ $pseudo = $_POST['pseudo'] ?? '';
 $password = $_POST['password'] ?? '';
 //création de playlist
 $playlistName = $_POST['playlistName'] ?? '';
+//Ajout d'une composition
+$compositionStyle = $_POST['compositionStyle'] ?? '';
 //formulaire récupération mot de passe
 $recuperationMailbox = $_POST['recuperationMailbox'] ?? '';
 //formulaire changement du type de compte
@@ -169,7 +171,6 @@ if (isset($_POST['newComposition'])) {
     if (!isset($message)) {
         $errors['file'] = 'Veuillez ajouter un fichier.';
     }
-    $compositionStyle = $_POST['compositionStyle'] ?? '';
     if (empty($compositionStyle)) {
         $errors['compositionStyle'] = 'Veuillez choisir le style musical de la composition.';
     }

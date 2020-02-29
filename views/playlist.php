@@ -2,9 +2,9 @@
 require_once '../controllers/sqlplaylist.php';
 require_once 'require/header.php';
 ?>
-    <div class="container text-center bg-light mt-2 opacity">
-        <h1>Playlist | <?= $playlist['title'] ?> :</h1>
-    </div>
+<div class="container text-center bg-light mt-2 opacity">
+    <h1>Playlist | <?= $playlist['title'] ?> :</h1>
+</div>
 <?php
 require_once 'require/footer.php';
 ?>

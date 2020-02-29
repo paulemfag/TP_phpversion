@@ -48,13 +48,11 @@ try {
     $stmt->bindParam(':cle', $key);
     $stmt->bindParam(':pseudo', $pseudo);
     $stmt->execute();
-
-    //récupération du fichier requis
-    require_once '../vendor/autoload.php';
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
-
+//récupération du fichier requis
+require_once '../vendor/autoload.php';
 $messageToSend = 'Bienvenue sur Fill ' . $pseudo . ',
  
 Pour activer votre compte, veuillez cliquer sur le lien ci-dessous

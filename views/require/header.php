@@ -4,6 +4,8 @@ session_start();
 if (empty($_SESSION)) {
     header('location:index.php');
 }
+//affichage liste des playlists dans le dropdown menu de la navbar
+require_once '../controllers/playlistList.php'
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -48,9 +50,9 @@ if (empty($_SESSION)) {
                             Playlists
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownPlaylist">
-                            <a href="newplaylist.php" id="newplaylist" class="dropdown-item text-light" style="hover: none"><i class="fas fa-plus"></i>
+                            <a href="newplaylist.php" id="newplaylist" class="dropdown-item text-light"><i class="fas fa-plus"></i>
                                 Nouvelle playlist</a>
-                            <?php require_once '../controllers/playlistList.php'?>
+                            <?= $playlistsList ?>
                         </div>
                     </li>
                     <!-- Menu Tags -->
@@ -60,22 +62,22 @@ if (empty($_SESSION)) {
                             Tags
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownTags">
-                            <a class="dropdown-item" href="#">Afro</a>
-                            <a class="dropdown-item" href="#">Blues</a>
-                            <a class="dropdown-item" href="#">Classique</a>
-                            <a class="dropdown-item" href="#">Disco</a>
-                            <a class="dropdown-item" href="#">Electro</a>
-                            <a class="dropdown-item" href="#">Funk</a>
-                            <a class="dropdown-item" href="#">Gospel</a>
-                            <a class="dropdown-item" href="#">Kompa</a>
-                            <a class="dropdown-item" href="#">Metal</a>
-                            <a class="dropdown-item" href="#">Pop</a>
-                            <a class="dropdown-item" href="#">Punk</a>
-                            <a class="dropdown-item" href="#">Raï</a>
-                            <a class="dropdown-item" href="#">Rap</a>
-                            <a class="dropdown-item" href="#">Reggae</a>
-                            <a class="dropdown-item" href="#">R'n'B</a>
-                            <a class="dropdown-item" href="#">Rock</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Afro">Afro</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Blues">Blues</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Classique">Classique</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Disco">Disco</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Electro">Electro</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Funk">Funk</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Gospel">Gospel</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Kompa">Kompa</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Metal">Metal</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Pop">Pop</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Punk">Punk</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Raï">Raï</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Rap">Rap</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Reggae">Reggae</a>
+                            <a class="dropdown-item" href="stylePage.php?style=R'n'B">R'n'B</a>
+                            <a class="dropdown-item" href="stylePage.php?style=Rock">Rock</a>
                         </div>
                     </li>
                 </ul>
