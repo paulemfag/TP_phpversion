@@ -113,13 +113,23 @@ require_once 'require/header.php';
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- Pagination -->
+    <ul class="pagination">
+        <li><a href="?pageno=1">First</a></li>
+        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+        </li>
+        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+        </li>
+        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+    </ul>
+    <!--
 <nav aria-label="Page navigation example">
     <ul class="pagination mt-2" style="opacity: 0.6; justify-content: center;">
-        <!-- Bouton Previous à mettre que sur les autres pages -->
         <li class="page-item"><a class="page-link" href="#">page précédente</a></li>
         <li class="page-item"><a class="page-link" href="#">page suivante</a></li>
     </ul>
-</nav>
+</nav>-->
 </div>
 <?php require_once 'require/footer.php'; ?>
 <script src="assets/js/jquery-3.3.1.min.js"></script>

@@ -2,7 +2,7 @@
 //récupération de la variable Get
 $idPlaylist = $_GET['id'];
 //Vérifie si elle n'est pas vide et si c'est un entier
-if (empty($idPlaylist) || !filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT)) {
+if (!filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT)) {
     //redirection vers la page d'accueil
     header('location:accueil.php');
     exit();
@@ -19,3 +19,6 @@ try {
     die('Connexion échoué');
 }
 $title = 'Fill | ' . $playlist['title'];
+var_dump($playlist['compositions_id_list']);
+$explode = explode(',', $playlist['compositions_id_list']);
+var_dump($explode);
