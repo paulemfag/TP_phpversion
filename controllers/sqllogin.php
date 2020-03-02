@@ -10,18 +10,6 @@ if ($stmt->execute(array(':pseudo' => $pseudo)) && $row = $stmt->fetch()) {
     $password = $row['password'];
     $accounttype = $row['accounttype'];
 
-    // Il ne nous reste plus qu'à tester la valeur du champ 'actif' pour autoriser ou non le membre à se connecter
-    // Si l'utilisateur viens de la page 'activation.php' et que la valeur de la colonne active est égale à 1, on autorise la connexion
-    if (isset($_GET['activation']) && $active == '1' && $pseudo == $_POST['pseudo'] && $password == $_POST['password']) {
-        session_set_cookie_params(10,"/");
-        session_start();
-        $_SESSION['pseudo'] = $pseudo;
-        $_SESSION['accounttype'] = $accounttype;
-        $_SESSION['id'] = $id;
-        header('location:suscribe.php');
-        exit();
-    }
-
 // Si la valeur de la colonne active est égale à 1, on autorise la connexion
     if ($active == '1' && $pseudo == $_POST['pseudo'] && password_verify($_POST['password'], $password)) {
         session_set_cookie_params(10,"/");
