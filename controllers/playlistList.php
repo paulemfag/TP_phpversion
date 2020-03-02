@@ -2,7 +2,7 @@
 require_once 'sqlparameters.php';
 $id = $_SESSION['id'];
 try {
-    $sth = $db->prepare('SELECT * FROM `playlists` WHERE `id_users` = :id');
+    $sth = $db->prepare('SELECT `id`, `title` FROM `playlists` WHERE `id_users` = :id ORDER BY `title` ASC');
     $sth->bindValue(':id', $id, PDO::PARAM_INT);
     $sth->execute();
     $playlists = $sth->fetchAll(PDO::FETCH_ASSOC);
