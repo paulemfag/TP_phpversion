@@ -30,7 +30,7 @@ foreach ($userInformations as $row){
 $title = 'Compositeur | ' .$pseudo;
 //récupération des composition du compositeur
 try {
-    $sth = $db->prepare('SELECT `title`, `file` FROM `compositions` WHERE `id_users` = :id');
+    $sth = $db->prepare('SELECT `id`, `title`, `file` FROM `compositions` WHERE `id_users` = :id ORDER BY `title` ASC');
     $sth->bindValue(':id', $idCompositor, PDO::PARAM_INT);
     $sth->execute();
     $compositionsList = $sth->fetchAll(PDO::FETCH_ASSOC);
