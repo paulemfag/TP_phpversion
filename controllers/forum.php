@@ -28,7 +28,7 @@ while($row = mysqli_fetch_array($res_data)){
 }
 //récupère les informations de la table topic
 try {
-    $query = 'SELECT `id`, `title`, DATE_FORMAT(`created_at`, \'le %d/%m/%Y\ à %HH%i\') `created_at`, `id_users` FROM `topics`';
+    $query = 'SELECT `id`, `title`, DATE_FORMAT(`created_at`, \'le %d/%m/%Y\ à %HH%i\') `created_at_formatted`, `id_users` FROM `topics` ORDER BY `created_at` DESC';
     $topicQueryStat = $db->query($query);
     $topicList = $topicQueryStat->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $ex) {
@@ -58,7 +58,7 @@ foreach ($topicList AS $topic): ?>
     } ?>
     <td class="text-light"><?= $topic['id_users'] ?></td>
     <td class="text-light"><?= 'à définir' ?></td>
-    <td class="text-light"><?= $topic['created_at'] ?></td>
+    <td class="text-light"><?= $topic['created_at_formatted'] ?></td>
 <?php endforeach;
 /*$page = 1;
 if (!empty($_GET['page']) && filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT)) {
