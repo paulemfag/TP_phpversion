@@ -5,7 +5,7 @@ $query = 'SELECT id, pseudo, active, mailBox, accounttype, number_of_messages FR
 $usersQueryStat = $db->query($query);
 $usersList = $usersQueryStat->fetchAll(PDO::FETCH_ASSOC);
 session_start();
-if ($_SESSION['pseudo'] === 'Paulemfag'){
+if ($_SESSION['id'] === '12'){
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
