@@ -33,6 +33,7 @@ require_once '../controllers/form_validation.php';
         <button id="connectbtn" class="btn btn-outline-success ml-1">Connexion</button>
     </div>
 </nav>
+<?= $notConfirmetYet ?? '' ?>
 <!--        // Modal Cookies -->
 <div id="userAuthorizationModal" class="modal" role="dialog">
     <div class="modal-dialog" role="document">

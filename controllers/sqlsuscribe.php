@@ -20,7 +20,7 @@ VALUES (:pseudo, :mailbox, :password, :accountType)');
     if (isset($mailhref)) {
         $activeYourAccount = '
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <p>Votre compte a bien été créer, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de <a href="' . $mailhref . '" target="_blank" class="alert-link">l\'email</a> d\'activation qui viens de vous être envoyé.</p>
+    <p>Votre compte a bien été créé, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de <a href="' . $mailhref . '" target="_blank" class="alert-link">l\'email</a> d\'activation qui viens de vous être envoyé.</p>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -29,7 +29,7 @@ VALUES (:pseudo, :mailbox, :password, :accountType)');
     else {
         $activeYourAccount = '
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <p>Votre compte a bien été créer, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de l\'email d\'activation qui viens de vous être envoyé.</p>
+  <p>Votre compte a bien été créé, pour finaliser votre inscription merci de valider votre boite mail à l\'aide de l\'email d\'activation qui viens de vous être envoyé.</p>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

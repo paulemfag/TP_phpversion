@@ -3,7 +3,7 @@ require_once 'sqlparameters.php';
 $id = $_SESSION['id'];
 //Récupération de la liste des playlists
 try {
-    $sth = $db->prepare('SELECT * FROM `playlists` WHERE `id_users` = :id');
+    $sth = $db->prepare('SELECT `id`, `title` FROM `playlists` WHERE `id_users` = :id ORDER BY `title` ASC');
     $sth->bindValue(':id', $id, PDO::PARAM_INT);
     $sth->execute();
     $playlists = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -12,7 +12,7 @@ try {
 }
 try {
     //Récupération des informations de la table composition selon le style
-    $stmt = $db->prepare('SELECT * FROM `compositions` WHERE `style` = :style ORDER BY `title` ASC');
+    $stmt = $db->prepare('SELECT `id`, `title`, `file`, `id_users` FROM `compositions` WHERE `style` = :style ORDER BY `title` ASC');
     if ($stmt->execute(array(':style' => $style)) && $row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
         //Pour chaque composition
         foreach ($row as $rowInfo) {
@@ -22,11 +22,11 @@ try {
             //génération des cases du tableau
             $composition =
                 '<tr>
-            <td><a href="composition.php?id=' .$rowInfo['id']. '">' . $fileTitle[0] . '</a></td>';
+            <td><a title="Page composition | ' .$fileTitle[0]. '" href="composition.php?id=' .$rowInfo['id']. '">' . $fileTitle[0] . '</a></td>';
             $stmt = $db->prepare('SELECT `id`, `pseudo` FROM `users` WHERE id = :id');
             if ($stmt->execute(array(':id' => $idUser)) && $row = $stmt->fetch()) {
                 //ajout du pseudo du compositeur au cases du tableaus
-                $composition = $composition . '<td><a href="compositor.php?id=' .$row['id']. '">' . $row['pseudo'] . '</a></td>';
+                $composition = $composition . '<td><a title="Profil compositeur | ' .$row['pseudo']. '" href="compositor.php?id=' .$row['id']. '">' . $row['pseudo'] . '</a></td>';
             }
             $composition = $composition .
                 '<td> 
