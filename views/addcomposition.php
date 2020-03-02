@@ -3,12 +3,10 @@ $title = 'Fill | Ajout Composition';
 require_once 'require/header.php';
 require_once  '../controllers/sqlfile.php';
 require_once '../controllers/form_validation.php';
+echo $compositionAdded ?? '';
 ?>
 <div class="container bg-light mt-2 opacity">
     <h1 class="text-center ml-auto mr-auto">Ajouter une composition :</h1>
-</div>
-<div id="successfullCreation" class="container alert alert-success" role="alert">
-    <p>Votre composition a été ajoutée avec succès.</p>
 </div>
 <div id="scroll">
 <form class="container" method="post" action="#" novalidate enctype="multipart/form-data">

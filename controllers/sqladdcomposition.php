@@ -38,10 +38,12 @@ try {
     $sth->bindValue(':idCategory', $idComposition, PDO::PARAM_INT);
     $sth->bindValue(':style', $compositionStyle, PDO::PARAM_STR);
     $sth->execute();
-    echo '
-<script>
-alert("Entrée ajoutée dans la table compositions.")
-</script>';
+    $compositionAdded = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>Votre composition "' .$fileName. '" a bien été ajoutée.</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>';
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }

@@ -23,10 +23,10 @@ try {
             $composition =
                 '<tr>
             <td>' . $fileTitle[0] . '</td>';
-            $stmt = $db->prepare('SELECT `pseudo` FROM `users` WHERE id = :id');
+            $stmt = $db->prepare('SELECT `id`, `pseudo` FROM `users` WHERE id = :id');
             if ($stmt->execute(array(':id' => $idUser)) && $row = $stmt->fetch()) {
                 //ajout du pseudo du compositeur au cases du tableaus
-                $composition = $composition . '<td>' . $row['pseudo'] . '</td>';
+                $composition = $composition . '<td><a href="compositor.php?id=' .$row['id']. '">' . $row['pseudo'] . '</a></td>';
             }
             $composition = $composition .
                 '<td> 

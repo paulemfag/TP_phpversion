@@ -9,7 +9,7 @@ $suscribepasswordconfirmation = $_POST['suscribepasswordconfirmation'] ?? '';
 //formulaire informations personnelles
 $software = $_POST['software'] ?? '';
 $tagsCompositorOne = $_POST['tagsCompositorOne'] ?? '';
-$facebook = $_POST['facebookId']  ?? '';
+$facebook = $_POST['facebookId'] ?? '';
 $twitter = $_POST['twitterId'] ?? '';
 //formulaire login
 $pseudo = $_POST['pseudo'] ?? '';
@@ -90,15 +90,15 @@ if (isset($_POST['submitSuscribeCompositor'])) {
     //ajoute une value au bouton submit
     $submitSuscribeCompositor = 'alreadySubmittedOnce';
     //Vérifie que le logiciel employé est bien dans la liste ( que le select n'as pas été modifié ).
-    if (!empty($software) && !preg_match($regexSoftware, $software)){
+    if (!empty($software) && !preg_match($regexSoftware, $software)) {
         $errors['software'] = 'Une erreur c\'est produite merci de réessayer ultérieurement.';
     }
     //Vérifie le style préféré
-    if (empty($tagsCompositorOne)){
+    if (empty($tagsCompositorOne)) {
         $errors['tagsCompositor'] = 'Veuillez choisir un style correct.';
     }
     //Vérifie que la valeur du select soit bonne si elle est définie
-    if (!preg_match($regexStyle, $tagsCompositorOne)){
+    if (!preg_match($regexStyle, $tagsCompositorOne)) {
         $errors['tagsCompositor'] = 'Veuillez choisir un style correct.';
     }
     //si le champ facebook est rempli et que l'url fourni n'est pas bon
@@ -111,11 +111,11 @@ if (isset($_POST['submitSuscribeCompositor'])) {
     }
 }
 //vérifications nouvelle playlist
-if (isset($_POST['submitPlaylist'])){
-    if(!filter_input(INPUT_POST, 'playlistName', FILTER_SANITIZE_STRING)){
+if (isset($_POST['submitPlaylist'])) {
+    if (!filter_input(INPUT_POST, 'playlistName', FILTER_SANITIZE_STRING)) {
         $errors['playlistName'] = 'Veuillez saisir un titre valide.';
     }
-    if (count($errors) == 0){
+    if (count($errors) == 0) {
         require_once 'sqlNewPlaylist.php';
     }
 }
@@ -151,12 +151,15 @@ if (isset($_POST['newComposition'])) {
                     $target_path = $target_path . '_' . basename($_FILES['file']['name']);
                     //si le fichié est correctement uploadé dans le dossier
                     if (move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
-                        $message = 'Le fichier ' . basename($_FILES['file']['name']) .
-                            ' a été uploadé.';
+                        $compositionAdded = '';
                     } else {
-                        $message = 'Une erreur est survenu durant l\'upload du fichier' . basename($_FILES['file']['name']) . 'merci de réessayer.';
+                        $compositionAdded = '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <p>Une erreur c\'est produite durant l\'upload du fichier "' . basename($_FILES['file']['name']) . '" merci de réessayer.</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>';
                     }
-                    echo $message = '<p class="text-light">' . $message . '</p>';
                 } else {
                     $errors['file'] = 'La taille de votre fichier est trop grande.';
                 }
@@ -168,7 +171,7 @@ if (isset($_POST['newComposition'])) {
         }
     }
     //Si le message de validation du fichier n'est pas défini
-    if (!isset($message)) {
+    if (!isset($compositionAdded)) {
         $errors['file'] = 'Veuillez ajouter un fichier.';
     }
     if (empty($compositionStyle)) {
@@ -188,8 +191,7 @@ if (isset($_POST['newComposition'])) {
     $compositionName = trim(filter_input(INPUT_POST, 'compositionName', FILTER_SANITIZE_STRING));
     if (empty($compositionName)) {
         $errors['compositionName'] = 'Veuillez ajouter un titre à la composition.';
-    }
-    elseif (!preg_match($regexCompositionName, $compositionName)) {
+    } elseif (!preg_match($regexCompositionName, $compositionName)) {
         $errors['compositionName'] = 'Votre titre contient des caratères non autorisés.';
     }
     //Si il n'y a pas d'erreurs requiert le fichier 'sqladdcomposition.php' qui fait l'ajout en BDD
@@ -204,7 +206,7 @@ if (isset($_POST['submitsubject'])) {
     if (empty($subject)) {
         $errors['subject'] = 'Veuillez renseigner le sujet.';
     }
-    if (count ($errors) == 0){
+    if (count($errors) == 0) {
         require_once 'sqlnewsubject.php';
     }
 }
@@ -223,11 +225,11 @@ if (isset ($_POST['recuperation'])) {
     }
 }
 //Vérification changement du type de compte
-if (isset($_POST['changeAccountType'])){
+if (isset($_POST['changeAccountType'])) {
     //ajoute une valeur au bouton pour réafficher le formulaire grâce au JS
     $changeAccount = 'alreadySubmittedOnce';
     //vérification champ mot de passe
-    if (!isset($changeAccountPassword)){
+    if (!isset($changeAccountPassword)) {
         $errors['changeAccountPassword'] = 'Veuillez renseigner votre mot de passe.';
     }
     //Si il n'y a pas d'erreurs requiert le fichier "parameterspage.php" qui compare le mot de passe de la BDD
