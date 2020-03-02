@@ -12,7 +12,7 @@ try {
 }
 try {
     //Récupération des informations de la table composition selon le style
-    $stmt = $db->prepare('SELECT * FROM `compositions` WHERE `style` = :style');
+    $stmt = $db->prepare('SELECT * FROM `compositions` WHERE `style` = :style ORDER BY `title` ASC');
     if ($stmt->execute(array(':style' => $style)) && $row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
         //Pour chaque composition
         foreach ($row as $rowInfo) {
@@ -22,7 +22,7 @@ try {
             //génération des cases du tableau
             $composition =
                 '<tr>
-            <td>' . $fileTitle[0] . '</td>';
+            <td><a href="composition.php?id=' .$rowInfo['id']. '">' . $fileTitle[0] . '</a></td>';
             $stmt = $db->prepare('SELECT `id`, `pseudo` FROM `users` WHERE id = :id');
             if ($stmt->execute(array(':id' => $idUser)) && $row = $stmt->fetch()) {
                 //ajout du pseudo du compositeur au cases du tableaus
