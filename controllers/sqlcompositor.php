@@ -37,4 +37,3 @@ try {
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
-//affichage des infos compositions

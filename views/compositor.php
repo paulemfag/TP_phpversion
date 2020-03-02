@@ -46,9 +46,9 @@ require_once 'require/header.php';
                     //récupération du titre sans l'extension de fichier (array)
                     $compositionTitle = explode('.', $composition['title']);
                     $file = $composition['file'];
-                    echo '<a title="' .$compositionTitle[0]. '" href="composition.php?id=' .$composition['id']. '" class="col-6">' . $compositionTitle[0] . '</a>' . '<audio style="height: 20px;" class="float-right col-6" controls controlsList="nodownload">
+                    echo '<a title="' .$compositionTitle[0]. '" href="composition.php?id=' .$composition['id']. '" class="col-6">' . $compositionTitle[0] . '</a>' . '
+<audio style="height: 20px;" class="float-right col-6" controls controlsList="nodownload">
             <source src="' . $file . '" type="audio/mp3">
-        Your browser does not support the audio element.
             </audio>';
                 } ?>
             </div>

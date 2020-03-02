@@ -15,7 +15,9 @@ try {
     $stmt = $db->prepare('SELECT `id`, `title`, `file`, `id_users` FROM `compositions` WHERE `style` = :style ORDER BY `title` ASC');
     if ($stmt->execute(array(':style' => $style)) && $row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
         //Pour chaque composition
+        $playlistListIdNumber = 1;
         foreach ($row as $rowInfo) {
+            $playlistListIdNumber++;
             //récupération de l'id de l'user dans une variable pour récupérer son pseudo
             $idUser = $rowInfo['id_users'];
             $fileTitle = explode('.', $rowInfo['title']);
@@ -32,11 +34,10 @@ try {
                 '<td> 
             <audio controls controlsList="nodownload">
             <source src="' . $rowInfo['file'] . '" type="audio/mp3">
-                Your browser does not support the audio element.
             </audio>
             </td>
-            <td><a href="#" class="dropdown-toggle btn btn-outline-success" id="playlistList" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Ajouter a la playlist <i class="fas fa-plus"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="playlistList">';
+            <td><a href="#" class="dropdown-toggle btn btn-outline-success" id="playlistList' .$playlistListIdNumber. '" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Ajouter a la playlist <i class="fas fa-plus"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="playlistList' .$playlistListIdNumber. '">';
             //déclaration d'une variable récupérant l'affichage pour chaque playlist
             foreach ($playlists as $playlist) {
                 $composition = $composition .'<a class="dropdown-item" href="stylePage.php?style=' . $style . '&idPlaylist=' . $playlist['id'] . '&idComposition=' . $rowInfo['id'] . '">' . $playlist['title'] . '</a>';

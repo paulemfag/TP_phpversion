@@ -14,6 +14,10 @@ body{
   border: none;
 }
 
+audio{
+  height: 20px;
+}
+
 .inputColor{
   color : #114E7F;
   background-color: #fff;;
