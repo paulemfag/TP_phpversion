@@ -84,7 +84,8 @@ require_once '../controllers/form_validation.php'; ?>
                 <label class="text-light" for="tagsCompositor"><i class="fas fa-music"></i> Styles préférés :</label>
                 <span class="text-danger float-right"><?= $errors['tagsCompositor'] ?? '' ?></span>
                 <div>
-                    <select class="col-2 inputColor" name="tagsCompositorOne" id="tagsCompositorOne">
+                    <?php for ($i = 0; $i < 5; $i++): ?>
+                    <select class="col-2 inputColor" name="tagsCompositor<?= $i ?>" id="tagsCompositor<?= $i ?>">
                         <?php if (isset($_POST['tagsCompositorOne'])) { ?>
                             <option value="<?= $_POST['tagsCompositorOne'] ?>" selected><?= $_POST['tagsCompositorOne'] ?></option>
                         <?php } else { ?>
@@ -107,6 +108,7 @@ require_once '../controllers/form_validation.php'; ?>
                         <option value="R'n'B">R'n'B</option>
                         <option value="Rock">Rock</option>
                     </select>
+                    <?php endfor; ?>
                 </div>
                 <div class="form-group">
                     <label class="text-light" for="facebookId"><i class="fab fa-facebook-square"></i> Url profil
@@ -122,12 +124,12 @@ require_once '../controllers/form_validation.php'; ?>
                            value="<?= $_POST['twitterId'] ?? '' ?>">
                 </div>
             </div>
-            <div class="form-group">
-                <a href="accueil.php" class="btn btn-outline-secondary col-5 text-center">Ignorer
+            <div class="row">
+                <a href="accueil.php" class="btn btn-outline-secondary col-6 text-center ml-auto mr-auto">Ignorer
                     pour le moment
                 </a>
                 <button id="submitSuscribeCompositor" name="submitSuscribeCompositor"
-                        value="<?= $submitSuscribeCompositor ?? '' ?>" class="btn btn-outline-success col-5 text-center"
+                        value="<?= $submitSuscribeCompositor ?? '' ?>" class="btn btn-outline-success col-6 text-center ml-auto mr-auto"
                         type="submit">Valider mes
                     informations
                 </button>

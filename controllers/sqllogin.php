@@ -31,8 +31,19 @@ if ($stmt->execute(array(':pseudo' => $pseudo)) && $row = $stmt->fetch()) {
 </div>';
     }
     }
+    // Si l'utilisateur viens de la page 'activation.php' et que la valeur de la colonne active est égale à 1, on autorise la connexion et on le renvoi vers la page infos personnelles
+    if (isset($_GET['connectMe']) && $active == '1' && $pseudo == $_POST['pseudo'] && password_verify($_POST['password'], $password)) {
+        session_set_cookie_params(10,"/");
+        session_start();
+        $_SESSION['pseudo'] = $pseudo;
+        $_SESSION['accounttype'] = $accounttype;
+        $_SESSION['id'] = $id;
+        header('location:suscribe.php');
+        exit();
+    }
+
     // Si la valeur de la colonne active est égale à 1, on autorise la connexion
-    elseif ($active == '1' && $pseudo == $_POST['pseudo'] && password_verify($_POST['password'], $password)) {
+    if ($active == '1' && $pseudo == $_POST['pseudo'] && password_verify($_POST['password'], $password)) {
         session_set_cookie_params(10, "/");
         session_start();
         $_SESSION['pseudo'] = $pseudo;

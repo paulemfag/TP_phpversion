@@ -24,30 +24,32 @@ require_once 'require/header.php';
                 </p>
             </div>
             <div class="col-6">
-                <p><i class="fas fa-compact-disc"></i><b> Logiciels :</b><br><br>
-                    <?= $softwares ?? '' ?>
+                <p><i class="fas fa-compact-disc"></i><b> Logiciel :</b><br><br>
+                    <?= $software ?? '' ?>
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <a><i class="fas fa-network-wired"></i><b> Réseaux :</b></a>
-                <a title="Facebook" target="_blank" href="<?= $facebookId ?? '#' ?>"><img
+                <a title="Profil Facebook" target="_blank" href="<?= $facebookId ?? '#' ?>"><img
                             src="assets/img/facebook-logo.png" width="80" height="60" alt="logo_facebook"></a>
-                <a title="Twitter" target="_blank" href="<?= $twitterId ?? '#' ?>"><img
+                <a title="Profil Twitter" target="_blank" href="<?= $twitterId ?? '#' ?>"><img
                             src="assets/img/logo_twitter.png" width="80" height="60" alt="logo_twitter"></a>
             </div>
         </div>
     </div>
     <div class="container bg-light opacity mt-2">
             <div class="row">
-                <a class="col-12 float-left"><i class="fas fa-music"></i><b> Compositions :</b></a>
+                <a class="col-5 float-left"><i class="fas fa-music"></i><b> Compositions :</b></a>
+                <a class="col-7 float-left"><b>Style :</b></a>
                 <?php foreach ($compositionsList as $composition) {
                     //récupération du titre sans l'extension de fichier (array)
                     $compositionTitle = explode('.', $composition['title']);
                     $file = $composition['file'];
-                    echo '<a title="' .$compositionTitle[0]. '" href="composition.php?id=' .$composition['id']. '" class="col-6">' . $compositionTitle[0] . '</a>' . '
-<audio style="height: 20px;" class="float-right col-6" controls controlsList="nodownload">
+                    echo '<a title="' .$compositionTitle[0]. '" href="composition.php?id=' .$composition['id']. '" class="col-5">' . $compositionTitle[0] . '</a>' . '
+<a href="stylePage.php?style=' .$composition['style']. '" class="col-2">' .$composition['style']. '</a>
+<audio style="height: 20px;" class="float-right col-5" controls controlsList="nodownload">
             <source src="' . $file . '" type="audio/mp3">
             </audio>';
                 } ?>

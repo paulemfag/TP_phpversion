@@ -10,7 +10,7 @@ if (!filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT)) {
 require_once 'sqlparameters.php';
 //récupération des infos du compositeur en BDD
 try {
-    $sth = $db->prepare('SELECT `pseudo`, `biography`, `instruments`, `softwares`, `facebookId`, `twitterId` FROM `users` WHERE `id` = :id');
+    $sth = $db->prepare('SELECT `pseudo`, `biography`, `instruments`, `software`, `facebookId`, `twitterId` FROM `users` WHERE `id` = :id');
     $sth->bindValue(':id', $idCompositor, PDO::PARAM_INT);
     $sth->execute();
     $userInformations = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ foreach ($userInformations as $row){
     $pseudo = $row['pseudo'];
     $biography = $row['biography'];
     $instruments = $row['instruments'];
-    $softwares = $row['softwares'];
+    $software = $row['software'];
     $facebookId = $row['facebookId'];
     $twitterId = $row['twitterId'];
 }
@@ -30,7 +30,7 @@ foreach ($userInformations as $row){
 $title = 'Compositeur | ' .$pseudo;
 //récupération des composition du compositeur
 try {
-    $sth = $db->prepare('SELECT `id`, `title`, `file` FROM `compositions` WHERE `id_users` = :id ORDER BY `title` ASC');
+    $sth = $db->prepare('SELECT `id`, `title`, `file`, `style` FROM `compositions` WHERE `id_users` = :id ORDER BY `title` ASC');
     $sth->bindValue(':id', $idCompositor, PDO::PARAM_INT);
     $sth->execute();
     $compositionsList = $sth->fetchAll(PDO::FETCH_ASSOC);

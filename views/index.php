@@ -60,10 +60,8 @@ require_once '../controllers/form_validation.php';
         </div>
     </div>
 </div>
-<?php
-//Message d'alerte informant que le compte a bien été crée
-echo $activeYourAccount ?? ''
-?>
+<?php //Message d'alerte informant que le compte a bien été crée
+echo $activeYourAccount ?? '' ?>
 <div id="presentationText">
     <p class="text-light">Crée en 2019 par Monsieur FAGOT, FILL est un site d'écoute et de publication musicale
         développé dans l'optique d'offrir aux auteurs un endroit ou partager leur compositions " To fill " et au grand
@@ -152,7 +150,6 @@ echo $activeYourAccount ?? ''
         <input id="recuperationMailbox" class="col-12 inputColor" name="recuperationMailbox" type="text"
                value="<?= $recuperationMailbox ?>" required>
     </div>
-    <div class="g-recaptcha" data-sitekey="6Ldy4NwUAAAAAEEfMeWAutW2nppggGOIItgGo_-k"></div>
     <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     <button id="recuperation" name="recuperation" class="btn btn-outline-success col-12 text-center mt-1" type="submit"
             value="<?= $recuperation ?? '' ?>">Récupérer mon mot de passe

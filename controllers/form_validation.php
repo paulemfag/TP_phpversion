@@ -7,7 +7,9 @@ $suscribemailbox = $_POST['suscribemailbox'] ?? '';
 $suscribepassword = $_POST['suscribepassword'] ?? '';
 $suscribepasswordconfirmation = $_POST['suscribepasswordconfirmation'] ?? '';
 //formulaire informations personnelles
-$software = $_POST['software'] ?? '';
+$biography = $_POST['biography'] ?? '';
+$instruments = $_POST['instruments'] ?? '';
+$software = $_POST['software'] ?? $_POST['otherSoftware'] ?? '';
 $tagsCompositorOne = $_POST['tagsCompositorOne'] ?? '';
 $facebook = $_POST['facebookId'] ?? '';
 $twitter = $_POST['twitterId'] ?? '';
@@ -20,6 +22,9 @@ $playlistName = $_POST['playlistName'] ?? '';
 $compositionStyle = $_POST['compositionStyle'] ?? '';
 //formulaire récupération mot de passe
 $recuperationMailbox = $_POST['recuperationMailbox'] ?? '';
+//formulaire reset password
+$passwordAfterReset = $_POST['passwordAfterReset'] ?? '';
+$confirmPasswordAfterReset = $_POST['confirmPasswordAfterReset'] ?? '';
 //formulaire changement du type de compte
 $changeAccountPassword = $_POST['changeAccountPassword'] ?? '';
 //formulaire changement de mot de passe
@@ -108,6 +113,9 @@ if (isset($_POST['submitSuscribeCompositor'])) {
     //si le champ twitter est rempli et que l'url fourni n'est pas bon
     if (!empty($twitter) && !preg_match($regexTwitter, $twitter)) {
         $errors['twitterId'] = 'Veuillez saisir un url correct.';
+    }
+    if (count($errors) == 0){
+        require_once 'sqlpersonalInformations.php';
     }
 }
 //vérifications nouvelle playlist
@@ -221,8 +229,26 @@ if (isset ($_POST['recuperation'])) {
     } elseif (!filter_var($recuperationMailbox, FILTER_VALIDATE_EMAIL)) {
         $errors['recuperationMailbox'] = 'Veuillez saisir une adresse mail valide.';
     } else {
+        require_once 'sqlrecuperation.php';
         $errors['isok'] = 'Un email de récupération vous a été envoyé.';
     }
+}
+//Formulaire reset mot de passe après récupération
+if (isset($_POST['resetMyPassword'])){
+    if (empty($passwordAfterReset)){
+        $errors['passwordAfterReset'] = 'Veuillez renseigner votre nouveau mot de passe';
+    }
+    elseif (empty($confirmPasswordAfterReset)){
+        $errors['confirmPasswordAfterReset'] = 'Veuillez confirmer votre nouveau mot de passe';
+    }
+    elseif($passwordAfterReset !== $confirmPasswordAfterReset){
+        $errors['passwordAfterReset'] = 'Les mots de passe ne correspondent pas.';
+        $errors['confirmPasswordAfterReset'] = 'Les mots de passe ne correspondent pas.';
+    }
+    if (count($errors) == 0) {
+        require_once '../controllers/sqlreset-password.php';
+    }
+
 }
 //Vérification changement du type de compte
 if (isset($_POST['changeAccountType'])) {
