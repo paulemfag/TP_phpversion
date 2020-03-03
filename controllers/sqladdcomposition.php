@@ -4,17 +4,14 @@ require_once 'sqlparameters.php';
 //Déclaration variables
 $fileName = $_FILES['file']['name'];
 $compositionStyle = $_POST['compositionStyle'] ?? '';
-
+//explode afin de récupérer le titre du fichier sans l'extension
+$title = explode('.', $fileName);
 //Insertion en BDD : table `categories`
 try {
     $sth = $db->prepare('INSERT INTO `categories` (`title`, `style`) VALUES (:title, :style)');
-    $sth->bindValue(':title', $fileName, PDO::PARAM_STR);
+    $sth->bindValue(':title', $title[0], PDO::PARAM_STR);
     $sth->bindValue(':style', $compositionStyle, PDO::PARAM_STR);
     $sth->execute();
-    echo '
-<script>
-alert("Entrée ajoutée dans la table categories.")
-</script>';
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
@@ -22,15 +19,12 @@ alert("Entrée ajoutée dans la table categories.")
 //Récupération en BDD : id de la compo dans la table `categories`
 try {
     $stmt = $db->prepare('SELECT `id` FROM `categories`  WHERE `title` LIKE :title');
-    if ($stmt->execute(array(':title' => $fileName)) && $row = $stmt->fetch()) {
+    if ($stmt->execute(array(':title' => $title[0])) && $row = $stmt->fetch()) {
         $idComposition = $row['id'];
     }
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
-//explode afin de récupérer le titre du fichier sans l'extension
-$title = explode('.', $fileName);
-
 //Insertion en BDD : table `compositions`
 try {
     $sth = $db->prepare('INSERT INTO `compositions` (`title`, `file`, `id_users`, `id_categories`, `style`) VALUES (:title, :file, :idUser, :idCategory, :style)');

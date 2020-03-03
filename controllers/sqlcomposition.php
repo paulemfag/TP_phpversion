@@ -7,7 +7,7 @@ if (!filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT)) {
     $id = $_GET['id'];
 }
 //récupération des infos de la table compositions en BDD
-$stmt = $db->prepare('SELECT `id`, `title`, `file`, `chords`, `instrumentsUsed`, `id_users`, `style` FROM `compositions` WHERE `id` = :id');
+$stmt = $db->prepare('SELECT compositions.id, compositions.title, compositions.file, compositions.chords, compositions.instrumentsUsed, compositions.id_users, categories.style FROM compositions INNER JOIN categories ON compositions.id = :id AND compositions.title = categories.title ');
 if ($stmt->execute(array(':id' => $id)) && $row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
     //stockage des informations dans des variables
     foreach ($row as $rowInfo) {

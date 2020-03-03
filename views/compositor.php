@@ -7,7 +7,6 @@ require_once 'require/header.php';
         <h1 class="text-center bg-light col-10 opacity mt-2 ml-auto mr-auto"><?= $pseudo ?> | Informations personnelles
             :</h1>
     </div>
-    <?= $personalInformations ?? '<h2 class="text-light text-center">Ce compositeur n\'as pas encore renseigné d\'informations sur lui.</h2>' ?>
     <!-- container -->
     <div class="container bg-light opacity">
         <div class="row">
