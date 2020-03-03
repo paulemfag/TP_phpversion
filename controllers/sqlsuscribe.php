@@ -45,8 +45,8 @@ $key = md5(microtime(TRUE) * 100000);
 // Insertion de la clé dans la base de données
 try {
     $stmt = $db->prepare('UPDATE `users` SET activationkey = :cle WHERE pseudo = :pseudo');
-    $stmt->bindParam(':cle', $key);
-    $stmt->bindParam(':pseudo', $pseudo);
+    $stmt->bindValue(':cle', $key, PDO::PARAM_STR);
+    $stmt->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
     $stmt->execute();
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
