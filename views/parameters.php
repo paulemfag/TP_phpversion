@@ -65,7 +65,6 @@ require_once '../controllers/form_validation.php';
             <input id="Password" class="col-12 inputColor" name="Password" type="password" value="<?= $actualPassword ?>" required>
         </div>
         <button class="btn btn-outline-danger col-12" id="removeMyAccount" name="removeMyAccount" type="submit" value="<?= $removeMyAccount ?? '' ?>"><i class="far fa-times-circle"></i> Supprimer mon compte</button>
-        <span class="text-success float-right"><?= ($errors['isok']) ?? '' ?></span>
     </form>
 </div>
 </div>

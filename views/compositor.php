@@ -32,9 +32,9 @@ require_once 'require/header.php';
         <div class="row">
             <div class="col-12">
                 <a><i class="fas fa-network-wired"></i><b> Réseaux :</b></a>
-                <a title="Profil Facebook" target="_blank" href="<?= $facebookId ?? '#' ?>"><img
+                <a title="Profil Facebook de <?= $pseudo ?>" target="_blank" href="<?= $facebookId ?? '#' ?>"><img
                             src="assets/img/facebook-logo.png" width="80" height="60" alt="logo_facebook"></a>
-                <a title="Profil Twitter" target="_blank" href="<?= $twitterId ?? '#' ?>"><img
+                <a title="Profil Twitter de <?= $pseudo ?>" target="_blank" href="<?= $twitterId ?? '#' ?>"><img
                             src="assets/img/logo_twitter.png" width="80" height="60" alt="logo_twitter"></a>
             </div>
         </div>
@@ -45,10 +45,9 @@ require_once 'require/header.php';
                 <a class="col-7 float-left"><b>Style :</b></a>
                 <?php foreach ($compositionsList as $composition) {
                     //récupération du titre sans l'extension de fichier (array)
-                    $compositionTitle = explode('.', $composition['title']);
                     $file = $composition['file'];
-                    echo '<a title="' .$compositionTitle[0]. '" href="composition.php?id=' .$composition['id']. '" class="col-5">' . $compositionTitle[0] . '</a>' . '
-<a href="stylePage.php?style=' .$composition['style']. '" class="col-2">' .$composition['style']. '</a>
+                    echo '<a title="Page composition ' .$composition['title']. '" href="composition.php?id=' .$composition['id']. '" class="col-5">' .$composition['title']. '</a>' . '
+<a title="Page style ' .$composition['style']. '" href="stylePage.php?style=' .$composition['style']. '" class="col-2">' .$composition['style']. '</a>
 <audio style="height: 20px;" class="float-right col-5" controls controlsList="nodownload">
             <source src="' . $file . '" type="audio/mp3">
             </audio>';

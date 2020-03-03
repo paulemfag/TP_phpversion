@@ -11,15 +11,15 @@ $stmt = $db->prepare('SELECT `id`, `title`, `file`, `chords`, `instrumentsUsed`,
 if ($stmt->execute(array(':id' => $id)) && $row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
     //stockage des informations dans des variables
     foreach ($row as $rowInfo) {
-        $compositionTitleExplode = explode('.', $rowInfo['title']);
-        $compositionTitle = $compositionTitleExplode[0];
+        $title = $rowInfo['title'];
         $file = $rowInfo['file'];
         $idUser = $rowInfo['id_users'];
         $chords = $rowInfo['chords'];
         $instruments = $rowInfo['instrumentsUsed'];
         $style = $rowInfo['style'];
     }
-    $title = 'Page composition | ' . $compositionTitle;
+    //Définition du titre de l'onglet / du <h1>
+    $title = 'Page composition | ' . $title;
 }
 //récupération pseudo du compositeur
 try {

@@ -20,11 +20,11 @@ try {
             $playlistListIdNumber++;
             //récupération de l'id de l'user dans une variable pour récupérer son pseudo
             $idUser = $rowInfo['id_users'];
-            $fileTitle = explode('.', $rowInfo['title']);
+            $fileTitle = $rowInfo['title'];
             //génération des cases du tableau
             $composition =
                 '<tr>
-            <td><a title="Page composition | ' .$fileTitle[0]. '" href="composition.php?id=' .$rowInfo['id']. '">' . $fileTitle[0] . '</a></td>';
+            <td><a title="Page composition | ' .$fileTitle. '" href="composition.php?id=' .$rowInfo['id']. '">' .$fileTitle. '</a></td>';
             $stmt = $db->prepare('SELECT `id`, `pseudo` FROM `users` WHERE id = :id');
             if ($stmt->execute(array(':id' => $idUser)) && $row = $stmt->fetch()) {
                 //ajout du pseudo du compositeur au cases du tableaus

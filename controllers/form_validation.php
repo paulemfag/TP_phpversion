@@ -31,6 +31,8 @@ $changeAccountPassword = $_POST['changeAccountPassword'] ?? '';
 $actualPassword = $_POST['actualPassword'] ?? '';
 $newPassword = $_POST['newPassword'] ?? '';
 $newPasswordConfirm = $_POST['newPasswordConfirm'] ?? '';
+//formulaire supperession du compte
+$removeMyAccountPassword = $_POST['Password'] ?? '';
 //regex pour le contrôle des formulaires
 $regexPseudo = "/^[A-Za-zéÉ][A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+((-| )[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+)?$/";
 $regexCompositionName = '/^(([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})+((-|\s)?)+([A-Z|a-z|áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]{0,50})((-|\s)+){0,5})$/';
@@ -293,11 +295,11 @@ if (isset ($_POST['changeMyPassword'])) {
 if (isset($_POST['removeMyAccount'])) {
     //ajoute une value au bouton me connecter
     $removeMyAccount = 'alreadySubmittedOnce';
-    if (empty($_POST['Password'])) {
+    if (empty($removeMyAccountPassword)) {
         $errors['Password'] = 'Veuillez renseigner un mot de passe.';
     }
     if (empty($errors)) {
-        $removeMyAccount = 'isOk';
+        require_once 'sqldeleteaccount.php';
     }
 }
 

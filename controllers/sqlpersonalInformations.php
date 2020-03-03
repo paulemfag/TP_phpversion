@@ -35,12 +35,12 @@ if (!empty($twitter)) {
 try {
     $stmt = $db->prepare('UPDATE `users` SET `biography` = :biography, `instruments` = :instruments, `facebookId` = :facebookId, `twitterId` = :twitterId, `software` = :software WHERE pseudo = :pseudo');
     //$stmt->bindParam(':favoritesStyles', $key);
-    $stmt->bindParam(':biography', $biography);
-    $stmt->bindParam(':instruments', $instruments);
-    $stmt->bindParam(':facebookId', $facebook);
-    $stmt->bindParam(':twitterId', $twitter);
-    $stmt->bindParam(':software', $software);
-    $stmt->bindParam(':pseudo', $pseudo);
+    $stmt->bindParam(':biography', $biography, PDO::PARAM_STR);
+    $stmt->bindParam(':instruments', $instruments, PDO::PARAM_STR);
+    $stmt->bindParam(':facebookId', $facebook, PDO::PARAM_STR);
+    $stmt->bindParam(':twitterId', $twitter, PDO::PARAM_STR);
+    $stmt->bindParam(':software', $software, PDO::PARAM_STR);
+    $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
     $stmt->execute();
     header('location:accueil.php');
     exit();
